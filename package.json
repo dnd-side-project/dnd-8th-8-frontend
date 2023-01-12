@@ -12,7 +12,15 @@
     "reinstall": "yarn clean && yarn install",
     "lint": "next lint",
     "lint:css": "stylelint \"**/*.(ts|tsx|css)\"",
-    "format": "prettier \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\" --write"
+    "format": "prettier \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\" --write",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{ts, tsx}": [
+      "eslint --fix",
+      "prettier --write",
+      "stylelint --fix"
+    ]
   },
   "dependencies": {
     "@next/font": "13.1.1",
@@ -38,6 +46,8 @@
     "eslint-plugin-react": "^7.32.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-simple-import-sort": "^8.0.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.0",
     "postcss": "^8.4.21",
     "postcss-syntax": "^0.36.2",
     "prettier": "^2.8.2",
