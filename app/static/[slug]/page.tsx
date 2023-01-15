@@ -9,7 +9,7 @@ export const generateStaticParams = async () => {
   }))
 }
 
-const SlugPage = ({ params }: any) => {
+const SlugPage = ({ params }: { params: { slug: string } }) => {
   return (
     <>
       <h1>The character name is: {params.slug}</h1>

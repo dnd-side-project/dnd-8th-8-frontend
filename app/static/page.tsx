@@ -11,7 +11,7 @@ const StaticPage = () => {
     <div>
       <h1>StaticPage</h1>
 
-      {Characters.results.map((char: any) => (
+      {Characters.results.map((char: Object) => (
         <ul key={char.id}>
           <Link
             href={`/static/${char.name}`.replace(/\s+/g, '-').toLowerCase()}

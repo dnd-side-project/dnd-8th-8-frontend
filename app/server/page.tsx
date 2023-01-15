@@ -15,7 +15,7 @@ const ServerPage = () => {
     <div>
       <h1>ServerPage</h1>
 
-      {Characters.results.map((char: any) => (
+      {Characters.results.map((char: Object) => (
         <ul key={char.id}>
           <Link href={`/server/${char.id}`.replace(/\s+/g, '-').toLowerCase()}>
             <li>{char.name}</li>

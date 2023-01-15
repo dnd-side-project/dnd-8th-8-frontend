@@ -13,7 +13,8 @@
   "env": {
     "browser": true,
     "es6": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "globals": {
     "React": true
@@ -24,7 +25,8 @@
     "prettier",
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:storybook/recommended"
   ],
   "rules": {
     "react/react-in-jsx-scope": "off",
@@ -35,6 +37,5 @@
     "react-hooks/rules-of-hooks": "error",
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error"
-  },
-  "ignorePatterns": ["!.storybook"]
+  }
 }
