@@ -13,5 +13,5 @@ const Page = () => {
 export default Page
 
 const Layout = styled.div`
-  background-color: #eeeeee;
+  background-color: #eee;
 `
