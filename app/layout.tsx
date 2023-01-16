@@ -1,5 +1,6 @@
 'use client'
 
+import { RecoilRoot } from 'recoil'
 import { ThemeProvider } from 'styled-components'
 
 import Navbar from '@/components/Navbar'
@@ -13,17 +14,19 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       <head />
 
       <body>
-        <RootStyleLayout>
-          <ThemeProvider theme={theme}>
-            <GlobalStyle />
+        <RecoilRoot>
+          <RootStyleLayout>
+            <ThemeProvider theme={theme}>
+              <GlobalStyle />
 
-            <div>
-              <Navbar />
+              <div>
+                <Navbar />
 
-              {children}
-            </div>
-          </ThemeProvider>
-        </RootStyleLayout>
+                {children}
+              </div>
+            </ThemeProvider>
+          </RootStyleLayout>
+        </RecoilRoot>
       </body>
     </html>
   )
