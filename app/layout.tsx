@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { RecoilRoot } from 'recoil'
 import { ThemeProvider } from 'styled-components'
 
-import Navbar from '@/components/Navbar'
+import { Navbar } from '@/components'
 import { GlobalStyle, theme } from '@/styles'
 
 import RootStyleLayout from './styleLayout'
