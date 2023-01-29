@@ -1,5 +1,4 @@
 {
-  "processors": ["stylelint-processor-styled-components"],
   "extends": [
     "stylelint-config-standard",
     "stylelint-config-prettier",
@@ -7,6 +6,6 @@
     "stylelint-config-styled-components",
     "stylelint-config-recess-order"
   ],
-  "plugins": ["stylelint-order"],
+  "customSyntax": "@stylelint/postcss-css-in-js",
   "rules": {}
 }
