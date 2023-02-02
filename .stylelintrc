@@ -8,6 +8,7 @@
   ],
   "customSyntax": "@stylelint/postcss-css-in-js",
   "rules": {
-    "function-no-unknown": [true, { "ignoreFunctions": ["/\\${/"] }]
+    "function-no-unknown": [true, { "ignoreFunctions": ["/\\${/"] }],
+    "value-keyword-case": null
   }
 }
