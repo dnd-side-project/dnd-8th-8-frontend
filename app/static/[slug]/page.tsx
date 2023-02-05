@@ -4,7 +4,7 @@ const getCharacters = async () =>
 export const generateStaticParams = async () => {
   const characters = await getCharacters()
 
-  return characters?.results.map((c) => ({
+  return characters?.results.map((c: any) => ({
     slug: c?.name.replace(/\s+/g, '-').toLowerCase(),
   }))
 }

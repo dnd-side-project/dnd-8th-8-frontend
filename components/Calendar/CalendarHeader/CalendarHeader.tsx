@@ -1,5 +1,3 @@
-import { Icon, Typography } from '@/components'
-
 import { Header, HeaderButton } from './CalendarHeader.styled'
 
 interface CalendarHeaderProps {
@@ -18,15 +16,15 @@ const CalendarHeader = ({
   return (
     <Header>
       <HeaderButton onClick={prevMonth} aria-label="Previous month">
-        <Icon name="chevron-left" size={30} color="black" />
+        {/* <Icon name="chevron-left" size={30} color="black" /> */}
       </HeaderButton>
 
-      <Typography size="sub1" weight="bold">
+      <p>
         {year}년 {month + 1}월
-      </Typography>
+      </p>
 
       <HeaderButton onClick={nextMonth} aria-label="Next month">
-        <Icon name="chevron-right" size={30} color="black" />
+        {/* <Icon name="chevron-right" size={30} color="black" /> */}
       </HeaderButton>
     </Header>
   )

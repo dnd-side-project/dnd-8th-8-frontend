@@ -1,4 +1,3 @@
-import { FlexRow, Typography } from '@/components'
 import { CalendarItem, chunk } from '@/utils'
 
 import {
@@ -17,13 +16,13 @@ interface CalendarBodyProps {
 const CalendarBody = ({ calendar, handleSelected }: CalendarBodyProps) => {
   return (
     <Layout>
-      <FlexRow justify="space-between">
+      <div>
         {['일', '월', '화', '수', '목', '금', '토'].map((day) => (
           <DayBox key={day}>
-            <Typography size="cap1">{day}</Typography>
+            <p>{day}</p>
           </DayBox>
         ))}
-      </FlexRow>
+      </div>
 
       <Divider />
 
