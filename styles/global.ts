@@ -1,8 +1,11 @@
 import { createGlobalStyle } from 'styled-components'
+import reset from './reset'
 
 const GlobalStyle = createGlobalStyle`
+  ${reset}
+
   @font-face {
-    font-family: 'Pretendard Variable';
+    font-family: 'Pretendard Variable', sans-serif;
     font-style: normal;
     font-weight: 45 920;
     src: local('Pretendard Variable'), url('/fonts/PretendardVariable.woff2') format('woff2-variations');
