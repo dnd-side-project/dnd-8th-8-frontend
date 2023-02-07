@@ -30,17 +30,17 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <QueryClientProvider client={queryClient}>
           <ReactQueryDevtools initialIsOpen={false} />
           <RecoilRoot>
-            <RootStyleLayout>
-              <ThemeProvider theme={theme}>
-                <GlobalStyle />
+            {/* <RootStyleLayout> */}
+            <ThemeProvider theme={theme}>
+              <GlobalStyle />
 
-                <MobileLayout>
-                  <Navbar />
+              <MobileLayout>
+                <Navbar />
 
-                  {children}
-                </MobileLayout>
-              </ThemeProvider>
-            </RootStyleLayout>
+                {children}
+              </MobileLayout>
+            </ThemeProvider>
+            {/* </RootStyleLayout> */}
           </RecoilRoot>
         </QueryClientProvider>
       </body>
