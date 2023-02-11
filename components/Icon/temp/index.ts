@@ -20,6 +20,11 @@ export { default as Search } from './Search'
 export { default as Slash } from './Slash'
 export { default as View } from './View'
 export { default as Warning } from './Warning'
+export { default as WCheckList } from './WCheckList'
+export { default as WCollection } from './WCollection'
+export { default as WCommunity } from './WCommunity'
+export { default as WHome } from './WHome'
+export { default as WMyPage } from './WMyPage'
 
 // prettier-ignore
 const icons = {
