@@ -1,47 +1,60 @@
-export { default as ArrowLeft } from './ArrowLeft'
-export { default as ArrowRight } from './ArrowRight'
-export { default as Calendar } from './Calendar'
-export { default as Check } from './Check'
-export { default as CheckBox } from './CheckBox'
-export { default as ChevronDown } from './ChevronDown'
-export { default as ChevronLeft } from './ChevronLeft'
-export { default as ChevronRight } from './ChevronRight'
-export { default as ChevronUp } from './ChevronUp'
-export { default as Close } from './Close'
-export { default as Expand } from './Expand'
-export { default as Hide } from './Hide'
-export { default as Inform } from './Inform'
-export { default as Minus } from './Minus'
-export { default as MoreHorizontal } from './MoreHorizontal'
-export { default as MoreVertical } from './MoreVertical'
-export { default as Picture } from './Picture'
-export { default as Play } from './Play'
-export { default as Search } from './Search'
-export { default as Slash } from './Slash'
-export { default as View } from './View'
-export { default as Warning } from './Warning'
-export { default as WCheckList } from './WCheckList'
-export { default as WCollection } from './WCollection'
-export { default as WCommunity } from './WCommunity'
-export { default as WHome } from './WHome'
-export { default as WMyPage } from './WMyPage'
+import ArrowLeft from './ArrowLeft'
+import ArrowRight from './ArrowRight'
+import Calendar from './Calendar'
+import Check from './Check'
+import CheckBox from './CheckBox'
+import ChevronDown from './ChevronDown'
+import ChevronLeft from './ChevronLeft'
+import ChevronRight from './ChevronRight'
+import ChevronUp from './ChevronUp'
+import Close from './Close'
+import Expand from './Expand'
+import Hide from './Hide'
+import Inform from './Inform'
+import Minus from './Minus'
+import MoreHorizontal from './MoreHorizontal'
+import MoreVertical from './MoreVertical'
+import Picture from './Picture'
+import Play from './Play'
+import Search from './Search'
+import Slash from './Slash'
+import View from './View'
+import Warning from './Warning'
+import WCheckList from './WCheckList'
+import WCollection from './WCollection'
+import WCommunity from './WCommunity'
+import WHome from './WHome'
+import WMyPage from './WMyPage'
 
 // prettier-ignore
 const icons = {
+  "arrow-left": ArrowLeft,
+  "arrow-right": ArrowRight,
+  "calendar": Calendar,
+  "check": Check,
+  "check-box": CheckBox,
+  "chevron-down": ChevronDown,
   "chevron-left": ChevronLeft,
   "chevron-right": ChevronRight,
-  "gps": Gps,
-  "edit": Edit,
-  "list": List,
-  "map-pin": MapPin,
-  "menu": Menu,
+  "chevron-up": ChevronUp,
+  "close": Close,
+  "expand": Expand,
+  "hide": Hide,
+  "inform": Inform,
+  "minus": Minus,
   "more-horizontal": MoreHorizontal,
   "more-vertical": MoreVertical,
+  "picture": Picture,
+  "play": Play,
   "search": Search,
-  "share": Share,
-  "share2": Share2,
-  "stack": Stack,
-  "x": X,
+  "slash": Slash,
+  "view": View,
+  "warning": Warning,
+  "w-check-list": WCheckList,
+  "w-collection": WCollection,
+  "w-community": WCommunity,
+  "w-home": WHome,
+  "w-my-page": WMyPage,
 };
 
 export type IconName = keyof typeof icons
