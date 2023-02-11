@@ -2,22 +2,17 @@ import type { SvgProps } from '../'
 
 const Search = (props: SvgProps) => (
   <svg {...props}>
-    <rect
-      x="6"
-      y="5"
-      width="17"
-      height="17"
-      rx="8.5"
+    <path
+      d="M7.5 13.5C10.8137 13.5 13.5 10.8137 13.5 7.5C13.5 4.18629 10.8137 1.5 7.5 1.5C4.18629 1.5 1.5 4.18629 1.5 7.5C1.5 10.8137 4.18629 13.5 7.5 13.5Z"
       stroke="currentColor"
-      strokeWidth="1.8"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
-    <line
-      x1="20.2728"
-      y1="20"
-      x2="24.5355"
-      y2="24.2627"
+    <path
+      d="M15.5002 15.5002L11.7422 11.7422"
       stroke="currentColor"
-      strokeWidth="1.8"
+      strokeMiterlimit="10"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
