@@ -27,7 +27,8 @@ export const parameters = {
     viewports: INITIAL_VIEWPORTS,
   },
   darkMode: {
-    dark,
+    current: 'light',
     light,
+    dark,
   },
 }
