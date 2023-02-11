@@ -1,6 +1,6 @@
-import type { SvgProps } from '../'
+import type { SvgProps } from '..'
 
-const WCheckList = (props: SvgProps) => (
+const WChecklist = (props: SvgProps) => (
   <svg {...props}>
     <circle cx="17.0453" cy="4.49546" r="4.49546" fill="#F793E1" />
     <mask id="path-2-inside-1_783_9666" fill="white">
@@ -49,4 +49,4 @@ const WCheckList = (props: SvgProps) => (
   </svg>
 )
 
-export default WCheckList
+export default WChecklist

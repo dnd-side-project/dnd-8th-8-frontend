@@ -20,7 +20,7 @@ import Search from './Search'
 import Slash from './Slash'
 import View from './View'
 import Warning from './Warning'
-import WCheckList from './WCheckList'
+import WChecklist from './WChecklist'
 import WCollection from './WCollection'
 import WCommunity from './WCommunity'
 import WHome from './WHome'
@@ -50,7 +50,7 @@ const icons = {
   "slash": Slash,
   "view": View,
   "warning": Warning,
-  "w-check-list": WCheckList,
+  "w-check-list": WChecklist,
   "w-collection": WCollection,
   "w-community": WCommunity,
   "w-home": WHome,
