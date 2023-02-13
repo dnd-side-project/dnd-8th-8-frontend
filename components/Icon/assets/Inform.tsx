@@ -1,7 +1,5 @@
-import type { SvgProps } from '../'
-
-const Inform = (props: SvgProps) => (
-  <svg {...props}>
+const Inform = () => (
+  <svg>
     <g clipPath="url(#clip0_764_5556)">
       <path
         fillRule="evenodd"

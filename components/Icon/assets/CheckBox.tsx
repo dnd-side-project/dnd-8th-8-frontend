@@ -1,7 +1,5 @@
-import type { SvgProps } from '../'
-
-const CheckBox = (props: SvgProps) => (
-  <svg {...props}>
+const CheckBox = () => (
+  <svg>
     <path
       fillRule="evenodd"
       clipRule="evenodd"

@@ -1,7 +1,5 @@
-import type { SvgProps } from '../'
-
-const Picture = (props: SvgProps) => (
-  <svg {...props}>
+const Picture = () => (
+  <svg>
     <path
       d="M15 8.5H15.01"
       stroke="currentColor"

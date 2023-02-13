@@ -1,7 +1,5 @@
-import type { SvgProps } from '../'
-
-const View = (props: SvgProps) => (
-  <svg {...props}>
+const View = () => (
+  <svg>
     <path
       d="M0.5 8C0.5 8 3.5 2.5 8 2.5C12.5 2.5 15.5 8 15.5 8C15.5 8 12.5 13.5 8 13.5C3.5 13.5 0.5 8 0.5 8Z"
       stroke="currentColor"

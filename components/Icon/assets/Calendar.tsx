@@ -1,7 +1,5 @@
-import type { SvgProps } from '../'
-
-const Calendar = (props: SvgProps) => (
-  <svg {...props}>
+const Calendar = () => (
+  <svg>
     <path
       d="M0.5 5.5H15.5"
       stroke="currentColor"

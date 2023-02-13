@@ -1,7 +1,5 @@
-import type { SvgProps } from '../'
-
-const ArrowLeft = (props: SvgProps) => (
-  <svg {...props}>
+const ArrowLeft = () => (
+  <svg>
     <path
       d="M15.5 8.5H0.5"
       stroke="currentColor"
