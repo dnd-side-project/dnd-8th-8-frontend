@@ -2,14 +2,13 @@ import { useCalendar } from '@/hooks'
 
 import { CalendarBody, CalendarHeader } from './'
 import { Layout } from './Calendar.styled'
-import { CalendarProps } from './Calendar.types'
 
-const Calendar = ({ id, className, style }: CalendarProps) => {
+const Calendar = () => {
   const { month, year, calendar, nextMonth, prevMonth, handleSelected } =
     useCalendar(new Date())
 
   return (
-    <Layout id={id} className={className} style={style}>
+    <Layout>
       <CalendarHeader
         month={month}
         year={year}
