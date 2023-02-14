@@ -1,5 +1,8 @@
-const CollectionBudget = () => {
-  return <div>budget page</div>
-}
+const Budget = () => {
+    return (
+      <div>budget page</div>
+    )
+  }
+  
+  export default Budget
 
-export default CollectionBudget

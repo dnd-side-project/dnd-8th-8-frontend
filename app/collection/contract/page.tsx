@@ -1,5 +1,7 @@
-const CollectionContract = () => {
-  return <div>contract page</div>
-}
-
-export default CollectionContract
+const Contract = () => {
+    return (
+      <div>contract page</div>
+    )
+  }
+  
+  export default Contract
