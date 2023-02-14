@@ -10,7 +10,7 @@
     "build:storybook": "build-storybook",
     "clean": "rm -rf .next node_modules storybook-static",
     "reinstall": "yarn clean && yarn install",
-    "lint": "next lint",
+    "lint": "npx eslint . --ext .ts,.tsx",
     "lint:css": "stylelint \"**/*.(ts|tsx)\"",
     "format": "prettier \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\" --write",
     "test": "jest",

@@ -1,7 +1,5 @@
 const WeddingDay = () => {
-    return (
-      <div>Onboarind-wedding day page</div>
-    )
-  }
-  
-  export default WeddingDay
+  return <div>Onboarding-wedding day page</div>
+}
+
+export default WeddingDay
