@@ -1,7 +1,5 @@
 const Gender = () => {
-    return (
-      <div>Onboarind-gender page</div>
-    )
-  }
-  
-  export default Gender
+  return <div>Onboarding-gender page</div>
+}
+
+export default Gender

@@ -1,7 +1,5 @@
 const Checklist = () => {
-    return (
-      <div>Onboarind-checklist page</div>
-    )
-  }
-  
-  export default Checklist
+  return <div>Onboarding-checklist page</div>
+}
+
+export default Checklist
