@@ -1,2 +1,3 @@
 .husky/* linguist-vendored
+*.html linguist-vendored
 next.config.js linguist-vendored

@@ -1,7 +1,5 @@
-import type { SvgProps } from '../'
-
-const Warning = (props: SvgProps) => (
-  <svg {...props}>
+const Warning = () => (
+  <svg>
     <path
       fillRule="evenodd"
       clipRule="evenodd"

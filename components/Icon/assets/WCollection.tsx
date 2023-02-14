@@ -1,7 +1,5 @@
-import type { SvgProps } from '../'
-
-const WCollection = (props: SvgProps) => (
-  <svg {...props}>
+const WCollection = () => (
+  <svg>
     <rect
       x="21.4062"
       y="13.1348"

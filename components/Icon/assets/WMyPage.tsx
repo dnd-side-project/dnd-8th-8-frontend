@@ -1,7 +1,5 @@
-import type { SvgProps } from '../'
-
-const Plus = (props: SvgProps) => (
-  <svg {...props}>
+const Plus = () => (
+  <svg>
     <circle cx="16.3604" cy="13.585" r="5.3936" fill="#F793E1" />
     <mask
       id="mask0_783_9670"

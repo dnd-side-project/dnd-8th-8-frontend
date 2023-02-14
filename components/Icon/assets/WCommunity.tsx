@@ -1,7 +1,5 @@
-import type { SvgProps } from '../'
-
-const WCommunity = (props: SvgProps) => (
-  <svg {...props}>
+const WCommunity = () => (
+  <svg>
     <circle cx="17.1962" cy="4.92224" r="3.89538" fill="#F793E1" />
     <path
       d="M24.088 17.9786H9.70508V15.4102C9.70508 13.6979 11.1434 10.2734 16.8966 10.2734C22.6497 10.2734 24.088 13.6979 24.088 15.4102V17.9786Z"

@@ -7,7 +7,7 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: 'A button component.',
+        component: 'A Button Component.',
       },
     },
   },
@@ -17,17 +17,35 @@ export const Default: Story<ButtonProps> = (args) => {
   return <Button {...args} />
 }
 
-// TODO : disabled 생략시 Controls에서 disabled가 보이지 않음
 Default.args = {
   children: 'Button',
-  disabled: false,
+  backgroundColor: 'secondary500',
+  color: 'neutral0',
 }
 
-export const Disabled = () => <Button disabled>Disabled</Button>
-Disabled.parameters = {
-  docs: {
-    description: {
-      story: 'A disabled button.',
-    },
-  },
+export const Shadow = () => {
+  return (
+    <>
+      <Button>Default</Button>
+      <Button shadow>Shadow</Button>
+    </>
+  )
+}
+
+export const Disabled = () => {
+  return (
+    <>
+      <Button>Default</Button>
+      <Button disabled>Disabled</Button>
+    </>
+  )
+}
+
+export const FullWidth = () => {
+  return (
+    <>
+      <Button>Default</Button>
+      <Button fullWidth>Full Width</Button>
+    </>
+  )
 }

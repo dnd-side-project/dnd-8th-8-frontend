@@ -1,7 +1,5 @@
-import type { SvgProps } from '../'
-
-const Search = (props: SvgProps) => (
-  <svg {...props}>
+const Search = () => (
+  <svg>
     <path
       d="M7.5 13.5C10.8137 13.5 13.5 10.8137 13.5 7.5C13.5 4.18629 10.8137 1.5 7.5 1.5C4.18629 1.5 1.5 4.18629 1.5 7.5C1.5 10.8137 4.18629 13.5 7.5 13.5Z"
       stroke="currentColor"

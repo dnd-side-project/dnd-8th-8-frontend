@@ -8,7 +8,7 @@ import { GlobalStyle, theme } from '../styles'
 import { dark, light } from './theme'
 
 addDecorator((Story) => (
-  <ThemeProvider theme={theme(useDarkMode() ? 'dark' : 'light')}>
+  <ThemeProvider theme={theme}>
     <GlobalStyle />
     <Story />
   </ThemeProvider>

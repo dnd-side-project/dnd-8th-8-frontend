@@ -1,7 +1,5 @@
-import type { SvgProps } from '../'
-
-const Expand = (props: SvgProps) => (
-  <svg {...props}>
+const Expand = () => (
+  <svg>
     <path
       d="M11 3L3 11"
       stroke="currentColor"

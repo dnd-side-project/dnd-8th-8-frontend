@@ -1,7 +1,5 @@
-import type { SvgProps } from '../'
-
-const Minus = (props: SvgProps) => (
-  <svg {...props}>
+const Minus = () => (
+  <svg>
     <path
       d="M1 6H11"
       stroke="currentColor"

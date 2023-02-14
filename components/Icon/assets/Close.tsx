@@ -1,7 +1,5 @@
-import type { SvgProps } from '../'
-
-const Close = (props: SvgProps) => (
-  <svg {...props}>
+const Close = () => (
+  <svg>
     <g clipPath="url(#clip0_764_5552)">
       <path
         d="M12.1719 6.17188V18.1719"

@@ -1,7 +1,5 @@
-import type { SvgProps } from '../'
-
-const ChevronUp = (props: SvgProps) => (
-  <svg {...props}>
+const ChevronUp = () => (
+  <svg>
     <path
       d="M2.5 11L8 6L13.5 11"
       stroke="currentColor"
