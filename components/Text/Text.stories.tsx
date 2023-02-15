@@ -33,7 +33,7 @@ export const Family = () => {
 
       <Text as="t1">Wedding map (t1)</Text>
       <Text as="t2">Wedding map (t2)</Text>
-      <Text as="t3">Wedding map (t3)</Text>
+      <Text>Wedding map (t3)</Text>
       <Text as="t4">Wedding map (t4)</Text>
       <Text as="t5">Wedding map (t5)</Text>
     </>
@@ -61,9 +61,7 @@ export const Color = () => {
       <Text as="t1" color="neutral800">
         color neutral800
       </Text>
-      <Text as="t1" color="neutral900">
-        color neutral900
-      </Text>
+      <Text as="t1">color neutral900</Text>
 
       <Text as="t1" color="primary0">
         color primary0
