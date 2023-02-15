@@ -8,7 +8,7 @@ const theme = {
 export const light = create({
   ...theme,
   base: 'light',
-  brandImage: '/images/logo.light.svg',
+  brandImage: '/images/logo.storybook.light.svg',
 
   colorPrimary: '#F693E1',
   colorSecondary: '#192EA1',
@@ -17,7 +17,7 @@ export const light = create({
 export const dark = create({
   ...theme,
   base: 'dark',
-  brandImage: '/images/logo.dark.svg',
+  brandImage: '/images/logo.storybook.dark.svg',
 
   colorPrimary: '#192EA1',
   colorSecondary: '#F693E1',
