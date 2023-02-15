@@ -1,5 +1,6 @@
 export * from './AAA'
 export * from './Button'
 export * from './Checkbox'
+export * from './Icon'
 export * from './Navbar'
 export * from './Text'
