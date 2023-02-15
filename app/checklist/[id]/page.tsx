@@ -1,13 +1,8 @@
-'use client';
+import { ParamsProps } from '@/types/param'
 
-import { ParamsProps } from "@/types/param";
+const DetailChecklist = ({ params: { id } }: ParamsProps) => {
+  console.log(id)
+  return <div>checklist page</div>
+}
 
-
-const DetailChecklist = ({params:{id}}:ParamsProps) => {
-  
-    return (
-      <div>checklist page</div>
-    )
-  }
-  
-  export default DetailChecklist
+export default DetailChecklist

@@ -1,11 +1,8 @@
-import { ParamsProps } from "@/types/param"
+import { ParamsProps } from '@/types/param'
 
+const DetailBudget = ({ params: { id } }: ParamsProps) => {
+  console.log(id)
+  return <div>detail budget page</div>
+}
 
-const DetailBudget = ({params:{id}}:ParamsProps) => {
-  
-    return (
-      <div>detail budget page</div>
-    )
-  }
-  
-  export default DetailBudget
+export default DetailBudget

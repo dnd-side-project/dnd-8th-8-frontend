@@ -1,7 +1,9 @@
 import { css } from 'styled-components'
 
 const reset = css`
-  html,
+  html {
+    font-size:62.5%;
+  },
   body,
   div,
   span,

@@ -2,11 +2,9 @@
 
 import localFont from '@next/font/local'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { RecoilRoot } from 'recoil'
 import styled, { ThemeProvider } from 'styled-components'
 
-import { Navbar } from '@/components'
 import { GlobalStyle, theme } from '@/styles'
 
 const pretendard = localFont({
@@ -31,15 +29,13 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
 
       <body>
         <QueryClientProvider client={queryClient}>
-          <ReactQueryDevtools initialIsOpen={false} />
+          {/* <ReactQueryDevtools initialIsOpen={false} /> */}
           <RecoilRoot>
             {/* <RootStyleLayout> */}
             <ThemeProvider theme={theme}>
               <GlobalStyle />
-
               <MobileLayout>
-                <Navbar />
-
+                {/* <Navbar /> */}
                 {children}
               </MobileLayout>
             </ThemeProvider>
