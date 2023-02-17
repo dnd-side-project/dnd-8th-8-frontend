@@ -1,16 +1,23 @@
 'use client'
 
+import userState from '@/atoms/userAtom'
 import OnBoardingLayout from '@/layouts/onboarding/onboardingLayout'
 import { useRouter } from 'next/navigation'
+import { useSetRecoilState } from 'recoil'
 
 const WeddingStatus = () => {
   const router = useRouter()
+  const setUserInfo = useSetRecoilState(userState)
+
   return (
     <OnBoardingLayout
-      title={'어떤 역할을맡으셨나요?'}
-      subTitle="현재 본인이 어디에 속해있는지"
+      title={`현재 결혼을\n준비 중이신가요?`}
+      subTitle={`자신의 상태를 알려주세요.`}
       handleSkipBtnClick={() => console.log('click')}
-      handleNextBtnClick={() => router.push('/onboarding/wedding-day')}
+      handleNextBtnClick={() => {
+        setUserInfo((prev) => ({ ...prev, weddingStatus: 'Y' }))
+        router.push('/onboarding/wedding-day')
+      }}
     >
       <span>hello</span>
     </OnBoardingLayout>

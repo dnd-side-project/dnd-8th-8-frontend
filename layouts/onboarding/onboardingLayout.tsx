@@ -22,8 +22,8 @@ const OnBoardingLayout = (props: onboardingLayoutPropsType) => {
         <span onClick={handleSkipBtnClick}>건너뛰기기</span>
       </OnBoardingNavigationSection>
       <OnBoardingQuestionSection>
-        <h1>{title}</h1>
-        <h1>{subTitle}</h1>
+        <span>{title}</span>
+        <span>{subTitle}</span>
       </OnBoardingQuestionSection>
       <OnBoardingContentSection>{children}</OnBoardingContentSection>
       <OnBoardingButtonSection>
@@ -48,11 +48,18 @@ const OnBoardingNavigationSection = styled.div`
 `
 
 const OnBoardingQuestionSection = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 14rem;
 
-  h1:nth-child(1) {
+  span:nth-child(1) {
     margin-bottom: 2rem;
+    white-space: pre-wrap;
+  }
+
+  span:nth-child(2) {
+    white-space: pre-wrap;
   }
 `
 
