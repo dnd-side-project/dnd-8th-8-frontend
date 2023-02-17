@@ -55,6 +55,6 @@ const icons = {
   "w-community": WCommunity,
   "w-home": WHome,
   "w-my-page": WMyPage,
-};
+}
 
 export default icons
