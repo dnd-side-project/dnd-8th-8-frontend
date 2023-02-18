@@ -2,7 +2,7 @@ import ArrowLeft from './ArrowLeft'
 import ArrowRight from './ArrowRight'
 import Calendar from './Calendar'
 import Check from './Check'
-import CheckBox from './CheckBox'
+import Checkbox from './Checkbox'
 import ChevronDown from './ChevronDown'
 import ChevronLeft from './ChevronLeft'
 import ChevronRight from './ChevronRight'
@@ -32,7 +32,7 @@ const icons = {
   "arrow-right": ArrowRight,
   "calendar": Calendar,
   "check": Check,
-  "check-box": CheckBox,
+  "checkbox": Checkbox,
   "chevron-down": ChevronDown,
   "chevron-left": ChevronLeft,
   "chevron-right": ChevronRight,
