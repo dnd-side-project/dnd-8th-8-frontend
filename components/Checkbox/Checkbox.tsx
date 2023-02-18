@@ -1,6 +1,7 @@
-import { Text } from '@/components'
+import { useState } from 'react'
 
-import { IconWrapper, Input, Label, Layout } from './Checkbox.styled'
+import { Icon, Text } from '@/components'
+import { HiddenCheckbox, Label, LabelLayout, Layout } from './Checkbox.styled'
 
 export interface CheckboxProps {
   value: string
@@ -17,24 +18,38 @@ const Checkbox = ({
   defaultChecked = false,
   onChange,
 }: CheckboxProps) => {
+  const [isChecked, setIsChecked] = useState(defaultChecked)
+
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsChecked(e.target.checked)
+    onChange(e)
+  }
+
   return (
     <Layout>
-      <IconWrapper>icon</IconWrapper>
-      <Input
-        type="checkbox"
-        value={value}
-        defaultChecked={defaultChecked}
-        onChange={onChange}
-      ></Input>
-      <Label>
-        <Text>{children}</Text>
-      </Label>
+      <Icon
+        as="checkbox"
+        color={isChecked ? 'secondary500' : 'neutral500'}
+        size={22}
+      />
 
-      {description && (
-        <Text as="t4" color="neutral500">
-          {description}
-        </Text>
-      )}
+      <LabelLayout>
+        <Label>
+          <HiddenCheckbox
+            value={value}
+            defaultChecked={defaultChecked}
+            onChange={handleOnChange}
+          />
+
+          <Text as="h4">{children}</Text>
+        </Label>
+
+        {description && (
+          <Text as="t4" color="neutral500">
+            {description}
+          </Text>
+        )}
+      </LabelLayout>
     </Layout>
   )
 }
