@@ -9,8 +9,10 @@ import ChevronRight from './ChevronRight'
 import ChevronUp from './ChevronUp'
 import Close from './Close'
 import Expand from './Expand'
+import Google from './Google'
 import Hide from './Hide'
 import Inform from './Inform'
+import Kakao from './Kakao'
 import Minus from './Minus'
 import MoreHorizontal from './MoreHorizontal'
 import MoreVertical from './MoreVertical'
@@ -39,8 +41,10 @@ const icons = {
   "chevron-up": ChevronUp,
   "close": Close,
   "expand": Expand,
+  "google": Google,
   "hide": Hide,
   "inform": Inform,
+  "kakao": Kakao,
   "minus": Minus,
   "more-horizontal": MoreHorizontal,
   "more-vertical": MoreVertical,
