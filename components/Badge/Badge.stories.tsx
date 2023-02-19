@@ -9,6 +9,7 @@ export default {
       description: {
         component: 'A Badge component.',
       },
+      layout: 'centered',
     },
   },
 } as Meta

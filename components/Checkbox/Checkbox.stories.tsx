@@ -10,6 +10,7 @@ export default {
         component: 'A Checkbox component.',
       },
     },
+    layout: 'centered',
   },
 } as Meta
 
