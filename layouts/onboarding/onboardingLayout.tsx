@@ -1,5 +1,6 @@
 'use client'
 
+import { Button } from '@/components'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -27,7 +28,9 @@ const OnBoardingLayout = (props: onboardingLayoutPropsType) => {
       </OnBoardingQuestionSection>
       <OnBoardingContentSection>{children}</OnBoardingContentSection>
       <OnBoardingButtonSection>
-        <button onClick={handleNextBtnClick}>다음</button>
+        <Button fullWidth onClick={handleNextBtnClick}>
+          다음
+        </Button>
       </OnBoardingButtonSection>
     </OnBoardingLayoutStyle>
   )
@@ -66,9 +69,9 @@ const OnBoardingQuestionSection = styled.div`
 const OnBoardingContentSection = styled.div`
   width: 100%;
   height: calc(100vh - 3rem - 14rem - 8rem - 4rem);
+  overflow-y: scroll;
 
   /* padding: 2.5rem; */
-  background-color: pink;
 `
 
 const OnBoardingButtonSection = styled.div`
