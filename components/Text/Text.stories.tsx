@@ -10,6 +10,7 @@ export default {
         component: 'A Text Component.',
       },
     },
+    layout: 'centered',
   },
 } as Meta
 

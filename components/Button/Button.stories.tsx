@@ -10,6 +10,7 @@ export default {
         component: 'A Button Component.',
       },
     },
+    layout: 'centered',
   },
 } as Meta
 

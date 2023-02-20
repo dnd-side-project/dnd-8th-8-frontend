@@ -3,7 +3,14 @@ import { ButtonProps } from './Button'
 
 type LayoutProps = Pick<
   ButtonProps,
-  'fullWidth' | 'color' | 'backgroundColor' | 'shadow' | 'disabled'
+  | 'fullWidth'
+  | 'color'
+  | 'backgroundColor'
+  | 'shadow'
+  | 'disabled'
+  | 'border'
+  | 'borderColor'
+  | 'borderRadius'
 >
 
 export const Layout = styled.button<LayoutProps>`
@@ -18,8 +25,9 @@ export const Layout = styled.button<LayoutProps>`
       : backgroundColor === '#F6DB4F'
       ? '#F6DB4F'
       : theme.color[backgroundColor]};
-  border: none;
-  border-radius: 10px;
+  border: ${({ border, borderColor = 'secondary300', theme }) =>
+    border ? `1px solid ${theme.color[borderColor]}` : 'none'};
+  border-radius: ${({ borderRadius = '16px' }) => borderRadius};
   box-shadow: ${({ shadow }) =>
     shadow ? '6px 4px 18px 3px rgba(0, 0, 0, 0.11)' : 'none'};
 `

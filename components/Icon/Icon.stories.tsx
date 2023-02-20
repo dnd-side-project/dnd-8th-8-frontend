@@ -11,6 +11,7 @@ export default {
         component: 'A Icon component.',
       },
     },
+    layout: 'centered',
   },
 } as Meta
 

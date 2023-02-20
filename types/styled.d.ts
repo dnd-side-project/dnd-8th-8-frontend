@@ -13,7 +13,11 @@ declare module 'styled-components' {
     primary500: string
     primary900: string
     secondary0: string
+    secondary100: string
+    secondary300: string
+    secondary400: string
     secondary500: string
+    secondary800: string
     secondary900: string
   }
 
@@ -28,6 +32,7 @@ declare module 'styled-components' {
     t3: number
     t4: number
     t5: number
+    t6: number
   }
 
   export interface FontWeight {
@@ -41,6 +46,7 @@ declare module 'styled-components' {
     t3: number
     t4: number
     t5: number
+    t6: number
   }
 
   export interface LineHeight {
@@ -54,6 +60,7 @@ declare module 'styled-components' {
     t3: number
     t4: number
     t5: number
+    t6: number
   }
 
   export interface DefaultTheme {

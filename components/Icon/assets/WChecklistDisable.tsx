@@ -1,4 +1,4 @@
-const WMyPage = () => (
+const WChecklistDisable = () => (
   <svg
     width="22"
     height="20"
@@ -6,9 +6,8 @@ const WMyPage = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <circle cx="16.3604" cy="13.585" r="5.3936" fill="#F793E1" />
     <mask
-      id="mask0_783_9670"
+      id="mask0_965_9111"
       maskUnits="userSpaceOnUse"
       x="0"
       y="0"
@@ -30,13 +29,13 @@ const WMyPage = () => (
         strokeLinejoin="round"
       />
     </mask>
-    <g mask="url(#mask0_783_9670)">
+    <g mask="url(#mask0_965_9111)">
       <path
         d="M-0.785156 -0.59668H20.6648V20.8533H-0.785156V-0.59668Z"
-        fill="#192EA1"
+        fill="#B4B6C5"
       />
     </g>
   </svg>
 )
 
-export default WMyPage
+export default WChecklistDisable

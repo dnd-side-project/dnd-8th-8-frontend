@@ -10,6 +10,7 @@ export default {
         component: 'A navbar component.',
       },
     },
+    layout: 'centered',
   },
 } as Meta
 

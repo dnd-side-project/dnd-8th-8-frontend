@@ -19,9 +19,13 @@ const color: Color = {
   primary500: '#F693E1',
   primary900: '#900072',
 
-  secondary0: '#EAEDFF',
+  secondary0: '#f5f6ff',
+  secondary100: '#eaedff',
+  secondary300: '#b5bff2',
+  secondary400: '#6a7de0',
   secondary500: '#283FBC',
-  secondary900: '#192EA1',
+  secondary800: '#192EA1',
+  secondary900: '#0d1b27',
 }
 
 const fontSize: FontSize = {
@@ -35,6 +39,7 @@ const fontSize: FontSize = {
   t3: 16,
   t4: 14,
   t5: 12,
+  t6: 10,
 }
 
 const MEDIUM = 500
@@ -52,6 +57,7 @@ const fontWeight: FontWeight = {
   t3: MEDIUM,
   t4: MEDIUM,
   t5: MEDIUM,
+  t6: BOLD,
 }
 
 const lineHeight: LineHeight = {
@@ -65,6 +71,7 @@ const lineHeight: LineHeight = {
   t3: 24,
   t4: 20,
   t5: 18,
+  t6: 18,
 }
 
 const theme: DefaultTheme = {

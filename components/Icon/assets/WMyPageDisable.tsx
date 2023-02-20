@@ -1,4 +1,4 @@
-const WChecklist = () => (
+const WMyPageDisable = () => (
   <svg
     width="22"
     height="20"
@@ -6,8 +6,7 @@ const WChecklist = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <circle cx="17.0453" cy="4.49546" r="4.49546" fill="#F793E1" />
-    <mask id="path-2-inside-1_783_9666" fill="white">
+    <mask id="path-1-inside-1_965_9115" fill="white">
       <rect y="1.71289" width="18.2763" height="15.8056" rx="1.03467" />
     </mask>
     <rect
@@ -15,9 +14,9 @@ const WChecklist = () => (
       width="18.2763"
       height="15.8056"
       rx="1.03467"
-      stroke="#192EA1"
+      stroke="#B4B6C5"
       strokeWidth="3.42511"
-      mask="url(#path-2-inside-1_783_9666)"
+      mask="url(#path-1-inside-1_965_9115)"
     />
     <rect
       x="2.99707"
@@ -25,7 +24,7 @@ const WChecklist = () => (
       width="5.802"
       height="1.28442"
       rx="0.642209"
-      fill="#192EA1"
+      fill="#B4B6C5"
     />
     <rect
       x="2.99707"
@@ -33,7 +32,7 @@ const WChecklist = () => (
       width="5.802"
       height="1.28442"
       rx="0.642209"
-      fill="#192EA1"
+      fill="#B4B6C5"
     />
     <rect
       x="2.99707"
@@ -41,11 +40,11 @@ const WChecklist = () => (
       width="5.802"
       height="1.28442"
       rx="0.642209"
-      fill="#192EA1"
+      fill="#B4B6C5"
     />
     <path
       d="M10.4434 9.93786L12.1312 11.8732L15.085 8.48633"
-      stroke="#192EA1"
+      stroke="#B4B6C5"
       strokeWidth="1.71256"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -53,4 +52,4 @@ const WChecklist = () => (
   </svg>
 )
 
-export default WChecklist
+export default WMyPageDisable

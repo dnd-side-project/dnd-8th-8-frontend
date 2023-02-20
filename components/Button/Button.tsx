@@ -9,6 +9,9 @@ export interface ButtonProps {
   shadow?: boolean
   fullWidth?: boolean
   children: React.ReactNode
+  border?: boolean
+  borderColor?: keyof Color
+  borderRadius?: string
   onClick?: () => void
 }
 
@@ -19,6 +22,9 @@ const Button = ({
   disabled = false,
   shadow = false,
   fullWidth = false,
+  border = false,
+  borderColor = 'secondary300',
+  borderRadius = '10px',
   children,
   onClick,
 }: ButtonProps) => (
@@ -28,6 +34,9 @@ const Button = ({
     disabled={disabled}
     shadow={shadow}
     fullWidth={fullWidth}
+    border={border}
+    borderColor={borderColor}
+    borderRadius={borderRadius}
     onClick={onClick}
   >
     {icon}
