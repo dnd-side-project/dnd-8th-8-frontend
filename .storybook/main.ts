@@ -8,6 +8,7 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/addon-a11y',
     'storybook-dark-mode',
+    'storybook-addon-next-router',
   ],
   framework: '@storybook/react',
   typescript: {

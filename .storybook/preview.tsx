@@ -3,6 +3,8 @@ import { addDecorator } from '@storybook/react'
 import React from 'react'
 import { useDarkMode } from 'storybook-dark-mode'
 import { ThemeProvider } from 'styled-components'
+import { RouterContext } from "next/dist/shared/lib/router-context";
+
 
 import { GlobalStyle, theme } from '../styles'
 import { dark, light } from './theme'
@@ -31,5 +33,8 @@ export const parameters = {
     current: 'light',
     light,
     dark,
+  },
+  nextRouter: {
+    Provider: RouterContext.Provider,
   },
 }
