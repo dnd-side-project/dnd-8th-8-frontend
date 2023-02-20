@@ -1,6 +1,7 @@
 'use client'
 
-import { Button } from '@/components'
+import { Button, Text } from '@/components'
+import { Header } from '@/components/Header'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -8,23 +9,43 @@ interface onboardingLayoutPropsType {
   children: React.ReactNode
   title: string
   subTitle: string
-  handleSkipBtnClick: () => void
+  hideBackBtn?: boolean
+  hideSkipBtn?: boolean
+  handleSkipBtnClick?: () => void
   handleNextBtnClick: () => void
+  handleBackBtnClick?: () => void
 }
 
 const OnBoardingLayout = (props: onboardingLayoutPropsType) => {
-  const { children, title, subTitle, handleSkipBtnClick, handleNextBtnClick } =
-    props
+  const {
+    children,
+    title,
+    subTitle,
+    hideBackBtn = false,
+    hideSkipBtn = false,
+    handleSkipBtnClick,
+    handleBackBtnClick,
+    handleNextBtnClick,
+  } = props
 
   return (
     <OnBoardingLayoutStyle>
-      <OnBoardingNavigationSection>
-        <div></div>
-        <span onClick={handleSkipBtnClick}>건너뛰기기</span>
-      </OnBoardingNavigationSection>
+      <Header
+        hideBackBtn={hideBackBtn}
+        handleBackBtnClick={handleBackBtnClick}
+        rightBtn={
+          !hideSkipBtn && (
+            <div onClick={handleSkipBtnClick}>
+              <Text as="t4">건너뛰기</Text>
+            </div>
+          )
+        }
+      />
       <OnBoardingQuestionSection>
-        <span>{title}</span>
-        <span>{subTitle}</span>
+        <Text as="h2">{title}</Text>
+        <Text as="t5" color="neutral500">
+          {subTitle}
+        </Text>
       </OnBoardingQuestionSection>
       <OnBoardingContentSection>{children}</OnBoardingContentSection>
       <OnBoardingButtonSection>
@@ -43,32 +64,17 @@ const OnBoardingLayoutStyle = styled.div`
   padding: 2rem;
 `
 
-const OnBoardingNavigationSection = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: 3rem;
-`
-
 const OnBoardingQuestionSection = styled.div`
   display: flex;
   flex-direction: column;
+  row-gap: 2rem;
   width: 100%;
   height: 14rem;
-
-  span:nth-child(1) {
-    margin-bottom: 2rem;
-    white-space: pre-wrap;
-  }
-
-  span:nth-child(2) {
-    white-space: pre-wrap;
-  }
 `
 
 const OnBoardingContentSection = styled.div`
   width: 100%;
-  height: calc(100vh - 3rem - 14rem - 8rem - 4rem);
+  height: calc(100vh - 5rem - 14rem - 8rem - 4rem);
   overflow-y: scroll;
 
   /* padding: 2.5rem; */
