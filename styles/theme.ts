@@ -19,9 +19,13 @@ const color: Color = {
   primary500: '#F693E1',
   primary900: '#900072',
 
-  secondary0: '#EAEDFF',
+  secondary0: '#f5f6ff',
+  secondary100: '#eaedff',
+  secondary300: '#b5bff2',
+  secondary400: '#6a7de0',
   secondary500: '#283FBC',
-  secondary900: '#192EA1',
+  secondary800: '#192EA1',
+  secondary900: '#0d1b27',
 }
 
 const fontSize: FontSize = {

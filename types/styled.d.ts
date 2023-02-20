@@ -13,7 +13,11 @@ declare module 'styled-components' {
     primary500: string
     primary900: string
     secondary0: string
+    secondary100: string
+    secondary300: string
+    secondary400: string
     secondary500: string
+    secondary800: string
     secondary900: string
   }
 
