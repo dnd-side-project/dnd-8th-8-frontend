@@ -35,6 +35,7 @@ const fontSize: FontSize = {
   t3: 16,
   t4: 14,
   t5: 12,
+  t6: 10,
 }
 
 const MEDIUM = 500
@@ -52,6 +53,7 @@ const fontWeight: FontWeight = {
   t3: MEDIUM,
   t4: MEDIUM,
   t5: MEDIUM,
+  t6: BOLD,
 }
 
 const lineHeight: LineHeight = {
@@ -65,6 +67,7 @@ const lineHeight: LineHeight = {
   t3: 24,
   t4: 20,
   t5: 18,
+  t6: 18,
 }
 
 const theme: DefaultTheme = {
