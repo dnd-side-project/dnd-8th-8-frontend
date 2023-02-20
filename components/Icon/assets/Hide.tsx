@@ -1,4 +1,4 @@
-const View = () => (
+const Hide = () => (
   <svg
     width="16"
     height="16"
@@ -44,4 +44,4 @@ const View = () => (
   </svg>
 )
 
-export default View
+export default Hide

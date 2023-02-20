@@ -1,4 +1,4 @@
-const Plus = () => (
+const WMyPage = () => (
   <svg
     width="16"
     height="16"
@@ -39,4 +39,4 @@ const Plus = () => (
   </svg>
 )
 
-export default Plus
+export default WMyPage

@@ -16,6 +16,7 @@ import Kakao from './Kakao'
 import Minus from './Minus'
 import MoreHorizontal from './MoreHorizontal'
 import MoreVertical from './MoreVertical'
+import Pencil from './Pencil'
 import Picture from './Picture'
 import Play from './Play'
 import Search from './Search'
@@ -53,6 +54,7 @@ const icons = {
   "minus": Minus,
   "more-horizontal": MoreHorizontal,
   "more-vertical": MoreVertical,
+  "pencil": Pencil,
   "picture": Picture,
   "play": Play,
   "search": Search,

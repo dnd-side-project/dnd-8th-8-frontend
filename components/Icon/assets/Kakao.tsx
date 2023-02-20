@@ -1,4 +1,4 @@
-const Inform = () => (
+const Kakao = () => (
   <svg
     width="14"
     height="15"
@@ -13,4 +13,4 @@ const Inform = () => (
   </svg>
 )
 
-export default Inform
+export default Kakao
