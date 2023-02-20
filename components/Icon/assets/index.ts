@@ -23,10 +23,15 @@ import Slash from './Slash'
 import View from './View'
 import Warning from './Warning'
 import WChecklist from './WChecklist'
+import WChecklistDisable from './WChecklistDisable'
 import WCollection from './WCollection'
+import WCollectionDisable from './WCollectionDisable'
 import WCommunity from './WCommunity'
+import WCommunityDisable from './WCommunityDisable'
 import WHome from './WHome'
+import WHomeDisable from './WHomeDisable'
 import WMyPage from './WMyPage'
+import WMyPageDisable from './WMyPageDisable'
 
 // prettier-ignore
 const icons = {
@@ -55,10 +60,17 @@ const icons = {
   "view": View,
   "warning": Warning,
   "w-checklist": WChecklist,
+  "w-checklist-disable": WChecklistDisable,
   "w-collection": WCollection,
+  "w-collection-disable": WCollectionDisable,
   "w-community": WCommunity,
+  "w-community-disable": WCommunityDisable,
   "w-home": WHome,
+  "w-home-disable": WHomeDisable,
   "w-my-page": WMyPage,
+  "w-my-page-disable": WMyPageDisable,
 }
+
+export type IconName = keyof typeof icons
 
 export default icons
