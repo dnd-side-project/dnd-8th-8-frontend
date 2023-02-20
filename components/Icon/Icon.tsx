@@ -1,24 +1,13 @@
-import { Color } from 'styled-components'
-
-import icons from './assets'
+import icons, { IconName } from './assets'
 
 export interface IconProps {
-  as: keyof typeof icons
-  size?: number
-  color?: keyof Color
+  as: IconName
 }
 
-const Icon = ({ as, size = 16, color }: IconProps) => {
+const Icon = ({ as }: IconProps) => {
   const Icon = icons[as]
 
-  return (
-    <Icon
-      viewBox={`0 0 ${size} ${size}`}
-      width={size}
-      height={size}
-      fill={color}
-    />
-  )
+  return <Icon />
 }
 
 export default Icon
