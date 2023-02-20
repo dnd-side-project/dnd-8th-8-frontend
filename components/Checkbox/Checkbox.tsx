@@ -27,17 +27,13 @@ const Checkbox = ({
 
   return (
     <Layout>
-      <Icon
-        as="checkbox"
-        color={isChecked ? 'secondary500' : 'neutral500'}
-        size={22}
-      />
+      <Icon as="checkbox" />
 
       <LabelLayout>
         <Label>
           <HiddenCheckbox
             value={value}
-            defaultChecked={defaultChecked}
+            defaultChecked={isChecked}
             onChange={handleOnChange}
           />
 

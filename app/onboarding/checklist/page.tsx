@@ -68,7 +68,7 @@ const Checklist = () => {
             >
               {category.name}
             </Text>
-            <Icon as="checkbox" size={16} />
+            <Icon as="checkbox" />
           </CategoryContentSection>
         </SingleCategory>
       ))}
