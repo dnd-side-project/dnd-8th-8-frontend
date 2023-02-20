@@ -1,14 +1,16 @@
 'use client'
 
-import userState from '@/atoms/userAtom'
-import OnBoardingLayout from '@/layouts/onboarding/onboardingLayout'
-import { theme } from '@/styles'
-import { getCurrencyFormat } from '@/utils/getCurrencyFormat'
-import { getCurrencyStrFormat } from '@/utils/getCurrencyStrFormat'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useSetRecoilState } from 'recoil'
 import styled from 'styled-components'
+
+import userState from '@/atoms/userAtom'
+import { Text } from '@/components'
+import OnBoardingLayout from '@/layouts/onboarding/onboardingLayout'
+import { theme } from '@/styles'
+import { getCurrencyFormat } from '@/utils/getCurrencyFormat'
+import { getCurrencyStrFormat } from '@/utils/getCurrencyStrFormat'
 
 const Budget = () => {
   const router = useRouter()
@@ -35,7 +37,8 @@ const Budget = () => {
     <OnBoardingLayout
       title={`예산 규모를\n알려주세요.`}
       subTitle={`추후 체크리스트에 견적을 등록하면\n총 예산에서 금액이 자동으로 차감돼요.`}
-      handleSkipBtnClick={() => console.log('click')}
+      handleSkipBtnClick={() => router.push('/onboarding/checklist')}
+      handleBackBtnClick={() => router.push('/onboarding/wedding-day')}
       handleNextBtnClick={() => {
         setUserInfo((prev) => ({ ...prev, budet: parseInt(budget.join('')) }))
         router.push('/onboarding/checklist')
@@ -43,11 +46,22 @@ const Budget = () => {
     >
       <Layout>
         <BudgetSection>
-          <BudgetNumber>
-            {budget.length ? getCurrencyFormat(parseInt(budget.join(''))) : 0}
-            <span>원</span>
-          </BudgetNumber>
-          <span>{getCurrencyStrFormat(budget)}원</span>
+          {budget.length ? (
+            <BudgetNumber>
+              <Text as="h1">
+                {getCurrencyFormat(parseInt(budget.join('')))}
+              </Text>
+              <Text as="t1">원</Text>
+            </BudgetNumber>
+          ) : (
+            <Text as="t1" color="neutral500">
+              총 예산 입력
+            </Text>
+          )}
+
+          <Text as="t4" color={budget.length ? 'neutral900' : 'neutral500'}>
+            {getCurrencyStrFormat(budget)}원
+          </Text>
         </BudgetSection>
         <NumberSection>
           <div id="1" onClick={(e) => handleNumberClick(e)}>
@@ -125,16 +139,9 @@ const NumberSection = styled.div`
 `
 
 const BudgetNumber = styled.div`
-  font-size: 4rem;
-  font-weight: 600;
-  line-height: 6.4rem;
-  color: #0d1b27;
-
-  span {
-    font-size: 2.4rem;
-    font-weight: 500;
-    line-height: 3.2rem;
-  }
+  display: flex;
+  column-gap: 0.5rem;
+  align-items: baseline;
 `
 
 const String = styled.div`

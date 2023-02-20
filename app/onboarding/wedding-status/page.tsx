@@ -13,7 +13,8 @@ const WeddingStatus = () => {
     <OnBoardingLayout
       title={`현재 결혼을\n준비 중이신가요?`}
       subTitle={`자신의 상태를 알려주세요.`}
-      handleSkipBtnClick={() => console.log('click')}
+      hideSkipBtn={true}
+      handleBackBtnClick={() => router.push('/onboarding/gender')}
       handleNextBtnClick={() => {
         setUserInfo((prev) => ({ ...prev, weddingStatus: 'Y' }))
         router.push('/onboarding/wedding-day')
