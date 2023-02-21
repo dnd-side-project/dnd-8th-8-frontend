@@ -1,5 +1,6 @@
 'use client'
 
+import { Button, Icon } from '@/components'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import styled from 'styled-components'
@@ -18,12 +19,34 @@ const Login = () => {
         />
       </LogoWrapper>
       <ButtonsWrapper>
-        <button onClick={() => router.push('/onboarding/gender')}>
-          Google Login
-        </button>
-        <button onClick={() => router.push('/onboarding/gender')}>
-          Kakao Login
-        </button>
+        <Button
+          onClick={() => router.push('/onboarding/wedding-status')}
+          fullWidth
+          color="neutral900"
+          backgroundColor="neutral0"
+          border={true}
+          borderColor="neutral300"
+        >
+          <ButtonTitleSection>
+            <IconSection>
+              <Icon as="google" />
+            </IconSection>
+            구글로 로그인
+          </ButtonTitleSection>
+        </Button>
+        <Button
+          onClick={() => router.push('/onboarding/wedding-status')}
+          fullWidth
+          backgroundColor="#F6DB4F"
+          color="neutral900"
+        >
+          <ButtonTitleSection>
+            <IconSection>
+              <Icon as="kakao" />
+            </IconSection>
+            카카오톡으로 로그인
+          </ButtonTitleSection>
+        </Button>
       </ButtonsWrapper>
     </Layout>
   )
@@ -49,10 +72,27 @@ const LogoWrapper = styled.div`
 const ButtonsWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
+  padding: 0 2rem;
 
   button:nth-child(1) {
     margin-bottom: 1rem;
   }
+`
+
+const ButtonTitleSection = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: 'neutral0';
+`
+
+const IconSection = styled.div`
+  position: absolute;
+  left: 6rem;
+  margin-top: 0.4rem;
 `
 
 export default Login
