@@ -17,7 +17,7 @@ const WeddingDay = () => {
       handleBackBtnClick={() => router.push('/onboarding/wedding-status')}
       handleNextBtnClick={() => {
         setUserInfo((prev) => ({ ...prev, weddingDay: '2023-02-18' }))
-        router.push('/onboarding/budget')
+        router.push('/onboarding/gender')
       }}
     >
       <span>hello</span>

@@ -38,7 +38,7 @@ const Budget = () => {
       title={`예산 규모를\n알려주세요.`}
       subTitle={`추후 체크리스트에 견적을 등록하면\n총 예산에서 금액이 자동으로 차감돼요.`}
       handleSkipBtnClick={() => router.push('/onboarding/checklist')}
-      handleBackBtnClick={() => router.push('/onboarding/wedding-day')}
+      handleBackBtnClick={() => router.push('/onboarding/gender')}
       handleNextBtnClick={() => {
         setUserInfo((prev) => ({ ...prev, budet: parseInt(budget.join('')) }))
         router.push('/onboarding/checklist')

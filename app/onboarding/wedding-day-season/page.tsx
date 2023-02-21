@@ -33,7 +33,7 @@ const WeddingDaySeason = () => {
       handleBackBtnClick={() => router.push('/onboarding/wedding-status')}
       handleNextBtnClick={() => {
         setUserInfo((prev) => ({ ...prev, weddingSeason: '2023-02-18' }))
-        router.push('/onboarding/budget')
+        router.push('/onboarding/gender')
       }}
     >
       <Layout>

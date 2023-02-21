@@ -18,7 +18,7 @@ const Gender = () => {
       hideSkipBtn={true}
       handleNextBtnClick={() => {
         setUserInfo((prev) => ({ ...prev, gender: 'man' }))
-        router.push('/onboarding/wedding-status')
+        router.push('/onboarding/budget')
       }}
     >
       <Layout>

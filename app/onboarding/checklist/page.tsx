@@ -55,15 +55,13 @@ const Checklist = () => {
           onClick={handleCategoryClick}
           isChecked={checkedCategory.includes(category.id)}
         >
-          <CategoryContentSection
-            checked={checkedCategory.includes(category.id)}
-          >
+          <CategoryContentSection>
             <Text
               as="t3"
               color={
                 checkedCategory.includes(category.id)
                   ? 'neutral0'
-                  : 'neutral800'
+                  : 'secondary400'
               }
             >
               {category.name}
@@ -86,7 +84,9 @@ const SingleCategory = styled.div`
   height: 5rem;
   margin-bottom: 1rem;
   background-color: ${(props: { isChecked: boolean }) =>
-    props.isChecked ? theme.color.secondary500 : theme.color.neutral100};
+    props.isChecked ? '#1F38BC' : theme.color.neutral0};
+  border: ${(props: { isChecked: boolean }) =>
+    props.isChecked ? 'none' : `1px solid ${theme.color.secondary300}`};
   border-radius: 5.3rem;
 `
 
@@ -95,11 +95,4 @@ const CategoryContentSection = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 27rem;
-
-  span {
-    font-size: 1.6rem;
-    font-weight: 500;
-    color: ${(props: { checked: boolean }) =>
-      props.checked ? 'white' : theme.color.neutral800};
-  }
 `
