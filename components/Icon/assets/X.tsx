@@ -8,7 +8,7 @@ const X = (props: SvgProps) => (
       height="27.4523"
       rx="1.83015"
       transform="rotate(45 19.9117 0)"
-      fill="white"
+      fill="currentColor"
     />
     <rect
       x="22.5"
@@ -17,7 +17,7 @@ const X = (props: SvgProps) => (
       height="27.4523"
       rx="1.83015"
       transform="rotate(135 22.5 19.4116)"
-      fill="white"
+      fill="currentColor"
     />
   </svg>
 )
