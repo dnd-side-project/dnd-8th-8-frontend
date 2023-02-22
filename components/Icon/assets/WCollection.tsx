@@ -1,11 +1,7 @@
-const WCollection = () => (
-  <svg
-    width="22"
-    height="18"
-    viewBox="0 0 22 18"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+import { SvgProps } from '../Icon'
+
+const WCollection = (props: SvgProps) => (
+  <svg {...props} width="22" height="18" viewBox="0 0 22 18">
     <rect
       x="21.4062"
       y="13.1348"

@@ -1,11 +1,7 @@
-const WChecklist = () => (
-  <svg
-    width="22"
-    height="20"
-    viewBox="0 0 22 20"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+import { SvgProps } from '../Icon'
+
+const WChecklist = (props: SvgProps) => (
+  <svg {...props} width="22" height="20" viewBox="0 0 22 20">
     <circle cx="17.0453" cy="4.49546" r="4.49546" fill="#F793E1" />
     <mask id="path-2-inside-1_783_9666" fill="white">
       <rect y="1.71289" width="18.2763" height="15.8056" rx="1.03467" />

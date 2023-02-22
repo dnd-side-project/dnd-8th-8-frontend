@@ -1,11 +1,7 @@
-const X = () => (
-  <svg
-    width="23"
-    height="22"
-    viewBox="0 0 23 22"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+import { SvgProps } from '../Icon'
+
+const X = (props: SvgProps) => (
+  <svg {...props} width="23" height="22" viewBox="0 0 23 22">
     <rect
       x="19.9117"
       width="3.66031"
