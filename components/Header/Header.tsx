@@ -1,6 +1,11 @@
+import { Icon, Text } from '@/components'
 import styled from 'styled-components'
-import { Text } from '../Text'
-import { HeaderProps } from './Header.types'
+export interface HeaderProps {
+  hideBackBtn?: boolean
+  handleBackBtnClick?: () => void
+  rightBtn?: React.ReactNode
+  title?: string
+}
 
 const Header = ({
   handleBackBtnClick,
@@ -11,7 +16,11 @@ const Header = ({
   return (
     <HeaderLayout>
       <BtnSection>
-        {!hideBackBtn && <button onClick={handleBackBtnClick}>back</button>}
+        {!hideBackBtn && (
+          <HeaderButton onClick={handleBackBtnClick}>
+            <Icon as="chevron-left" color="neutral900" />
+          </HeaderButton>
+        )}
       </BtnSection>
       <TitleSection>
         <Text as="t3" color={'neutral800'}>
@@ -43,4 +52,9 @@ const BtnSection = styled.div`
 const TitleSection = styled.div`
   display: flex;
   align-items: center;
+`
+
+const HeaderButton = styled.button`
+  background-color: transparent;
+  border: none;
 `
