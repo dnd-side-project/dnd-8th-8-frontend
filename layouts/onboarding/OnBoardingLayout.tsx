@@ -43,14 +43,16 @@ const OnBoardingLayout = (props: onboardingLayoutPropsType) => {
       />
       <OnBoardingQuestionSection>
         <Text as="h2">{title}</Text>
-        <Text as="t5" color="neutral500">
+        <Text as="t3" color="neutral500">
           {subTitle}
         </Text>
       </OnBoardingQuestionSection>
       <OnBoardingContentSection>{children}</OnBoardingContentSection>
       <OnBoardingButtonSection>
         <Button fullWidth onClick={handleNextBtnClick}>
-          다음
+          <Text as="h5" color="neutral0">
+            다음
+          </Text>
         </Button>
       </OnBoardingButtonSection>
     </OnBoardingLayoutStyle>
