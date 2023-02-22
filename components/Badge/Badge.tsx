@@ -6,12 +6,13 @@ import { Layout } from './Badge.styled'
 export interface BadgeProps {
   children: React.ReactNode
   backgroundColor: keyof Color
+  color?: keyof Color
 }
 
-const Badge = ({ children, backgroundColor }: BadgeProps) => {
+const Badge = ({ children, backgroundColor, color }: BadgeProps) => {
   return (
     <Layout backgroundColor={backgroundColor}>
-      <Text as="t5" color="neutral100">
+      <Text as="t5" color={color ? color : 'neutral100'}>
         {children}
       </Text>
     </Layout>
