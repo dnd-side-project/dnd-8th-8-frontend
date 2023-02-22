@@ -1,23 +1,24 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { ButtonProps } from './Button'
 
 type LayoutProps = Pick<
   ButtonProps,
   | 'fullWidth'
-  | 'color'
   | 'backgroundColor'
   | 'shadow'
   | 'disabled'
   | 'border'
   | 'borderColor'
   | 'borderRadius'
+  | 'active'
+  | 'width'
+  | 'height'
 >
 
 export const Layout = styled.button<LayoutProps>`
-  width: ${({ fullWidth }) => (fullWidth ? '100%' : 'auto')};
+  width: ${({ fullWidth, width = 'auto' }) => (fullWidth ? '100%' : width)};
+  height: ${({ height = 'auto' }) => height};
   padding: 15px 30px;
-  color: ${({ color = 'neutral0', disabled, theme }) =>
-    disabled ? theme.color.neutral500 : theme.color[color]};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   background-color: ${({ backgroundColor = 'secondary500', disabled, theme }) =>
     disabled
@@ -30,4 +31,9 @@ export const Layout = styled.button<LayoutProps>`
   border-radius: ${({ borderRadius = '16px' }) => borderRadius};
   box-shadow: ${({ shadow }) =>
     shadow ? '6px 4px 18px 3px rgba(0, 0, 0, 0.11)' : 'none'};
+
+  ${({ active }) => active && buttonActive}
+`
+const buttonActive = css`
+  background-color: ${({ theme }) => theme.color.secondary500};
 `
