@@ -16,6 +16,7 @@ import Kakao from './Kakao'
 import Minus from './Minus'
 import MoreHorizontal from './MoreHorizontal'
 import MoreVertical from './MoreVertical'
+import O from './O'
 import Pencil from './Pencil'
 import Picture from './Picture'
 import Play from './Play'
@@ -33,6 +34,7 @@ import WHome from './WHome'
 import WHomeDisable from './WHomeDisable'
 import WMyPage from './WMyPage'
 import WMyPageDisable from './WMyPageDisable'
+import X from './X'
 
 // prettier-ignore
 const icons = {
@@ -60,6 +62,8 @@ const icons = {
   "search": Search,
   "slash": Slash,
   "view": View,
+  "o": O,
+  "x": X,
   "warning": Warning,
   "w-checklist": WChecklist,
   "w-checklist-disable": WChecklistDisable,
