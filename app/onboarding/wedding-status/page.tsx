@@ -1,7 +1,7 @@
 'use client'
 
 import userState from '@/atoms/userAtom'
-import OnBoardingLayout from '@/layouts/onboarding/onboardingLayout'
+import { OnBoardingLayout, SquareButton } from '@/layouts/onboarding'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useSetRecoilState } from 'recoil'
@@ -28,8 +28,18 @@ const WeddingStatus = () => {
       }}
     >
       <Layout>
-        <button onClick={() => setConfirmedWedding('Y')}>예</button>
-        <button onClick={() => setConfirmedWedding('N')}>아니오</button>
+        <SquareButton
+          onClick={() => setConfirmedWedding('Y')}
+          active={confirmedWedding === 'Y'}
+          icon="o"
+          label="예"
+        />
+        <SquareButton
+          onClick={() => setConfirmedWedding('N')}
+          active={confirmedWedding === 'N'}
+          icon="x"
+          label="아니오"
+        />
       </Layout>
     </OnBoardingLayout>
   )
@@ -39,6 +49,7 @@ export default WeddingStatus
 
 const Layout = styled.div`
   display: flex;
-  column-gap: 2rem;
+  column-gap: 12px;
   justify-content: center;
+  margin-top: 130px;
 `
