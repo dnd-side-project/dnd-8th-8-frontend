@@ -6,31 +6,23 @@ import { useSetRecoilState } from 'recoil'
 import styled from 'styled-components'
 
 import userState from '@/atoms/userAtom'
-import { Text } from '@/components'
-import OnBoardingLayout from '@/layouts/onboarding/onboardingLayout'
+import { Icon, Text } from '@/components'
+import { OnBoardingLayout } from '@/layouts/onboarding'
 import { theme } from '@/styles'
-import { getCurrencyFormat } from '@/utils/getCurrencyFormat'
-import { getCurrencyStrFormat } from '@/utils/getCurrencyStrFormat'
+import { getCurrencyStrFormat } from '@/utils'
 
 const Budget = () => {
   const router = useRouter()
   const setUserInfo = useSetRecoilState(userState)
-  const [budget, setBudget] = useState<string[]>([])
+  const [budget, setBudget] = useState<number>(0)
 
   const handleNumberClick = (e: React.MouseEvent<HTMLElement>) => {
-    const num = e.currentTarget.id
-    if (num === '0' && !budget.length) {
-      return
-    }
-    setBudget([...budget, num])
+    const number = parseInt(e.currentTarget.id) * 10000
+    setBudget((prev) => prev * 10 + number)
   }
 
   const handleDeleteNumber = () => {
-    if (!budget.length) {
-      return
-    }
-    budget.pop()
-    setBudget([...budget])
+    setBudget(parseInt(budget.toString().slice(0, -1)))
   }
 
   return (
@@ -40,18 +32,16 @@ const Budget = () => {
       handleSkipBtnClick={() => router.push('/onboarding/checklist')}
       handleBackBtnClick={() => router.push('/onboarding/gender')}
       handleNextBtnClick={() => {
-        setUserInfo((prev) => ({ ...prev, budet: parseInt(budget.join('')) }))
+        setUserInfo((prev) => ({ ...prev, budget }))
         router.push('/onboarding/checklist')
       }}
     >
       <Layout>
         <BudgetSection>
-          {budget.length ? (
+          {budget > 0 ? (
             <BudgetNumber>
-              <Text as="h1">
-                {getCurrencyFormat(parseInt(budget.join('')))}
-              </Text>
-              <Text as="t1">원</Text>
+              <Text as="h1">{getCurrencyStrFormat(budget).slice(0, -1)}</Text>
+              <Text as="t1">{getCurrencyStrFormat(budget).at(-1)}원</Text>
             </BudgetNumber>
           ) : (
             <Text as="t1" color="neutral500">
@@ -59,7 +49,7 @@ const Budget = () => {
             </Text>
           )}
 
-          <Text as="t4" color={budget.length ? 'neutral900' : 'neutral500'}>
+          <Text as="t4" color={budget > 0 ? 'neutral800' : 'neutral500'}>
             {getCurrencyStrFormat(budget)}원
           </Text>
         </BudgetSection>
@@ -91,11 +81,13 @@ const Budget = () => {
           <div id="9" onClick={(e) => handleNumberClick(e)}>
             9
           </div>
-          <String onClick={() => setBudget([])}>취소</String>
+          <String onClick={() => setBudget(0)}>취소</String>
           <div id="0" onClick={(e) => handleNumberClick(e)}>
             0
           </div>
-          <String onClick={handleDeleteNumber}>삭제</String>
+          <String onClick={handleDeleteNumber}>
+            <Icon as="arrow-left" size={24} color="neutral900" />
+          </String>
         </NumberSection>
       </Layout>
     </OnBoardingLayout>
@@ -108,6 +100,7 @@ const Layout = styled.div`
   row-gap: 2rem;
   width: 100%;
   height: 100%;
+  margin-top: 55px;
 `
 
 const BudgetSection = styled.div`
@@ -132,9 +125,6 @@ const NumberSection = styled.div`
     font-size: 2.4rem;
     font-weight: 500;
     line-height: 3.2rem;
-
-    /* TODO : 컬러값 상수로 저장 */
-    color: #0d1b27;
   }
 `
 
