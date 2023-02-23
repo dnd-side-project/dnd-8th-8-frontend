@@ -1,10 +1,10 @@
 const getCurrencyStrFormat = (num: number) => {
-  const units = ['만', '억']
+  const units = ['', '만', '억']
   const unitValue = 10000
   const maxUnit = units.length - 1
 
   let result = ''
-  let unitIndex = -1
+  let unitIndex = 0
 
   while (num >= unitValue && unitIndex < maxUnit) {
     const quotient = Math.floor(num / unitValue)
