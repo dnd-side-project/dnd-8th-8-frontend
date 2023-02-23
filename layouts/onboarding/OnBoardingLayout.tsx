@@ -36,7 +36,9 @@ const OnBoardingLayout = (props: onboardingLayoutPropsType) => {
         rightBtn={
           !hideSkipBtn && (
             <div onClick={handleSkipBtnClick}>
-              <Text as="t4">건너뛰기</Text>
+              <Text as="t4" color="neutral500">
+                건너뛰기
+              </Text>
             </div>
           )
         }

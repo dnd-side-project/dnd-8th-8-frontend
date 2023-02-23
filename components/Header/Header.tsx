@@ -23,7 +23,7 @@ const Header = ({
         )}
       </BtnSection>
       <TitleSection>
-        <Text as="t3" color={'neutral800'}>
+        <Text as="t3" color="neutral800">
           {title}
         </Text>
       </TitleSection>
