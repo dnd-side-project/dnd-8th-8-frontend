@@ -3,6 +3,7 @@ import {
   DefaultTheme,
   FontSize,
   FontWeight,
+  LetterSpacing,
   LineHeight,
 } from 'styled-components'
 
@@ -74,11 +75,26 @@ const lineHeight: LineHeight = {
   t6: 18,
 }
 
+const letterSpacing: LetterSpacing = {
+  h1: -1.5,
+  h2: -1.5,
+  h3: -1,
+  h4: -0.5,
+  h5: -0.5,
+  t1: -0.5,
+  t2: -0.5,
+  t3: -0.5,
+  t4: -0.5,
+  t5: -0.5,
+  t6: -0.5,
+}
+
 const theme: DefaultTheme = {
   color,
   fontSize,
   fontWeight,
   lineHeight,
+  letterSpacing,
 }
 
 export default theme

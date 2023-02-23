@@ -87,7 +87,6 @@ const reset = css`
   video {
     padding: 0;
     margin: 0;
-    font: inherit;
     font-size: 100%;
     vertical-align: baseline;
     border: 0;

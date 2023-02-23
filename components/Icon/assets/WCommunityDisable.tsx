@@ -1,11 +1,7 @@
-const WCommunityDisable = () => (
-  <svg
-    width="25"
-    height="19"
-    viewBox="0 0 25 19"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+import { SvgProps } from '../Icon'
+
+const WCommunityDisable = (props: SvgProps) => (
+  <svg {...props} width="25" height="19" viewBox="0 0 25 19">
     <circle
       cx="10.6886"
       cy="4.34485"

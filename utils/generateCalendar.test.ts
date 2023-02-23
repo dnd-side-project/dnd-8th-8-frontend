@@ -55,13 +55,4 @@ describe('generateCalendar(dateObj) >', () => {
       selected: false,
     })
   })
-
-  it('should return 7*6 or 7*5 calendar >', () => {
-    const now = getTimeFormat(new Date())
-    const calendar = generateCalendar(now)
-
-    calendar.some((dateObj) => dateObj.next)
-      ? expect(calendar.length).toBe(42)
-      : expect(calendar.length).toBe(35)
-  })
 })

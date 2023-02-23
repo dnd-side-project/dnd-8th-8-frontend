@@ -1,11 +1,7 @@
-const Google = () => (
-  <svg
-    width="14"
-    height="14"
-    viewBox="0 0 14 14"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+import { SvgProps } from '../Icon'
+
+const Google = (props: SvgProps) => (
+  <svg {...props} width="14" height="14" viewBox="0 0 14 14">
     <g clipPath="url(#clip0_1078_10377)">
       <path
         d="M13.9935 7.13102C13.9935 6.55744 13.9459 6.13889 13.8428 5.70483H7.13965V8.29366H11.0742C10.995 8.93702 10.5666 9.9059 9.61464 10.557L9.6013 10.6436L11.7207 12.2479L11.8675 12.2622C13.2161 11.0453 13.9935 9.2548 13.9935 7.13102Z"

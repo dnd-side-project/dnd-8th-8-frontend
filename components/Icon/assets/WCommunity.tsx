@@ -1,11 +1,7 @@
-const WCommunity = () => (
-  <svg
-    width="25"
-    height="19"
-    viewBox="0 0 25 19"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+import { SvgProps } from '../Icon'
+
+const WCommunity = (props: SvgProps) => (
+  <svg {...props} width="25" height="19" viewBox="0 0 25 19">
     <circle cx="17.1962" cy="4.92224" r="3.89538" fill="#F793E1" />
     <path
       d="M24.088 17.9786H9.70508V15.4102C9.70508 13.6979 11.1434 10.2734 16.8966 10.2734C22.6497 10.2734 24.088 13.6979 24.088 15.4102V17.9786Z"

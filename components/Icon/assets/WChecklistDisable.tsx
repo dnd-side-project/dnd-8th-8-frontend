@@ -1,11 +1,7 @@
-const WChecklistDisable = () => (
-  <svg
-    width="22"
-    height="20"
-    viewBox="0 0 22 20"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+import { SvgProps } from '../Icon'
+
+const WChecklistDisable = (props: SvgProps) => (
+  <svg {...props} width="22" height="20" viewBox="0 0 22 20">
     <mask
       id="mask0_965_9111"
       maskUnits="userSpaceOnUse"

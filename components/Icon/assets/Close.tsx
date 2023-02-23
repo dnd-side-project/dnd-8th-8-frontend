@@ -1,11 +1,7 @@
-const Close = () => (
-  <svg
-    width="16"
-    height="16"
-    viewBox="0 0 16 16"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+import { SvgProps } from '../Icon'
+
+const Close = (props: SvgProps) => (
+  <svg {...props}>
     <g clipPath="url(#clip0_764_5552)">
       <path
         d="M12.1719 6.17188V18.1719"

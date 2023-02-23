@@ -36,21 +36,25 @@ const OnBoardingLayout = (props: onboardingLayoutPropsType) => {
         rightBtn={
           !hideSkipBtn && (
             <div onClick={handleSkipBtnClick}>
-              <Text as="t4">건너뛰기</Text>
+              <Text as="t4" color="neutral500">
+                건너뛰기
+              </Text>
             </div>
           )
         }
       />
       <OnBoardingQuestionSection>
         <Text as="h2">{title}</Text>
-        <Text as="t5" color="neutral500">
+        <Text as="t3" color="neutral500">
           {subTitle}
         </Text>
       </OnBoardingQuestionSection>
       <OnBoardingContentSection>{children}</OnBoardingContentSection>
       <OnBoardingButtonSection>
         <Button fullWidth onClick={handleNextBtnClick}>
-          다음
+          <Text as="h5" color="neutral0">
+            다음
+          </Text>
         </Button>
       </OnBoardingButtonSection>
     </OnBoardingLayoutStyle>

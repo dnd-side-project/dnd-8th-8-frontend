@@ -6,5 +6,6 @@ export const Layout = styled.span<TextProps>`
   font-weight: ${({ theme, as = 't3' }) => theme.fontWeight[as]};
   line-height: ${({ theme, as = 't3' }) => theme.lineHeight[as]}px;
   color: ${({ theme, color = 'neutral900' }) => theme.color[color]};
+  letter-spacing: ${({ theme, as = 't3' }) => theme.letterSpacing[as]}px;
   white-space: pre-wrap;
 `

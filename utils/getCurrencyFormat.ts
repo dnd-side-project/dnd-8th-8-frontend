@@ -1,3 +1,4 @@
-export const getCurrencyFormat = (number: number) => {
-  return new Intl.NumberFormat('ko-KR').format(number)
-}
+const getCurrencyFormat = (number: number) =>
+  new Intl.NumberFormat('ko-KR').format(number)
+
+export default getCurrencyFormat

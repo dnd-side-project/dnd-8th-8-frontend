@@ -1,11 +1,7 @@
-const WMyPageDisable = () => (
-  <svg
-    width="22"
-    height="20"
-    viewBox="0 0 22 20"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+import { SvgProps } from '../Icon'
+
+const WMyPageDisable = (props: SvgProps) => (
+  <svg {...props} width="22" height="20" viewBox="0 0 22 20">
     <mask id="path-1-inside-1_965_9115" fill="white">
       <rect y="1.71289" width="18.2763" height="15.8056" rx="1.03467" />
     </mask>

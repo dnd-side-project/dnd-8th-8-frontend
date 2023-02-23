@@ -63,10 +63,25 @@ declare module 'styled-components' {
     t6: number
   }
 
+  export interface LetterSpacing {
+    h1: number
+    h2: number
+    h3: number
+    h4: number
+    h5: number
+    t1: number
+    t2: number
+    t3: number
+    t4: number
+    t5: number
+    t6: number
+  }
+
   export interface DefaultTheme {
     color: Color
     fontWeight: FontWeight
     fontSize: FontSize
     lineHeight: LineHeight
+    letterSpacing: LetterSpacing
   }
 }

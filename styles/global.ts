@@ -8,8 +8,8 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    font-family: Pretendard, sans-serif;
     line-height: 1.3;
-    letter-spacing: -0.02rem;
   }
 `
 

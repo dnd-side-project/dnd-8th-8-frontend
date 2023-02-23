@@ -1,11 +1,7 @@
-const WMyPage = () => (
-  <svg
-    width="22"
-    height="20"
-    viewBox="0 0 22 20"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+import { SvgProps } from '../Icon'
+
+const WMyPage = (props: SvgProps) => (
+  <svg {...props} width="22" height="20" viewBox="0 0 22 20">
     <circle cx="16.3604" cy="13.585" r="5.3936" fill="#F793E1" />
     <mask
       id="mask0_783_9670"
