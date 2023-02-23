@@ -1,33 +1,26 @@
-import { getCurrencyFormat } from './getCurrencyFormat'
+const getCurrencyStrFormat = (num: number) => {
+  const units = ['만', '억']
+  const unitValue = 10000
+  const maxUnit = units.length - 1
 
-export const getCurrencyStrFormat = (arr: string[]) => {
-  if (!arr.length) {
-    return '0'
-  }
-  if (arr.length < 5) {
-    return getCurrencyFormat(parseInt(arr.join('')))
+  let result = ''
+  let unitIndex = -1
+
+  while (num >= unitValue && unitIndex < maxUnit) {
+    const quotient = Math.floor(num / unitValue)
+    const remainder = num % unitValue
+    if (remainder !== 0) {
+      result = `${remainder}${units[unitIndex]}${result}`
+    }
+    num = quotient
+    unitIndex++
   }
 
-  if (arr.length >= 5 && arr.length < 9) {
-    const underTenThousand: string = getCurrencyFormat(
-      parseInt(arr.slice(arr.length - 4, arr.length).join('')),
-    )
-    return `${getCurrencyFormat(
-      parseInt(arr.slice(0, arr.length - 4).join('')),
-    )}만${underTenThousand === '0' ? '' : ` ${underTenThousand}`}`
+  if (num > 0) {
+    result = `${num}${units[unitIndex]}${result}`
   }
 
-  if (arr.length >= 9) {
-    const underHundredMillion: string = getCurrencyFormat(
-      parseInt(arr.slice(arr.length - 8, arr.length - 4).join('')),
-    )
-    const underTenThousand: string = getCurrencyFormat(
-      parseInt(arr.slice(arr.length - 4, arr.length).join('')),
-    )
-    return `${getCurrencyFormat(
-      parseInt(arr.slice(0, arr.length - 8).join('')),
-    )}억${underHundredMillion === '0' ? '' : ` ${underHundredMillion}만`}${
-      underTenThousand === '0' ? '' : ` ${underTenThousand}`
-    }`
-  }
+  return result
 }
+
+export default getCurrencyStrFormat
