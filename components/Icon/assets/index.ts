@@ -1,6 +1,8 @@
 import ArrowLeft from './ArrowLeft'
 import ArrowRight from './ArrowRight'
+import Bride from './Bride'
 import Calendar from './Calendar'
+import Card from './Card'
 import Check from './Check'
 import Checkbox from './Checkbox'
 import ChevronDown from './ChevronDown'
@@ -9,19 +11,28 @@ import ChevronRight from './ChevronRight'
 import ChevronUp from './ChevronUp'
 import Close from './Close'
 import Expand from './Expand'
+import Flower from './Flower'
 import Google from './Google'
+import Groom from './Groom'
+import Heart from './Heart'
 import Hide from './Hide'
 import Inform from './Inform'
+import Island from './Island'
 import Kakao from './Kakao'
+import Maple from './Maple'
 import Minus from './Minus'
+import Money from './Money'
 import MoreHorizontal from './MoreHorizontal'
 import MoreVertical from './MoreVertical'
 import O from './O'
 import Pencil from './Pencil'
 import Picture from './Picture'
+import Pin from './Pin'
 import Play from './Play'
 import Search from './Search'
 import Slash from './Slash'
+import Snowman from './Snowman'
+import Trash from './Trash'
 import View from './View'
 import Warning from './Warning'
 import WChecklist from './WChecklist'
@@ -65,6 +76,17 @@ const icons = {
   "o": O,
   "x": X,
   "warning": Warning,
+  "bride": Bride,
+  "groom": Groom,
+  "heart": Heart,
+  "flower": Flower,
+  "card": Card,
+  "island": Island,
+  "maple": Maple,
+  "money": Money,
+  "pin": Pin,
+  "snowman": Snowman,
+  "trash": Trash,
   "w-checklist": WChecklist,
   "w-checklist-disable": WChecklistDisable,
   "w-collection": WCollection,
