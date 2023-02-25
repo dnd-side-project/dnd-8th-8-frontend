@@ -1,13 +1,22 @@
 'use client'
 
-import userState from '@/atoms/userAtom'
-import OnBoardingLayout from '@/layouts/onboarding/onboardingLayout'
 import { useRouter } from 'next/navigation'
 import { useSetRecoilState } from 'recoil'
+
+import userState from '@/atoms/userAtom'
+import { Calendar } from '@/components'
+import { useCalendar } from '@/hooks'
+import { OnBoardingLayout } from '@/layouts/onboarding'
 
 const WeddingDay = () => {
   const router = useRouter()
   const setUserInfo = useSetRecoilState(userState)
+  const { month, year, calendar, nextMonth, prevMonth, handleSelected } =
+    useCalendar(new Date())
+
+  console.log('month', month)
+  console.log('year', year)
+  console.log('calendar', calendar)
 
   return (
     <OnBoardingLayout
@@ -20,7 +29,14 @@ const WeddingDay = () => {
         router.push('/onboarding/gender')
       }}
     >
-      <span>hello</span>
+      <Calendar
+        month={month}
+        year={year}
+        calendar={calendar}
+        nextMonth={nextMonth}
+        prevMonth={prevMonth}
+        handleSelected={handleSelected}
+      />
     </OnBoardingLayout>
   )
 }
