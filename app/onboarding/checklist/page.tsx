@@ -2,7 +2,7 @@
 
 import userState from '@/atoms/userAtom'
 import { Icon, Text } from '@/components'
-import OnBoardingLayout from '@/layouts/onboarding/onboardingLayout'
+import { OnBoardingLayout } from '@/layouts/onboarding'
 import theme from '@/styles/theme'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -39,8 +39,8 @@ const Checklist = () => {
 
   return (
     <OnBoardingLayout
-      title={`확정된 일정이 있다면\n선택해주세요.`}
-      subTitle={`확정된 일정을 체크하면\n메인화면에서 확인할 수 있어요.`}
+      title={`확정된 일정이\n있으신가요?`}
+      subTitle={`확정된 일정을 체크해주세요.\n메인화면에서도 확인할 수 있어요.`}
       handleSkipBtnClick={() => router.push('/home')}
       handleBackBtnClick={() => router.push('/onboarding/budget')}
       handleNextBtnClick={() => {
@@ -48,28 +48,37 @@ const Checklist = () => {
         router.push('/home')
       }}
     >
-      {CATEGORY_ARR.map((category: { name: string; id: string }) => (
-        <SingleCategory
-          key={category.name}
-          id={category.id}
-          onClick={handleCategoryClick}
-          isChecked={checkedCategory.includes(category.id)}
-        >
-          <CategoryContentSection>
-            <Text
-              as="t3"
-              color={
-                checkedCategory.includes(category.id)
-                  ? 'neutral0'
-                  : 'secondary400'
-              }
-            >
-              {category.name}
-            </Text>
-            <Icon as="checkbox" />
-          </CategoryContentSection>
-        </SingleCategory>
-      ))}
+      <CategorySection>
+        {CATEGORY_ARR.map((category: { name: string; id: string }) => (
+          <SingleCategory
+            key={category.name}
+            id={category.id}
+            onClick={handleCategoryClick}
+            isChecked={checkedCategory.includes(category.id)}
+          >
+            <CategoryContentSection>
+              <Text
+                as="t3"
+                color={
+                  checkedCategory.includes(category.id)
+                    ? 'neutral0'
+                    : 'secondary400'
+                }
+              >
+                {category.name}
+              </Text>
+              <Icon
+                as="checkbox"
+                color={
+                  checkedCategory.includes(category.id)
+                    ? 'neutral0'
+                    : 'neutral100'
+                }
+              />
+            </CategoryContentSection>
+          </SingleCategory>
+        ))}
+      </CategorySection>
     </OnBoardingLayout>
   )
 }
@@ -88,6 +97,9 @@ const SingleCategory = styled.div`
   border: ${(props: { isChecked: boolean }) =>
     props.isChecked ? 'none' : `1px solid ${theme.color.secondary300}`};
   border-radius: 5.3rem;
+`
+const CategorySection = styled.div`
+  margin-top: 4rem;
 `
 
 const CategoryContentSection = styled.div`

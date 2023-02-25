@@ -20,6 +20,8 @@ declare module 'styled-components' {
     secondary500: string
     secondary800: string
     secondary900: string
+    green: string
+    pink: string
   }
 
   export interface FontSize {

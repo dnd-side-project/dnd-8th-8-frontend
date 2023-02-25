@@ -9,6 +9,7 @@ interface onboardingLayoutPropsType {
   children: React.ReactNode
   title: string
   subTitle: string
+  bottomText?: string
   hideBackBtn?: boolean
   hideSkipBtn?: boolean
   handleSkipBtnClick?: () => void
@@ -21,6 +22,7 @@ const OnBoardingLayout = (props: onboardingLayoutPropsType) => {
     children,
     title,
     subTitle,
+    bottomText,
     hideBackBtn = false,
     hideSkipBtn = false,
     handleSkipBtnClick,
@@ -50,6 +52,15 @@ const OnBoardingLayout = (props: onboardingLayoutPropsType) => {
         </Text>
       </OnBoardingQuestionSection>
       <OnBoardingContentSection>{children}</OnBoardingContentSection>
+
+      {bottomText && (
+        <OnBoardingBottomTextSection>
+          <Text as="t4" color="neutral500">
+            {bottomText}
+          </Text>
+        </OnBoardingBottomTextSection>
+      )}
+
       <OnBoardingButtonSection>
         <Button fullWidth onClick={handleNextBtnClick}>
           <Text as="h5" color="neutral0">
@@ -80,8 +91,10 @@ const OnBoardingContentSection = styled.div`
   width: 100%;
   height: calc(100vh - 5rem - 14rem - 8rem - 4rem);
   overflow-y: scroll;
+`
 
-  /* padding: 2.5rem; */
+const OnBoardingBottomTextSection = styled.div`
+  text-align: center;
 `
 
 const OnBoardingButtonSection = styled.div`

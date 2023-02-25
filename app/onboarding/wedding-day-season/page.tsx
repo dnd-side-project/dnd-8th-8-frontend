@@ -29,7 +29,7 @@ const WeddingDaySeason = () => {
   return (
     <OnBoardingLayout
       title={`어떤 계절에\n결혼하고 싶나요?`}
-      subTitle={`아직 준비중이 아니시라면,\n결혼하고 싶은 연도와 계절을 알려주세요.`}
+      subTitle={`아직 구체적인 계획이 없으시다면\n결혼하고 싶은 연도와 계절을 알려주세요.`}
       hideSkipBtn={true}
       handleBackBtnClick={() => router.push('/onboarding/wedding-status')}
       handleNextBtnClick={() => {
@@ -59,25 +59,25 @@ const WeddingDaySeason = () => {
           <SquareButton
             onClick={() => setSeason('spring')}
             active={season === 'spring'}
-            emoji="🌸"
+            icon="flower"
             label="봄"
           />
           <SquareButton
             onClick={() => setSeason('summer')}
             active={season === 'summer'}
-            emoji="🏝"
+            icon="island"
             label="여름"
           />
           <SquareButton
             onClick={() => setSeason('fall')}
             active={season === 'fall'}
-            emoji="🍁"
+            icon="maple"
             label="가을"
           />
           <SquareButton
             onClick={() => setSeason('winter')}
             active={season === 'winter'}
-            emoji="☃️"
+            icon="snowman"
             label="겨울"
           />
         </SeasonButtonSection>
@@ -100,7 +100,7 @@ const YearControllerLayout = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 27rem;
-  margin-top: 30px;
+  margin-top: 3rem;
 `
 
 const YearControlBtn = styled.button`
@@ -117,6 +117,6 @@ const SeasonButtonSection = styled.div`
   display: grid;
   grid-template-rows: repeat(2, 1fr);
   grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin-top: 30px;
+  gap: 1.2rem;
+  margin-top: 3rem;
 `

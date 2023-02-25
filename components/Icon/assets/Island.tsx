@@ -1,8 +1,8 @@
 import { SvgProps } from '../Icon'
 
 const Island = (props: SvgProps) => (
-  <svg {...props} width="72" height="72" viewBox="0 0 72 72">
-    <rect width="72" height="72" fill="url(#pattern0)" />
+  <svg {...props} width="24" height="24" viewBox="0 0 24 24">
+    <rect width="24" height="24" fill="url(#pattern0)" />
     <defs>
       <pattern
         id="pattern0"
