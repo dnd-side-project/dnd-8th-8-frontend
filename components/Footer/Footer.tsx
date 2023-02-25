@@ -1,8 +1,8 @@
-import Link from 'next/link'
-
 import { Icon, IconName, Text } from '@/components'
 
-import { useRouter } from 'next/router'
+import { PAGE_URL } from '@/constant'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { ItemBox, Layout } from './Footer.styled'
 
 interface FooterItem {
@@ -18,7 +18,7 @@ const Footer = () => {
   const footerItem: FooterItem[] = [
     {
       title: '체크리스트',
-      url: 'checklist',
+      url: `${PAGE_URL.CHECKLIST}`,
       icon: {
         active: 'w-checklist',
         inactive: 'w-checklist-disable',
@@ -26,7 +26,7 @@ const Footer = () => {
     },
     {
       title: '서랍함',
-      url: 'budget',
+      url: `${PAGE_URL.COLLECTION}`,
       icon: {
         active: 'w-collection',
         inactive: 'w-collection-disable',
@@ -34,7 +34,7 @@ const Footer = () => {
     },
     {
       title: '홈',
-      url: 'home',
+      url: `${PAGE_URL.HOME}`,
       icon: {
         active: 'w-home',
         inactive: 'w-home-disable',
@@ -42,7 +42,7 @@ const Footer = () => {
     },
     {
       title: '커뮤니티',
-      url: 'community',
+      url: `${PAGE_URL.COMMUNITY}`,
       icon: {
         active: 'w-community',
         inactive: 'w-community-disable',
@@ -50,7 +50,7 @@ const Footer = () => {
     },
     {
       title: '설정',
-      url: 'my-page',
+      url: `${PAGE_URL.MYPAGE}`,
       icon: {
         active: 'w-my-page',
         inactive: 'w-my-page-disable',
@@ -58,8 +58,8 @@ const Footer = () => {
     },
   ]
 
-  const router = useRouter()
-  const isRouteActive = (url: string) => router.asPath === url
+  const pathname = usePathname()
+  const isRouteActive = (url: string) => pathname === url
 
   return (
     <Layout>

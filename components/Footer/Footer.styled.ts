@@ -1,3 +1,4 @@
+import { FOOTER_HEIGHT } from '@/constant'
 import styled from 'styled-components'
 
 export const Layout = styled.footer`
@@ -6,10 +7,10 @@ export const Layout = styled.footer`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 100%;
-  height: 60px;
+  width: 36rem;
+  height: ${FOOTER_HEIGHT};
   padding: 0;
-  box-shadow: 6px 4px 18px 3px rgb(0 0 0 / 11%);
+  box-shadow: 6rem 4rem 18rem 3rem rgb(0 0 0 / 11%);
 
   a {
     width: 100%;
@@ -20,6 +21,6 @@ export const Layout = styled.footer`
 export const ItemBox = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0.4rem;
   align-items: center;
 `
