@@ -32,12 +32,14 @@ const WeddingStatus = () => {
           onClick={() => setConfirmedWedding('Y')}
           active={confirmedWedding === 'Y'}
           icon="o"
+          iconColor="green"
           label="예"
         />
         <SquareButton
           onClick={() => setConfirmedWedding('N')}
           active={confirmedWedding === 'N'}
           icon="x"
+          iconColor="pink"
           label="아니오"
         />
       </Layout>

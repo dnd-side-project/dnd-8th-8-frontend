@@ -28,6 +28,9 @@ const color: Color = {
   secondary500: '#283FBC',
   secondary800: '#192EA1',
   secondary900: '#0d1b27',
+
+  green: '#34CB8C',
+  pink: '#f152c5',
 }
 
 const fontSize: FontSize = {
