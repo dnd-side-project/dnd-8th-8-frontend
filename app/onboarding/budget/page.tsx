@@ -8,7 +8,6 @@ import styled from 'styled-components'
 import userState from '@/atoms/userAtom'
 import { Icon, Text } from '@/components'
 import { OnBoardingLayout } from '@/layouts/onboarding'
-import { theme } from '@/styles'
 import { getCurrencyStrFormat } from '@/utils'
 
 const Budget = () => {
@@ -54,40 +53,29 @@ const Budget = () => {
           </Text>
         </BudgetSection>
         <NumberSection>
-          <div id="1" onClick={(e) => handleNumberClick(e)}>
-            1
-          </div>
-          <div id="2" onClick={(e) => handleNumberClick(e)}>
-            2
-          </div>
-          <div id="3" onClick={(e) => handleNumberClick(e)}>
-            3
-          </div>
-          <div id="4" onClick={(e) => handleNumberClick(e)}>
-            4
-          </div>
-          <div id="5" onClick={(e) => handleNumberClick(e)}>
-            5
-          </div>
-          <div id="6" onClick={(e) => handleNumberClick(e)}>
-            6
-          </div>
-          <div id="7" onClick={(e) => handleNumberClick(e)}>
-            7
-          </div>
-          <div id="8" onClick={(e) => handleNumberClick(e)}>
-            8
-          </div>
-          <div id="9" onClick={(e) => handleNumberClick(e)}>
-            9
-          </div>
-          <String onClick={() => setBudget(0)}>취소</String>
-          <div id="0" onClick={(e) => handleNumberClick(e)}>
-            0
-          </div>
-          <String onClick={handleDeleteNumber}>
+          {['1', '2', '3', '4', '5', '6', '7', '8', '9'].map((num) => (
+            <NumberSectionButton
+              key={num}
+              id={num}
+              onClick={(e) => handleNumberClick(e)}
+            >
+              <Text as="t1">{num}</Text>
+            </NumberSectionButton>
+          ))}
+
+          <NumberSectionButton onClick={() => setBudget(0)}>
+            <Text as="t3" color="neutral500">
+              취소
+            </Text>
+          </NumberSectionButton>
+
+          <NumberSectionButton onClick={(e) => handleNumberClick(e)}>
+            <Text as="t1">0</Text>
+          </NumberSectionButton>
+
+          <NumberSectionButton onClick={handleDeleteNumber}>
             <Icon as="arrow-left" size={24} color="neutral900" />
-          </String>
+          </NumberSectionButton>
         </NumberSection>
       </Layout>
     </OnBoardingLayout>
@@ -99,8 +87,7 @@ const Layout = styled.div`
   grid-template-rows: 10rem auto;
   row-gap: 2rem;
   width: 100%;
-  height: 100%;
-  margin-top: 55px;
+  margin-top: 5.5rem;
 `
 
 const BudgetSection = styled.div`
@@ -116,29 +103,18 @@ const NumberSection = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   width: 100%;
-  height: 100%;
+`
 
-  div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.4rem;
-    font-weight: 500;
-    line-height: 3.2rem;
-  }
+const NumberSectionButton = styled.button`
+  height: 6.8rem;
+  background-color: transparent;
+  border: none;
 `
 
 const BudgetNumber = styled.div`
   display: flex;
   column-gap: 0.5rem;
   align-items: baseline;
-`
-
-const String = styled.div`
-  font-size: 1.6rem !important;
-  font-weight: 500 !important;
-  line-height: 2.4rem !important;
-  color: ${theme.color.neutral500} !important;
 `
 
 export default Budget
