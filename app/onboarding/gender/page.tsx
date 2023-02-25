@@ -26,14 +26,14 @@ const Gender = () => {
         <SquareButton
           onClick={() => setGender('female')}
           active={gender === 'female'}
-          emoji="👰"
+          icon="bride"
           label="예비신부"
         />
 
         <SquareButton
           onClick={() => setGender('male')}
           active={gender === 'male'}
-          emoji="🤵"
+          icon="groom"
           label="예비신랑"
         />
       </Layout>
@@ -45,7 +45,7 @@ export default Gender
 
 const Layout = styled.div`
   display: flex;
-  column-gap: 12px;
+  column-gap: 1.2rem;
   justify-content: center;
-  margin-top: 130px;
+  margin-top: 13rem;
 `

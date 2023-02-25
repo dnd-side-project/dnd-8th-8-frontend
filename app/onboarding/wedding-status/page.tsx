@@ -49,7 +49,7 @@ export default WeddingStatus
 
 const Layout = styled.div`
   display: flex;
-  column-gap: 12px;
+  column-gap: 1.2rem;
   justify-content: center;
-  margin-top: 130px;
+  margin-top: 13rem;
 `
