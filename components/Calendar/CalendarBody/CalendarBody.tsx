@@ -5,7 +5,6 @@ import {
   CalendarRow,
   DateBox,
   DayBox,
-  Divider,
   FlexBox,
   Layout,
 } from './CalendarBody.styled'
@@ -21,12 +20,10 @@ const CalendarBody = ({ calendar, handleSelected }: CalendarBodyProps) => {
       <FlexBox>
         {['일', '월', '화', '수', '목', '금', '토'].map((day) => (
           <DayBox key={day}>
-            <Text as="t3">{day}</Text>
+            <Text as="t2">{day}</Text>
           </DayBox>
         ))}
       </FlexBox>
-
-      <Divider />
 
       {chunk(calendar, 7).map((week, index) => (
         <CalendarRow key={index}>
@@ -40,7 +37,20 @@ const CalendarBody = ({ calendar, handleSelected }: CalendarBodyProps) => {
               firstDay={day.date === 1}
               onClick={() => handleSelected(day)}
             >
-              {day.date}
+              <Text
+                as="t3"
+                color={
+                  day.selected
+                    ? 'neutral0'
+                    : day.today
+                    ? 'secondary500'
+                    : day.prev || day.next
+                    ? 'neutral100'
+                    : 'neutral500'
+                }
+              >
+                {day.date}
+              </Text>
             </DateBox>
           ))}
         </CalendarRow>
