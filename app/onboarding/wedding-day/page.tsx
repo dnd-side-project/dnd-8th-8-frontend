@@ -21,8 +21,8 @@ const WeddingDay = () => {
 
   return (
     <OnBoardingLayout
-      title={`결혼식 예정일이\n언제인가요? 🎉`}
-      subTitle={`결혼식 예정일을 기준으로\nD-DAY를 알려드려요.`}
+      title={`결혼 예정일이\n언제인가요?`}
+      subTitle={`결혼 예정일을 기준으로\nD-DAY를 알려드려요.`}
       hideSkipBtn
       bottomText="결혼식 예정일은 마이페이지에서 수정 가능합니다"
       handleBackBtnClick={() => router.push('/onboarding/wedding-status')}

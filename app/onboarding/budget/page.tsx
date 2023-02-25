@@ -26,8 +26,8 @@ const Budget = () => {
 
   return (
     <OnBoardingLayout
-      title={`예산 규모를\n알려주세요.`}
-      subTitle={`추후 체크리스트에 견적을 등록하면\n총 예산에서 금액이 자동으로 차감돼요.`}
+      title={`결혼 자금은\n얼마나 되시나요?`}
+      subTitle={`입력하신 결혼 자금은\n지출 내역과 연동되어 자동으로 계산돼요.`}
       handleSkipBtnClick={() => router.push('/onboarding/checklist')}
       handleBackBtnClick={() => router.push('/onboarding/gender')}
       handleNextBtnClick={() => {

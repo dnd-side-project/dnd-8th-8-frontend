@@ -39,8 +39,8 @@ const Checklist = () => {
 
   return (
     <OnBoardingLayout
-      title={`확정된 일정이 있다면\n선택해주세요.`}
-      subTitle={`확정된 일정을 체크하면\n메인화면에서 확인할 수 있어요.`}
+      title={`확정된 일정이\n있으신가요?`}
+      subTitle={`확정된 일정을 체크해주세요.\n메인화면에서도 확인할 수 있어요.`}
       handleSkipBtnClick={() => router.push('/home')}
       handleBackBtnClick={() => router.push('/onboarding/budget')}
       handleNextBtnClick={() => {
