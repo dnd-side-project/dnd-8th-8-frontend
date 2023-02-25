@@ -45,8 +45,9 @@ const HeaderLayout = styled.div`
 const BtnSection = styled.div`
   display: flex;
   align-items: center;
-  width: 6rem;
+  min-width: 2rem;
   height: 100%;
+  cursor: pointer;
 `
 
 const TitleSection = styled.div`
