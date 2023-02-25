@@ -1,11 +1,11 @@
 import { Button, Icon, IconName, Text } from '@/components'
-import styled from 'styled-components'
+import styled, { Color } from 'styled-components'
 
 interface SquareButtonProps {
   onClick: () => void
   active?: boolean
   icon?: IconName
-  emoji?: string
+  iconColor?: keyof Color
   label: string
 }
 
@@ -13,7 +13,7 @@ const SquareButton = ({
   onClick,
   active,
   icon,
-  emoji,
+  iconColor,
   label,
 }: SquareButtonProps) => {
   return (
@@ -27,11 +27,7 @@ const SquareButton = ({
       height="120px"
     >
       <Content>
-        {icon && (
-          <Icon as={icon} color={active ? 'neutral0' : 'secondary400'} />
-        )}
-
-        {emoji && <Text as="h3">{emoji}</Text>}
+        {icon && <Icon as={icon} color={active ? 'neutral0' : iconColor} />}
 
         <Text as="h4" color={active ? 'neutral0' : 'secondary400'}>
           {label}
@@ -46,6 +42,6 @@ export default SquareButton
 const Content = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 1.2rem;
   align-items: center;
 `
