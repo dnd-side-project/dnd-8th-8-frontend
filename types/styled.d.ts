@@ -7,6 +7,7 @@ declare module 'styled-components' {
     neutral300: string
     neutral400: string
     neutral500: string
+    neutral600: string
     neutral800: string
     neutral900: string
     primary0: string
