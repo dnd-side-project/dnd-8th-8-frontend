@@ -1,18 +1,11 @@
 import { SvgProps } from '../Icon'
 
 const ArrowLeft = (props: SvgProps) => (
-  <svg {...props}>
+  <svg {...props} width="20" height="18" viewBox="0 0 20 18">
     <path
-      d="M15.5 8.5H0.5"
+      d="M18.5 8.5H1M1 8.5L9 1M1 8.5L9 16.5"
       stroke="currentColor"
-      strokeMiterlimit="10"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M5.5 3.5L0.5 8.5L5.5 13.5"
-      stroke="currentColor"
-      strokeMiterlimit="10"
+      strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
     />

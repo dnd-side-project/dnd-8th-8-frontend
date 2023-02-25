@@ -1,7 +1,7 @@
 import { SvgProps } from '../Icon'
 
 const Bride = (props: SvgProps) => (
-  <svg {...props} width="36" height="37" viewBox="0 0 36 37">
+  <svg {...props} width="36" height="36" viewBox="0 0 36 36">
     <path d="M0 36.52H36V0.52H0V36.52Z" fill="url(#pattern0)" />
     <defs>
       <pattern
