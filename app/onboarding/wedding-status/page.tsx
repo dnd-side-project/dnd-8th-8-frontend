@@ -39,7 +39,7 @@ const WeddingStatus = () => {
           onClick={() => setConfirmedWedding('N')}
           active={confirmedWedding === 'N'}
           icon="x"
-          iconColor="pink"
+          iconColor="primary600"
           label="아니오"
         />
       </Layout>

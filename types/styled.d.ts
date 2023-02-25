@@ -11,7 +11,9 @@ declare module 'styled-components' {
     neutral800: string
     neutral900: string
     primary0: string
+    primary100: string
     primary500: string
+    primary600: string
     primary900: string
     secondary0: string
     secondary100: string
@@ -21,7 +23,6 @@ declare module 'styled-components' {
     secondary800: string
     secondary900: string
     green: string
-    pink: string
   }
 
   export interface FontSize {

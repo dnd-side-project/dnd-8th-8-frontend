@@ -18,7 +18,9 @@ const color: Color = {
   neutral900: '#0f0e2d',
 
   primary0: '#fff6fd',
+  primary100: '#ffd4f6',
   primary500: '#F693E1',
+  primary600: '#f152c5',
   primary900: '#900072',
 
   secondary0: '#f5f6ff',
@@ -30,7 +32,6 @@ const color: Color = {
   secondary900: '#0d1b27',
 
   green: '#34CB8C',
-  pink: '#f152c5',
 }
 
 const fontSize: FontSize = {
