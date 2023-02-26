@@ -8,6 +8,8 @@ export const Layout = styled.footer`
   align-items: center;
   justify-content: space-around;
   width: 100%;
+  min-width: 36rem;
+  max-width: 48rem;
   height: ${FOOTER_HEIGHT};
   padding: 0;
   background-color: ${({ theme }) => theme.color.neutral0};
