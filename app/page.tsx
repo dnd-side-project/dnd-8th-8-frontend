@@ -1,23 +1,9 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
-import styled from 'styled-components'
+import { redirect } from 'next/navigation'
 
-const Page = () => {
-  const router = useRouter()
-  useEffect(() => {
-    router.push('/splash')
-  }, [])
-  return (
-    <Layout>
-      <p>home</p>
-    </Layout>
-  )
+const Root = () => {
+  redirect('/splash')
 }
 
-export default Page
-
-const Layout = styled.div`
-  background-color: #eee;
-`
+export default Root
