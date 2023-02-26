@@ -1,9 +1,9 @@
+'use client'
+
+import { redirect } from 'next/navigation'
+
 const Collection = () => {
-  return (
-    <div>
-      <p>collection page</p>
-    </div>
-  )
+  redirect('/collection/budget')
 }
 
 export default Collection
