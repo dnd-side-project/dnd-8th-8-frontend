@@ -1,8 +1,8 @@
 import { SvgProps } from '../Icon'
 
 const Money = (props: SvgProps) => (
-  <svg {...props} width="72" height="72" viewBox="0 0 72 72">
-    <rect width="72" height="72" fill="url(#pattern0)" />
+  <svg {...props} width="20" height="20" viewBox="0 0 20 20">
+    <rect width="20" height="20" fill="url(#pattern0)" />
     <defs>
       <pattern
         id="pattern0"
