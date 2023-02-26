@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 
 import { Icon, Text } from '@/components'
@@ -27,7 +29,7 @@ const Checkbox = ({
 
   return (
     <Layout>
-      <Icon as="checkbox" />
+      <Icon name="checkbox" />
 
       <LabelLayout>
         <Label>

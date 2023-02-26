@@ -18,7 +18,7 @@ const Header = ({
       <BtnSection>
         {!hideBackBtn && (
           <HeaderButton onClick={handleBackBtnClick}>
-            <Icon as="chevron-left" color="neutral900" />
+            <Icon name="chevron-left" color="neutral900" />
           </HeaderButton>
         )}
       </BtnSection>

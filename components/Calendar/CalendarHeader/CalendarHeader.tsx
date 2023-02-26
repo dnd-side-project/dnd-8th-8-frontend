@@ -18,7 +18,7 @@ const CalendarHeader = ({
   return (
     <Layout>
       <HeaderButton onClick={prevMonth} aria-label="Previous month">
-        <Icon as="chevron-left" color="neutral900" />
+        <Icon name="chevron-left" color="neutral900" />
       </HeaderButton>
 
       <Text as="t2">
@@ -26,7 +26,7 @@ const CalendarHeader = ({
       </Text>
 
       <HeaderButton onClick={nextMonth} aria-label="Next month">
-        <Icon as="chevron-right" color="neutral900" />
+        <Icon name="chevron-right" color="neutral900" />
       </HeaderButton>
     </Layout>
   )

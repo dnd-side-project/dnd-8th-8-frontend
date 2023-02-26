@@ -1,7 +1,6 @@
 import { Meta, Story } from '@storybook/react'
 
-import Calendar from './Calendar'
-import type { CalendarProps } from './Calendar.types'
+import { Calendar, CalendarProps } from './'
 
 export default {
   title: 'Components/Calendar',

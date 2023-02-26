@@ -10,6 +10,7 @@ export const Layout = styled.footer`
   width: 36rem;
   height: ${FOOTER_HEIGHT};
   padding: 0;
+  background-color: ${({ theme }) => theme.color.neutral0};
   box-shadow: 6rem 4rem 18rem 3rem rgb(0 0 0 / 11%);
 
   a {

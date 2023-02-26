@@ -68,7 +68,7 @@ const Checklist = () => {
                 {category.name}
               </Text>
               <Icon
-                as="checkbox"
+                name="checkbox"
                 color={
                   checkedCategory.includes(category.id)
                     ? 'neutral0'

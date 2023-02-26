@@ -16,6 +16,9 @@ type LayoutProps = Pick<
 >
 
 export const Layout = styled.button<LayoutProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: ${({ fullWidth, width = 'auto' }) => (fullWidth ? '100%' : width)};
   height: ${({ height = 'auto' }) => height};
   padding: 15px;
@@ -31,9 +34,6 @@ export const Layout = styled.button<LayoutProps>`
   border-radius: ${({ borderRadius = '16px' }) => borderRadius};
   box-shadow: ${({ shadow }) =>
     shadow ? '6px 4px 18px 3px rgba(0, 0, 0, 0.11)' : 'none'};
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
   ${({ active }) => active && buttonActive}
 `

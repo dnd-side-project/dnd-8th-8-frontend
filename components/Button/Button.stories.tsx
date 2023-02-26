@@ -21,7 +21,6 @@ export const Default: Story<ButtonProps> = (args) => {
 Default.args = {
   children: 'Button',
   backgroundColor: 'secondary500',
-  color: 'neutral0',
 }
 
 export const Shadow = () => {

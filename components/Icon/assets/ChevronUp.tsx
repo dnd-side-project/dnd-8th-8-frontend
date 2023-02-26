@@ -3,9 +3,9 @@ import { SvgProps } from '../Icon'
 const ChevronUp = (props: SvgProps) => (
   <svg {...props}>
     <path
-      d="M2.5 11L8 6L13.5 11"
-      stroke="currentColor"
-      strokeMiterlimit="10"
+      d="M3 11L8 6L13 11"
+      stroke="#6A7DE0"
+      strokeWidth="1.50331"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
