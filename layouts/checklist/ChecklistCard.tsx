@@ -1,10 +1,11 @@
-import { Icon, Text } from '@/components'
+import { Icon, Menu, Text } from '@/components'
 import { useState } from 'react'
 import styled, { Color } from 'styled-components'
 
 const ChecklistCard = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isChecked, setIsChecked] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const handleCheck = () => {
     setIsChecked(!isChecked)
@@ -12,6 +13,10 @@ const ChecklistCard = () => {
 
   const handleOpen = () => {
     setIsOpen(!isOpen)
+  }
+
+  const handleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
   }
 
   return (
@@ -55,23 +60,31 @@ const ChecklistCard = () => {
 
       {isOpen && (
         <CardBody>
-          <CardItem onClick={handleCheck}>
-            <CardItemLeftSection>
+          <CardItem>
+            <CardItemLeftSection onClick={handleCheck}>
               {isChecked ? (
                 <Icon as="checkbox" size={20} color="secondary500" />
               ) : (
                 <Circle color="secondary400" />
               )}
             </CardItemLeftSection>
-            <CardItemCenterSection>
+            <CardItemCenterSection onClick={handleCheck}>
               <Text as="t3">장수 확인</Text>
             </CardItemCenterSection>
-            <CardItemRightSection>
+            <CardItemRightSection onClick={handleMenu}>
               <Icon as="more-horizontal" color="neutral300" />
+              {isMenuOpen && (
+                <Menu
+                  items={[
+                    { label: '수정', onClick: () => null },
+                    { label: '삭제', onClick: () => null },
+                  ]}
+                />
+              )}
             </CardItemRightSection>
           </CardItem>
 
-          <CardItem onClick={handleCheck}>
+          <CardItem>
             <CardItemLeftSection>
               {isChecked ? (
                 <Icon as="checkbox" size={20} color="secondary500" />
@@ -167,7 +180,7 @@ const CardBody = styled.div`
   flex-direction: column;
   gap: 1.6rem;
   padding: calc(6.5rem + 1.6rem) 2rem 1.6rem 2rem;
-  margin-top: -6.5rem;
+  margin-top: calc(-6.5rem - 1rem);
   border-radius: 10px;
   box-shadow: 0 1px 7px rgb(0 0 0 / 15%);
 `
@@ -185,6 +198,7 @@ const CardItemCenterSection = styled.div`
   width: 100%;
 `
 const CardItemRightSection = styled.div`
+  height: 2.4rem;
   cursor: pointer;
 `
 
