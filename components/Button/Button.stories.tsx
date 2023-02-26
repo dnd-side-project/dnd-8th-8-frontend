@@ -1,6 +1,7 @@
 import { Meta, Story } from '@storybook/react'
 
-import { Button, ButtonProps } from '@/components'
+import { Button, ButtonProps, Text } from '@/components'
+import styled from 'styled-components'
 
 export default {
   title: 'Forms/Button',
@@ -19,33 +20,55 @@ export const Default: Story<ButtonProps> = (args) => {
 }
 
 Default.args = {
-  children: 'Button',
-  backgroundColor: 'secondary500',
+  children: <Text color="neutral0">Button</Text>,
 }
 
 export const Shadow = () => {
   return (
-    <>
-      <Button>Default</Button>
-      <Button shadow>Shadow</Button>
-    </>
+    <StoryLayout>
+      <Button>
+        <Text color="neutral0">Default</Text>
+      </Button>
+
+      <Button shadow>
+        <Text color="neutral0">Shadow</Text>
+      </Button>
+    </StoryLayout>
   )
 }
 
 export const Disabled = () => {
   return (
-    <>
-      <Button>Default</Button>
-      <Button disabled>Disabled</Button>
-    </>
+    <StoryLayout>
+      <Button>
+        <Text color="neutral0">Default</Text>
+      </Button>
+      <Button disabled>
+        <Text color="neutral0">Disabled</Text>
+      </Button>
+    </StoryLayout>
   )
 }
 
 export const FullWidth = () => {
   return (
-    <>
-      <Button>Default</Button>
-      <Button fullWidth>Full Width</Button>
-    </>
+    <StoryLayout>
+      <Button>
+        <Text color="neutral0">Default</Text>
+      </Button>
+      <Button fullWidth>
+        <Text color="neutral0">Full Width</Text>
+      </Button>
+    </StoryLayout>
   )
 }
+
+export const StoryLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  width: calc(100vw - 2rem);
+  height: calc(100vh - 2rem);
+`
