@@ -29,7 +29,7 @@ const Checkbox = ({
 
   return (
     <Layout>
-      <Icon as="checkbox" />
+      <Icon name="checkbox" />
 
       <LabelLayout>
         <Label>

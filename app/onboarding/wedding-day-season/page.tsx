@@ -41,7 +41,7 @@ const WeddingDaySeason = () => {
         <YearControllerLayout>
           <YearControlBtn onClick={() => handleYearControlBtnClick('prev')}>
             {year !== dayjs().format('YYYY') && (
-              <Icon as="chevron-left" color="neutral900" />
+              <Icon name="chevron-left" color="neutral900" />
             )}
           </YearControlBtn>
           <YearDisplaySection>
@@ -51,7 +51,7 @@ const WeddingDaySeason = () => {
           </YearDisplaySection>
 
           <YearControlBtn onClick={() => handleYearControlBtnClick('next')}>
-            <Icon as="chevron-right" color="neutral900" />
+            <Icon name="chevron-right" color="neutral900" />
           </YearControlBtn>
         </YearControllerLayout>
 

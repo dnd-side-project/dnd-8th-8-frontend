@@ -3,12 +3,12 @@ import icons, { IconName } from './assets'
 import { Svg } from './Icon.styled'
 
 export interface IconProps {
-  as: IconName
+  name: IconName
   size?: number
   color?: keyof Color
 }
 
-export interface SvgProps extends Omit<IconProps, 'color'> {}
+export interface SvgProps extends Omit<IconProps, 'name'> {}
 
 export interface StyledSvgProps
   extends Omit<React.SVGProps<SVGSVGElement>, 'color'> {
@@ -16,7 +16,7 @@ export interface StyledSvgProps
 }
 
 const Icon = ({
-  as,
+  name,
   size = 16,
   color = 'secondary500',
   ...props
@@ -25,7 +25,7 @@ const Icon = ({
 
   return (
     <Svg
-      as={icons[as]}
+      as={icons[name]}
       width={size}
       height={size}
       color={color}

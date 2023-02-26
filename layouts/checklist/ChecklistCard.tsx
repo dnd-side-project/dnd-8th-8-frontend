@@ -24,7 +24,7 @@ const ChecklistCard = () => {
       <CardHeader isChecked={isChecked} onClick={handleOpen}>
         <LeftSection>
           {isChecked ? (
-            <Icon as="checkbox" size={20} color="neutral100" />
+            <Icon name="checkbox" size={20} color="neutral100" />
           ) : (
             <Circle color="secondary400" />
           )}
@@ -63,7 +63,7 @@ const ChecklistCard = () => {
           <CardItem>
             <CardItemLeftSection onClick={handleCheck}>
               {isChecked ? (
-                <Icon as="checkbox" size={20} color="secondary500" />
+                <Icon name="checkbox" size={20} color="secondary500" />
               ) : (
                 <Circle color="secondary400" />
               )}
@@ -72,7 +72,7 @@ const ChecklistCard = () => {
               <Text as="t3">장수 확인</Text>
             </CardItemCenterSection>
             <CardItemRightSection onClick={handleMenu}>
-              <Icon as="more-horizontal" color="neutral300" />
+              <Icon name="more-horizontal" color="neutral300" />
               {isMenuOpen && (
                 <Menu
                   items={[
@@ -87,7 +87,7 @@ const ChecklistCard = () => {
           <CardItem>
             <CardItemLeftSection>
               {isChecked ? (
-                <Icon as="checkbox" size={20} color="secondary500" />
+                <Icon name="checkbox" size={20} color="secondary500" />
               ) : (
                 <Circle color="secondary400" />
               )}
@@ -96,7 +96,7 @@ const ChecklistCard = () => {
               <Text as="t3">견적 확인</Text>
             </CardItemCenterSection>
             <CardItemRightSection>
-              <Icon as="more-horizontal" color="neutral300" />
+              <Icon name="more-horizontal" color="neutral300" />
             </CardItemRightSection>
           </CardItem>
 
@@ -112,7 +112,7 @@ const ChecklistCard = () => {
           </CardItem>
 
           <CardAddButton>
-            <Icon as="plus" color="neutral500" size={12} />
+            <Icon name="plus" color="neutral500" size={12} />
             <Text as="t4" color="neutral500">
               항목 추가
             </Text>

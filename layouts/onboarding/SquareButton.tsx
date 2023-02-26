@@ -27,7 +27,7 @@ const SquareButton = ({
       height="120px"
     >
       <Content>
-        {icon && <Icon as={icon} color={active ? 'neutral0' : iconColor} />}
+        {icon && <Icon name={icon} color={active ? 'neutral0' : iconColor} />}
 
         <Text as="h4" color={active ? 'neutral0' : 'secondary400'}>
           {label}

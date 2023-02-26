@@ -74,7 +74,7 @@ const Budget = () => {
           </NumberSectionButton>
 
           <NumberSectionButton onClick={handleDeleteNumber}>
-            <Icon as="arrow-left" size={24} color="neutral900" />
+            <Icon name="arrow-left" size={24} color="neutral900" />
           </NumberSectionButton>
         </NumberSection>
       </Layout>

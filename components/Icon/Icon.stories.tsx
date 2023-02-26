@@ -29,7 +29,7 @@ export const Icons: Story<IconProps> = () => {
     <>
       {Object.keys(icons).map((icon) => (
         <IconBox key={icon}>
-          <Icon as={icon as keyof typeof icons} />
+          <Icon name={icon as keyof typeof icons} />
           <br />
           <p>{icon}</p>
         </IconBox>

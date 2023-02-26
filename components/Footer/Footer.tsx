@@ -68,7 +68,7 @@ const Footer = () => {
           <Link href={item.url} key={item.title}>
             <ItemBox>
               <Icon
-                as={
+                name={
                   isRouteActive(item.url)
                     ? item.icon.active
                     : item.icon.inactive
