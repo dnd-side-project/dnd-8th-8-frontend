@@ -1,6 +1,6 @@
 'use client'
 
-import { Badge, FloatingButton, Text } from '@/components'
+import { DDayBadge, FloatingButton, Text } from '@/components'
 import { ChecklistCard } from '@/layouts/checklist'
 import styled from 'styled-components'
 
@@ -10,7 +10,7 @@ const Checklist = () => {
       <HeaderSection>
         <HeaderTitleSection>
           <Text as="h2">체크리스트</Text>
-          <Badge backgroundColor="primary600">D-7</Badge>
+          <DDayBadge day={7} />
         </HeaderTitleSection>
         <HeaderDescSection>
           <div>

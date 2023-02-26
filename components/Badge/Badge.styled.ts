@@ -5,7 +5,7 @@ export const Layout = styled.span<BadgeProps>`
   display: flex;
   align-items: center;
   width: fit-content;
-  padding: 0.3rem 1.5rem;
+  padding: 0.3rem 1.2rem;
   background-color: ${({ theme, backgroundColor }) =>
     theme.color[backgroundColor]};
   border-radius: 12px;
