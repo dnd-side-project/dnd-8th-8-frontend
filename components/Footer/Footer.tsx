@@ -59,7 +59,8 @@ const Footer = () => {
   ]
 
   const pathname = usePathname()
-  const isRouteActive = (url: string) => pathname === url
+
+  const isRouteActive = (url: string) => !!pathname?.includes(url)
 
   return (
     <Layout>

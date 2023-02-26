@@ -12,4 +12,6 @@ export const PAGE_URL = {
   MYPAGE: '/my-page',
 }
 
+export const MAIN_MENUS = Object.values(PAGE_URL)
+
 export const FOOTER_HEIGHT = '6rem'
