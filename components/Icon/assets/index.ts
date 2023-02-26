@@ -29,6 +29,7 @@ import Pencil from './Pencil'
 import Picture from './Picture'
 import Pin from './Pin'
 import Play from './Play'
+import Plus from './Plus'
 import Search from './Search'
 import Slash from './Slash'
 import Snowman from './Snowman'
@@ -70,6 +71,7 @@ const icons = {
   "pencil": Pencil,
   "picture": Picture,
   "play": Play,
+  "plus": Plus,
   "search": Search,
   "slash": Slash,
   "view": View,
