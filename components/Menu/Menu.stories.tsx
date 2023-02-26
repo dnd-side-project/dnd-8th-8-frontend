@@ -18,6 +18,14 @@ export const Default: Story<MenuProps> = (args) => {
 }
 
 Default.args = {
-  children: 'Menu',
-  disabled: false,
+  items: [
+    {
+      label: 'Item 1',
+      onClick: () => console.log('Item 1'),
+    },
+    {
+      label: 'Item 2',
+      onClick: () => console.log('Item 2'),
+    },
+  ],
 }

@@ -52,7 +52,7 @@ const ChecklistCard = () => {
 
         <RightSection>
           <Icon
-            as={isOpen ? 'chevron-up' : 'chevron-down'}
+            name={isOpen ? 'chevron-up' : 'chevron-down'}
             color={isChecked ? 'neutral100' : 'secondary400'}
           />
         </RightSection>

@@ -20,7 +20,7 @@ export const Default: Story<IconProps> = (args) => {
 }
 
 Default.args = {
-  as: 'arrow-left',
+  name: 'arrow-left',
   color: 'secondary500',
 }
 

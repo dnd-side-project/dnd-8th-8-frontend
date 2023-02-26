@@ -6,7 +6,6 @@ import { Divider, Layout, MenuItem, MenuLayout } from './Menu.styled'
 
 interface MenuItem {
   label: string
-  width: string
   onClick: () => void
 }
 
