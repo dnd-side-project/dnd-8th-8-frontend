@@ -6,7 +6,7 @@ import { RecoilRoot } from 'recoil'
 import styled, { ThemeProvider } from 'styled-components'
 
 import { Footer } from '@/components'
-import { FOOTER_HEIGHT, PAGE_URL } from '@/constant'
+import { FOOTER_HEIGHT, MAIN_MENUS } from '@/constant'
 import StyledComponentsRegistry from '@/lib/registry'
 import { GlobalStyle, theme } from '@/styles'
 import { usePathname } from 'next/navigation'
@@ -15,19 +15,20 @@ const pretendard = localFont({
   src: '../public/fonts/PretendardVariable.woff2',
 })
 
-const MAIN_MENUS = [
-  PAGE_URL.HOME,
-  PAGE_URL.CHECKLIST,
-  PAGE_URL.COLLECTION,
-  PAGE_URL.COMMUNITY,
-  PAGE_URL.MYPAGE,
-]
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   const queryClient = new QueryClient()
   const pathname = usePathname()
 
-  const isMainMenu = (url: string | null) =>
-    url ? MAIN_MENUS.includes(url) : false
+  const isMainMenu = (url: string | null) => {
+    for (const menu of MAIN_MENUS) {
+      if (url?.includes(menu)) {
+        return true
+      }
+    }
+
+    return false
+  }
+
   return (
     <html lang="ko" className={pretendard.className}>
       <head />
@@ -39,10 +40,10 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
             <StyledComponentsRegistry>
               <ThemeProvider theme={theme}>
                 <GlobalStyle />
-                <MobileLayout>
-                  <Layout isMainMenu={isMainMenu(pathname)}>{children}</Layout>
-                  {isMainMenu(pathname) && <Footer />}
+                <MobileLayout isMainMenu={isMainMenu(pathname)}>
+                  {children}
                 </MobileLayout>
+                {isMainMenu(pathname) && <Footer />}
               </ThemeProvider>
             </StyledComponentsRegistry>
           </RecoilRoot>
@@ -54,21 +55,10 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
 
 export default RootLayout
 
-const MobileLayout = styled.div`
-  width: 36rem;
-  min-width: 360px;
-  max-width: 480px;
-  height: 100vh;
-  min-height: 100vh;
-
-  /* TODO : 개발 목적. 완료시 삭제 예정 */
-  border: 1px solid red;
-`
-
-const Layout = styled.div`
-  width: 36rem;
+const MobileLayout = styled.div<{ isMainMenu: boolean }>`
   min-width: 36rem;
   max-width: 48rem;
-  height: ${(props: { isMainMenu: boolean }) =>
-    props.isMainMenu ? `calc(100vh - ${FOOTER_HEIGHT})` : '100vh'};
+  min-height: 100vh;
+  margin-bottom: ${({ isMainMenu }) => (isMainMenu ? FOOTER_HEIGHT : 0)};
+  border: 1px solid red;
 `
