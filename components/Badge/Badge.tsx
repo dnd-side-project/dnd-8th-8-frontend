@@ -9,10 +9,14 @@ export interface BadgeProps {
   color?: keyof Color
 }
 
-const Badge = ({ children, backgroundColor, color }: BadgeProps) => {
+const Badge = ({
+  children,
+  backgroundColor,
+  color = 'neutral100',
+}: BadgeProps) => {
   return (
     <Layout backgroundColor={backgroundColor}>
-      <Text as="t5" color={color ? color : 'neutral100'}>
+      <Text as="t5" color={color}>
         {children}
       </Text>
     </Layout>
