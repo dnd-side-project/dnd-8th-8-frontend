@@ -22,7 +22,6 @@ const Login = () => {
         <Button
           onClick={() => router.push('/onboarding/wedding-status')}
           fullWidth
-          color="neutral900"
           backgroundColor="neutral0"
           border={true}
           borderColor="neutral300"
