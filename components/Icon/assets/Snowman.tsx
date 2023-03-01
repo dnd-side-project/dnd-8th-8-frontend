@@ -2,10 +2,10 @@ import { SvgProps } from '../Icon'
 
 const Snowman = (props: SvgProps) => (
   <svg {...props} width="24" height="24" viewBox="0 0 24 24">
-    <rect width="24" height="24" fill="url(#pattern0)" />
+    <rect width="24" height="24" fill="url(#pattern-snowman)" />
     <defs>
       <pattern
-        id="pattern0"
+        id="pattern-snowman"
         patternContentUnits="objectBoundingBox"
         width="1"
         height="1"

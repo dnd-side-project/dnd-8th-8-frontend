@@ -2,10 +2,10 @@ import { SvgProps } from '../Icon'
 
 const Flower = (props: SvgProps) => (
   <svg {...props} width="24" height="24" viewBox="0 0 24 24">
-    <rect width="24" height="24" fill="url(#pattern0)" />
+    <rect width="24" height="24" fill="url(#pattern-flower)" />
     <defs>
       <pattern
-        id="pattern0"
+        id="pattern-flower"
         patternContentUnits="objectBoundingBox"
         width="1"
         height="1"
