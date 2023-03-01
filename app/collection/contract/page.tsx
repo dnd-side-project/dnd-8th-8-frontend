@@ -1,7 +1,8 @@
 'use client'
 
-import { Tab } from '@/components'
+import { FloatingButton, Input, Tab } from '@/components'
 import styled from 'styled-components'
+import ContractCard from './components/contractCard'
 
 const Contract = () => {
   const tabs = [
@@ -14,7 +15,16 @@ const Contract = () => {
       <Tab tabs={tabs} />
 
       <Layout>
-        <h1>나는 계약서이다</h1>
+        <Input
+          placeholder="검색어를 입력해주세요."
+          handleChange={(e) => console.log(e.currentTarget.value)}
+          searchIcon
+          borderStyle
+        />
+        <CardSection>
+          <ContractCard cardTheme="normal" />
+        </CardSection>
+        <FloatingButton icon={'plus'} onClick={() => console.log('click')} />
       </Layout>
     </>
   )
@@ -22,4 +32,13 @@ const Contract = () => {
 
 export default Contract
 
-const Layout = styled.div``
+const Layout = styled.div`
+  width: 100%;
+  height: 100%;
+  padding: 2.5rem 2rem;
+`
+
+const CardSection = styled.div`
+  row-gap: 1rem;
+  margin-top: 2rem;
+`
