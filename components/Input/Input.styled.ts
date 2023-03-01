@@ -8,9 +8,11 @@ export const Layout = styled.div`
 
   display: flex;
   width: 100%;
-  padding: 1rem;
-  border: 1px solid ${theme.color.neutral300};
-  border-radius: 6rem;
+  padding: ${(props: { borderStyle: boolean }) => props.borderStyle && '1rem'};
+  border: ${(props: { borderStyle: boolean }) =>
+    props.borderStyle && `1px solid ${theme.color.neutral300}`};
+  border-radius: ${(props: { borderStyle: boolean }) =>
+    props.borderStyle && `6rem`};
 `
 
 export const StyledInput = styled.input`
