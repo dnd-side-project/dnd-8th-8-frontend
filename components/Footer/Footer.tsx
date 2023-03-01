@@ -26,7 +26,7 @@ const Footer = () => {
     },
     {
       title: '서랍함',
-      url: `${PAGE_URL.COLLECTION}`,
+      url: `${PAGE_URL.COLLECTION_BUDGET}`,
       icon: {
         active: 'w-collection',
         inactive: 'w-collection-disable',

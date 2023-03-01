@@ -7,7 +7,8 @@ export const QUERY_KEYS = {
 export const PAGE_URL = {
   HOME: '/home',
   CHECKLIST: '/checklist',
-  COLLECTION: '/collection',
+  COLLECTION_BUDGET: '/collection/budget',
+  COLLECTION_CONTRACT: '/collection/contract',
   COMMUNITY: '/community',
   MYPAGE: '/my-page',
 }
