@@ -10,6 +10,8 @@ import ChevronLeft from './ChevronLeft'
 import ChevronRight from './ChevronRight'
 import ChevronUp from './ChevronUp'
 import Close from './Close'
+import Contract from './Contract'
+import ContractCheck from './ContractCheck'
 import Expand from './Expand'
 import Flower from './Flower'
 import Google from './Google'
@@ -60,6 +62,8 @@ const icons = {
   "chevron-right": ChevronRight,
   "chevron-up": ChevronUp,
   "close": Close,
+  "contract":Contract,
+  "contract-check":ContractCheck,
   "expand": Expand,
   "google": Google,
   "hide": Hide,
