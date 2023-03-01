@@ -2,7 +2,7 @@
 
 import styled from 'styled-components'
 
-import { Badge, Icon, Text } from '@/components'
+import { Badge, FloatingButton, Icon, Text } from '@/components'
 import { Input } from '@/components/Input'
 import { theme } from '@/styles'
 import {
@@ -105,6 +105,7 @@ const Home = () => {
           </TimelineItem>
         </Timeline>
       </HomeContentSection>
+      <FloatingButton icon={'pencil'} onClick={() => console.log('click')} />
     </Layout>
   )
 }

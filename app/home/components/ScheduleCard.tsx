@@ -3,7 +3,7 @@
 import { Icon, Text } from '@/components'
 
 import { theme } from '@/styles'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styled, { Color } from 'styled-components'
 
 interface ScheduleCardProps {
@@ -52,6 +52,26 @@ const COLOR_PALETTE: {
 
 const ScheduleCard = ({ cardTheme }: ScheduleCardProps) => {
   const [collapse, setCollapse] = useState<string>('close')
+  const menuRef = useRef<HTMLDivElement>(null)
+  const [openMenu, setOpenMenu] = useState(false)
+
+  useEffect(() => {
+    function handleOutside(e: MouseEvent) {
+      // current.contains(e.target) : 컴포넌트 특정 영역 외 클릭 감지를 위해 사용
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(e.target as Node) &&
+        openMenu
+      ) {
+        setOpenMenu(false)
+      }
+    }
+    document.addEventListener('mousedown', handleOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleOutside)
+    }
+  }, [menuRef, openMenu])
+
   const handleCardClick = () => {
     setCollapse(collapse === 'open' ? 'close' : 'open')
   }
@@ -59,7 +79,7 @@ const ScheduleCard = ({ cardTheme }: ScheduleCardProps) => {
   return (
     <Layout onClick={handleCardClick}>
       <CardSection cardTheme={cardTheme}>
-        <MoreBtnWrapper>
+        <MoreBtnWrapper onClick={() => setOpenMenu(true)}>
           <Icon
             name="more-vertical"
             color={COLOR_PALETTE[cardTheme].smallTextColor}
@@ -104,6 +124,20 @@ const ScheduleCard = ({ cardTheme }: ScheduleCardProps) => {
           </Text>
         </div>
       </DetailSection> */}
+      <Menu ref={menuRef} openMenu={openMenu}>
+        <MenuItem
+          style={{ borderBottom: `1px solid ${theme.color.secondary100}` }}
+        >
+          <Text as="t3" color="secondary900">
+            수정
+          </Text>
+        </MenuItem>
+        <MenuItem>
+          <Text as="t3" color="secondary900">
+            삭제
+          </Text>
+        </MenuItem>
+      </Menu>
     </Layout>
   )
 }
@@ -111,6 +145,7 @@ const ScheduleCard = ({ cardTheme }: ScheduleCardProps) => {
 export default ScheduleCard
 
 const Layout = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 28rem;
@@ -177,6 +212,27 @@ const Divider = styled.div`
     theme.color[props.color]};
 `
 
+const Menu = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 50;
+  display: ${(props: { openMenu: boolean }) =>
+    props.openMenu ? 'grid' : 'none'};
+  grid-template-rows: repeat(2, 1fr);
+  width: 10rem;
+  height: 9rem;
+  background-color: ${theme.color.neutral0};
+  border: 1px solid ${theme.color.secondary100};
+  border-radius: 0.6rem;
+  box-shadow: 0.6rem 0.4rem 1.8rem 0.3rem rgb(0 0 0 / 11%);
+`
+
+const MenuItem = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
 // const DetailSection = styled.div`
 //   width: 100%;
 //   height: ${(props: { collapse: string }) => {
