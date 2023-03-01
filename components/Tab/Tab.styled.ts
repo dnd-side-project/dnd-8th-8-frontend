@@ -8,8 +8,6 @@ export const Layout = styled.div`
   a {
     text-decoration: none;
   }
-
-  margin-bottom: 4rem;
 `
 
 export const TabLayout = styled.div<{ active: boolean }>`
