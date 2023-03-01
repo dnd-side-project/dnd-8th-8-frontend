@@ -103,7 +103,7 @@ const Budget = () => {
 export default Budget
 
 const Layout = styled.div`
-  margin: 2rem;
+  margin: 4rem 2rem;
 `
 
 const HeaderSection = styled.div`
