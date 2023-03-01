@@ -1,12 +1,11 @@
 'use client'
 
-import { Button, Icon, Text } from '@/components'
+import { Button, Icon } from '@/components'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import styled from 'styled-components'
 
 const Login = () => {
-  const router = useRouter()
   return (
     <Layout>
       <LogoWrapper>
@@ -19,32 +18,41 @@ const Login = () => {
         />
       </LogoWrapper>
       <ButtonsWrapper>
-        <Button
-          onClick={() => router.push('/onboarding/wedding-status')}
-          fullWidth
-          backgroundColor="neutral0"
-          border={true}
-          borderColor="neutral300"
+        <Link
+          style={{ textDecoration: 'none' }}
+          href={
+            'http://weddingmap-elb-346454866.ap-northeast-2.elb.amazonaws.com/oauth2/authorization/google?redirect_uri=http://localhost:3000/auth/callback'
+          }
         >
-          <ButtonTitleSection>
-            <IconSection>
-              <Icon name="google" />
-            </IconSection>
-            <Text as="h5">구글로 로그인</Text>
-          </ButtonTitleSection>
-        </Button>
-        <Button
-          onClick={() => router.push('/onboarding/wedding-status')}
-          fullWidth
-          backgroundColor="#F6DB4F"
+          <Button
+            fullWidth
+            backgroundColor="neutral0"
+            border={true}
+            borderColor="neutral300"
+          >
+            <ButtonTitleSection>
+              <IconSection>
+                <Icon name="google" />
+              </IconSection>
+              구글로 로그인
+            </ButtonTitleSection>
+          </Button>
+        </Link>
+        <Link
+          style={{ textDecoration: 'none' }}
+          href={
+            'http://weddingmap-elb-346454866.ap-northeast-2.elb.amazonaws.com/oauth2/authorization/kakao?redirect_uri=http://localhost:3000/auth/callback'
+          }
         >
-          <ButtonTitleSection>
-            <IconSection>
-              <Icon name="kakao" />
-            </IconSection>
-            <Text as="h5">카카오톡으로 로그인</Text>
-          </ButtonTitleSection>
-        </Button>
+          <Button fullWidth backgroundColor="#F6DB4F">
+            <ButtonTitleSection>
+              <IconSection>
+                <Icon name="kakao" />
+              </IconSection>
+              카카오톡으로 로그인
+            </ButtonTitleSection>
+          </Button>
+        </Link>
       </ButtonsWrapper>
     </Layout>
   )
