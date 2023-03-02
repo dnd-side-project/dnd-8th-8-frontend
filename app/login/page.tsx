@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, Icon } from '@/components'
+import { Button, Icon, Text } from '@/components'
 import Image from 'next/image'
 import Link from 'next/link'
 import styled from 'styled-components'
@@ -33,7 +33,7 @@ const Login = () => {
               <IconSection>
                 <Icon name="google" />
               </IconSection>
-              구글로 로그인
+              <Text as="h5">구글로 로그인</Text>
             </ButtonTitleSection>
           </Button>
         </Link>
@@ -48,7 +48,7 @@ const Login = () => {
               <IconSection>
                 <Icon name="kakao" />
               </IconSection>
-              카카오톡으로 로그인
+              <Text as="h5">카카오톡으로 로그인</Text>
             </ButtonTitleSection>
           </Button>
         </Link>
