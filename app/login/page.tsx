@@ -12,9 +12,8 @@ const Login = () => {
         <Image
           alt="login logo"
           src="/images/logo.login.svg"
-          fill
-          sizes="100%"
-          priority
+          width={85}
+          height={117}
         />
       </LogoWrapper>
       <ButtonsWrapper>
@@ -62,28 +61,24 @@ const Layout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   width: 100%;
-  height: 100%;
-  padding-top: 10rem;
+  height: 100vh;
 `
 
 const LogoWrapper = styled.div`
-  position: relative;
-  width: 8.5rem;
-  height: 11.7rem;
-  margin-bottom: 15.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 `
 
 const ButtonsWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 1rem;
   width: 100%;
   padding: 0 2rem;
-
-  button:nth-child(1) {
-    margin-bottom: 1rem;
-  }
+  margin-bottom: 12.8rem;
 `
 
 const ButtonTitleSection = styled.div`

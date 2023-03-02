@@ -2,10 +2,10 @@ import { SvgProps } from '../Icon'
 
 const Money = (props: SvgProps) => (
   <svg {...props} width="20" height="20" viewBox="0 0 20 20">
-    <rect width="20" height="20" fill="url(#pattern0)" />
+    <rect width="20" height="20" fill="url(#pattern-money)" />
     <defs>
       <pattern
-        id="pattern0"
+        id="pattern-money"
         patternContentUnits="objectBoundingBox"
         width="1"
         height="1"
