@@ -55,7 +55,6 @@ const ContractCard = ({ cardTheme }: ContractCardProps) => {
 
   useEffect(() => {
     function handleOutside(e: MouseEvent) {
-      // current.contains(e.target) : 컴포넌트 특정 영역 외 클릭 감지를 위해 사용
       if (
         menuRef.current &&
         !menuRef.current.contains(e.target as Node) &&
@@ -124,7 +123,7 @@ const Layout = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 32rem;
+  width: 100%;
   height: 7rem;
 `
 
@@ -132,8 +131,6 @@ const CardSection = styled.div`
   position: relative;
   z-index: 20;
   display: flex;
-  width: 100%;
-  height: 100%;
   padding: 1rem 1rem 1rem 2rem;
   background-color: ${(props: { cardTheme: string }) =>
     COLOR_PALETTE[props.cardTheme].backgroundColor};
