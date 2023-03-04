@@ -1,9 +1,11 @@
+import { theme } from '@/styles'
 import styled from 'styled-components'
 
 export const Layout = styled.div`
   display: flex;
   width: 100%;
   height: 4rem;
+  border-bottom: 1px solid ${theme.color.neutral300};
 
   a {
     text-decoration: none;
@@ -15,15 +17,17 @@ export const TabLayout = styled.div<{ active: boolean }>`
 `
 
 export const TabLabelSection = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
   align-items: center;
-  margin-top: 1.6rem;
-  text-align: center;
+  justify-content: center;
+  height: 100%;
 `
 
 export const Border = styled.div`
+  position: absolute;
+  bottom: 0;
   width: 3.6rem;
   height: 0.2rem;
   background: ${({ theme }) => theme.color.secondary800};

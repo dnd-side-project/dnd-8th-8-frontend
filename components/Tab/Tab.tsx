@@ -31,7 +31,6 @@ const Tab = ({ tabs }: TabProps) => {
               >
                 {label}
               </Text>
-
               {isActive(path) && <Border />}
             </TabLabelSection>
           </Link>
