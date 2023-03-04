@@ -78,6 +78,7 @@ const Home = () => {
             },
             ['.css-ha3bif-MuiTimelineItem-root:before']: {
               padding: '2px',
+              content: 'none',
             },
           }}
           style={{ height: '100%', paddingTop: '2rem' }}

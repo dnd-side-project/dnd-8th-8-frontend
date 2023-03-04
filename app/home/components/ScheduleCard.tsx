@@ -57,7 +57,6 @@ const ScheduleCard = ({ cardTheme }: ScheduleCardProps) => {
 
   useEffect(() => {
     function handleOutside(e: MouseEvent) {
-      // current.contains(e.target) : 컴포넌트 특정 영역 외 클릭 감지를 위해 사용
       if (
         menuRef.current &&
         !menuRef.current.contains(e.target as Node) &&
@@ -148,7 +147,7 @@ const Layout = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 28rem;
+  width: 100%;
   height: 7rem;
 `
 
