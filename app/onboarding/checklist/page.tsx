@@ -3,7 +3,6 @@
 import userState from '@/atoms/userAtom'
 import { Icon, Text } from '@/components'
 import { OnBoardingLayout } from '@/layouts/onboarding'
-import theme from '@/styles/theme'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
@@ -85,26 +84,29 @@ const Checklist = () => {
 
 export default Checklist
 
-const SingleCategory = styled.div`
+const CategorySection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 4rem;
+`
+
+const SingleCategory = styled.div<{ isChecked: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
   height: 5rem;
-  margin-bottom: 1rem;
-  background-color: ${(props: { isChecked: boolean }) =>
-    props.isChecked ? '#1F38BC' : theme.color.neutral0};
-  border: ${(props: { isChecked: boolean }) =>
-    props.isChecked ? 'none' : `1px solid ${theme.color.secondary300}`};
+  padding: 0 2.2rem 0 3rem;
+  background-color: ${({ isChecked, theme }) =>
+    isChecked ? theme.color.secondary500 : theme.color.neutral0};
+  border: ${({ isChecked, theme }) =>
+    isChecked ? 'none' : `1px solid ${theme.color.secondary300}`};
   border-radius: 5.3rem;
-`
-const CategorySection = styled.div`
-  margin-top: 4rem;
 `
 
 const CategoryContentSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 27rem;
+  width: 100%;
 `
