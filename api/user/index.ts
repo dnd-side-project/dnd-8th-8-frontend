@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios'
+import axios, { isAxiosError } from 'axios'
 
 const API_URL = `${
   process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080'
@@ -10,10 +10,6 @@ interface UpdateNameRequest {
 
 interface UpdateGenderRequest {
   gender: string
-}
-
-function isAxiosError(error: any): error is AxiosError {
-  return (error as AxiosError).isAxiosError === true
 }
 
 export const updateUserName = async (name: string, accessToken: string) => {

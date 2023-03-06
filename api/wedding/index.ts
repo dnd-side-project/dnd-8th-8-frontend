@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios'
+import axios, { isAxiosError } from 'axios'
 
 const API_URL = `${
   process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080'
@@ -16,10 +16,6 @@ interface WeddingModificationRequest {
 
 interface WeddingBudgetResponse {
   budget: number
-}
-
-function isAxiosError(error: any): error is AxiosError {
-  return (error as AxiosError).isAxiosError === true
 }
 
 export const registerWedding = async (
