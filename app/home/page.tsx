@@ -23,10 +23,10 @@ const Home = () => {
         <ConnectSpouseSection>
           <StackedProfilePicSection>
             <ImgWrapper style={{ zIndex: 10 }}>
-              <Image alt="profile pic" src="/images/profile.jpg" fill />
+              <Image alt="profile pic" src="/images/default-icon.svg" fill />
             </ImgWrapper>
             <ImgWrapper style={{ position: 'absolute', right: 0, zIndex: 5 }}>
-              <Image alt="profile pic" src="/images/profile2.png" fill />
+              <Image alt="profile pic" src="/images/default-icon.svg" fill />
             </ImgWrapper>
           </StackedProfilePicSection>
           <Text as="t5" color="neutral500">
