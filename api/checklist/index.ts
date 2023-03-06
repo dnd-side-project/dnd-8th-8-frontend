@@ -151,3 +151,60 @@ export const deleteChecklistItem = async (
     }
   }
 }
+
+export const registerChecklistSubItem = async (
+  itemId: number,
+  contents: string,
+  accessToken: string,
+): Promise<{ id: number; contents: string; isChecked: boolean }> => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  }
+  const data = {
+    contents: contents,
+    isChecked: false,
+  }
+  const response = await axios.post(
+    `${API_URL}/item/${itemId}/sub-item`,
+    data,
+    config,
+  )
+  return response.data
+}
+
+export const updateChecklistSubItem = async (
+  itemId: number,
+  subItemId: number,
+  isChecked: boolean,
+  accessToken: string,
+): Promise<{ id: number; contents: string; isChecked: boolean }> => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  }
+  const data = {
+    isChecked: isChecked,
+  }
+  const response = await axios.put(
+    `${API_URL}/item/${itemId}/sub-item/${subItemId}`,
+    data,
+    config,
+  )
+  return response.data
+}
+
+export const deleteChecklistSubItem = async (
+  itemId: number,
+  subItemId: number,
+  accessToken: string,
+): Promise<void> => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  }
+  await axios.delete(`${API_URL}/item/${itemId}/sub-item/${subItemId}`, config)
+}
