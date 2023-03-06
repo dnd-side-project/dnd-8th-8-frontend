@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { isAxiosError } from 'axios'
 
 const API_URL = `${
   process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080'
@@ -56,4 +56,98 @@ export const preRegisterChecklist = async (
     config,
   )
   return response.data
+}
+
+export const createChecklistItem = async (
+  accessToken: string,
+  checklistItem: ChecklistItem,
+  checklistSubItems: ChecklistSubItem[],
+) => {
+  const config = {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  }
+
+  try {
+    const response = await axios.post(
+      `${API_URL}/item`,
+      {
+        checklistItem,
+        checklistSubItems,
+      },
+      config,
+    )
+    return response.data.data
+  } catch (error) {
+    if (isAxiosError(error)) {
+      return error.response?.data
+    } else {
+      throw error
+    }
+  }
+}
+
+export const getChecklistItem = async (accessToken: string, itemId: number) => {
+  const config = {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  }
+
+  try {
+    const response = await axios.get(`${API_URL}/item/${itemId}`, config)
+    return response.data.data
+  } catch (error) {
+    if (isAxiosError(error)) {
+      return error.response?.data
+    } else {
+      throw error
+    }
+  }
+}
+
+export const updateChecklistItem = async (
+  accessToken: string,
+  itemId: number,
+  checklistItem: ChecklistItem,
+  checklistSubItems: ChecklistSubItem[],
+) => {
+  const config = {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  }
+
+  try {
+    const response = await axios.put(
+      `${API_URL}/item/${itemId}`,
+      {
+        checklistItem,
+        checklistSubItems,
+      },
+      config,
+    )
+    return response.data.data
+  } catch (error) {
+    if (isAxiosError(error)) {
+      return error.response?.data
+    } else {
+      throw error
+    }
+  }
+}
+
+export const deleteChecklistItem = async (
+  accessToken: string,
+  itemId: number,
+) => {
+  const config = {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  }
+
+  try {
+    const response = await axios.delete(`${API_URL}/item/${itemId}`, config)
+    return response.data
+  } catch (error) {
+    if (isAxiosError(error)) {
+      return error.response?.data
+    } else {
+      throw error
+    }
+  }
 }
