@@ -14,7 +14,6 @@ const color: Color = {
   neutral400: '#cdcfdc',
   neutral500: '#b4b6c5',
   neutral600: '#767C95',
-  neutral700: '#474d66',
   neutral800: '#474d66',
   neutral900: '#0f0e2d',
 
