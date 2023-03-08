@@ -27,9 +27,8 @@ const Splash = () => {
         <Image
           src="/images/logo.splash.svg"
           alt="splash logo"
-          fill
-          sizes="100%"
-          priority
+          width={75}
+          height={104}
         />
       </LogoWrapper>
     </Layout>
@@ -46,24 +45,19 @@ const fadeOut = keyframes`
   }
 `
 
-const Layout = styled.div`
+const Layout = styled.div<{ startFadeoutAnimation: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
+  height: 100vh;
   background: linear-gradient(194.48deg, #1f38bc -9.76%, #415ae2 88.62%);
-  animation: ${(props: { startFadeoutAnimation: boolean }) =>
-    props.startFadeoutAnimation &&
+  animation: ${({ startFadeoutAnimation }) =>
+    startFadeoutAnimation &&
     css`
       ${fadeOut} .5s linear forwards
     `};
 `
 
-const LogoWrapper = styled.div`
-  position: relative;
-  width: 7.5rem;
-  height: 10.4rem;
-`
+const LogoWrapper = styled.div``
 
 export default Splash
