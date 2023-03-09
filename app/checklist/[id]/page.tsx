@@ -1,13 +1,19 @@
 'use client'
 
-import { Button, Header, Icon, Text } from '@/components'
+import { Button, Calendar, Header, Icon, Modal, Text } from '@/components'
+import { useCalendar } from '@/hooks'
 import { ContentBox } from '@/layouts/checklist'
 import { ParamsProps } from '@/types/param'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import styled from 'styled-components'
 
 const DetailChecklist = ({ params: { id } }: ParamsProps) => {
   const router = useRouter()
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false)
+
+  const { month, year, calendar, nextMonth, prevMonth, handleSelected } =
+    useCalendar(new Date())
 
   return (
     <Layout>
@@ -58,9 +64,25 @@ const DetailChecklist = ({ params: { id } }: ParamsProps) => {
           title="일정날짜"
           placeholder="일정을 선택해주세요."
           iconSection={
-            <CalendarButtonSection>
-              <Icon name="calendar" color="neutral800" />
-            </CalendarButtonSection>
+            <>
+              <CalendarButtonSection
+                onClick={() => setIsCalendarOpen(!isCalendarOpen)}
+              >
+                <Icon name="calendar" color="neutral800" />
+              </CalendarButtonSection>
+              {isCalendarOpen && (
+                <Modal onClose={() => setIsCalendarOpen(false)}>
+                  <Calendar
+                    month={month}
+                    year={year}
+                    calendar={calendar}
+                    nextMonth={nextMonth}
+                    prevMonth={prevMonth}
+                    handleSelected={handleSelected}
+                  />
+                </Modal>
+              )}
+            </>
           }
         />
 

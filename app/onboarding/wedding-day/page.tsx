@@ -15,10 +15,6 @@ const WeddingDay = () => {
   const { month, year, calendar, nextMonth, prevMonth, handleSelected } =
     useCalendar(new Date())
 
-  console.log('month', month)
-  console.log('year', year)
-  console.log('calendar', calendar)
-
   return (
     <OnBoardingLayout
       title={`결혼 예정일이\n언제인가요?`}
