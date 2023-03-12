@@ -2,7 +2,7 @@
 
 import { Button, Calendar, Header, Icon, Modal, Text } from '@/components'
 import { useCalendar } from '@/hooks'
-import { ContentBox } from '@/layouts/checklist'
+import { ContentBox, TimePicker } from '@/layouts/checklist'
 import { ParamsProps } from '@/types/param'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -11,6 +11,15 @@ import styled from 'styled-components'
 const DetailChecklist = ({ params: { id } }: ParamsProps) => {
   const router = useRouter()
   const [isCalendarOpen, setIsCalendarOpen] = useState(false)
+  const [isTimeOpen, setIsTimeOpen] = useState(false)
+  const [time, setTime] = useState<string>('00:00')
+
+  const [title, setTitle] = useState<string>('')
+  const [date, setDate] = useState<string>('')
+
+  const handleTimeChange = (newTime: string) => {
+    setTime(newTime)
+  }
 
   const { month, year, calendar, nextMonth, prevMonth, handleSelected } =
     useCalendar(new Date())
@@ -30,7 +39,12 @@ const DetailChecklist = ({ params: { id } }: ParamsProps) => {
       />
 
       <ContentLayout>
-        <ContentBox title="제목" placeholder="제목을 작성해주세요" />
+        <ContentBox
+          title="제목"
+          input={title}
+          placeholder="제목을 작성해주세요"
+          onChange={(e) => setTitle(e.target.value)}
+        />
 
         <ContentBox
           title="세부일정명"
@@ -62,7 +76,17 @@ const DetailChecklist = ({ params: { id } }: ParamsProps) => {
 
         <ContentBox
           title="일정날짜"
-          placeholder="일정을 선택해주세요."
+          content={
+            date === '' ? (
+              <Text as="t3" color="neutral500">
+                일정을 선택해주세요.
+              </Text>
+            ) : (
+              <Text as="t3" color="neutral800">
+                {date}
+              </Text>
+            )
+          }
           iconSection={
             <>
               <CalendarButtonSection
@@ -71,7 +95,10 @@ const DetailChecklist = ({ params: { id } }: ParamsProps) => {
                 <Icon name="calendar" color="neutral800" />
               </CalendarButtonSection>
               {isCalendarOpen && (
-                <Modal onClose={() => setIsCalendarOpen(false)}>
+                <Modal
+                  isOpen={isCalendarOpen}
+                  onClose={() => setIsCalendarOpen(false)}
+                >
                   <Calendar
                     month={month}
                     year={year}
@@ -92,12 +119,25 @@ const DetailChecklist = ({ params: { id } }: ParamsProps) => {
             <TimeSection>
               <div>
                 <Text as="t3" color="neutral500">
-                  00:00
+                  {time}
                 </Text>
 
-                <TimeSectionButton>
+                <TimeSectionButton onClick={() => setIsTimeOpen(!isTimeOpen)}>
                   <Icon name="chevron-down" color="neutral500" size={12} />
                 </TimeSectionButton>
+
+                {isTimeOpen && (
+                  <Modal
+                    isOpen={isTimeOpen}
+                    onClose={() => setIsTimeOpen(false)}
+                  >
+                    <TimePicker
+                      value={time}
+                      onChange={handleTimeChange}
+                      onClose={() => setIsTimeOpen(false)}
+                    />
+                  </Modal>
+                )}
 
                 <TimeSectionRight>
                   <Text as="t3" color="neutral800">
@@ -125,7 +165,11 @@ const DetailChecklist = ({ params: { id } }: ParamsProps) => {
           }
         />
 
-        <ContentBox title="일정장소" placeholder="장소명을 작성해주세요." />
+        <ContentBox
+          title="일정장소"
+          input=""
+          placeholder="장소명을 작성해주세요."
+        />
       </ContentLayout>
 
       <TextAreaSection
