@@ -15,8 +15,13 @@ import {
   TimelineSeparator,
 } from '@mui/lab'
 import Image from 'next/image'
+import { useState } from 'react'
+import SwipeableViews from 'react-swipeable-views'
 import ScheduleCard from './components/ScheduleCard'
+
 const Home = () => {
+  const [index, setIndex] = useState(0)
+
   return (
     <Layout>
       <HomeHeader>
@@ -60,52 +65,67 @@ const Home = () => {
           </MarriageInfoSection>
         </UserInfoSection>
       </HomeHeader>
-      <InputSection>
-        <Input
-          placeholder="일정을 검색해보세요."
-          handleChange={(e: React.FormEvent<HTMLInputElement>) =>
-            console.log(e.currentTarget.value)
-          }
-          borderStyle
-          searchIcon
-        />
-      </InputSection>
-      <HomeContentSection>
-        <Timeline
-          sx={{
-            [`& .${timelineOppositeContentClasses.root}`]: {
-              flex: 0.2,
-            },
-            ['.css-ha3bif-MuiTimelineItem-root:before']: {
-              padding: '2px',
-              content: 'none',
-            },
-          }}
-          style={{ height: '100%', paddingTop: '2rem' }}
-        >
-          <TimelineItem style={{ marginBottom: '0.5rem' }}>
-            <TimelineSeparator>
-              <TimelineDot
-              // style={{
-              //   backgroundColor: `${
-              //     v === 1
-              //       ? theme.color.secondary500
-              //       : theme.color.neutral300
-              //   }`,
-              // }}
-              />
-              <TimelineConnector
-                style={{
-                  backgroundColor: theme.color.neutral300,
-                }}
-              />
-            </TimelineSeparator>
-            <TimelineContent style={{ padding: '6px 0 6px 13px' }}>
-              <ScheduleCard cardTheme="active" />
-            </TimelineContent>
-          </TimelineItem>
-        </Timeline>
-      </HomeContentSection>
+
+      <SwipeableViews onChangeIndex={(index) => setIndex(index)}>
+        <div>
+          <RoadMapLayout>dd</RoadMapLayout>
+        </div>
+
+        <div>
+          <InputSection>
+            <Input
+              placeholder="일정을 검색해보세요."
+              handleChange={(e: React.FormEvent<HTMLInputElement>) =>
+                console.log(e.currentTarget.value)
+              }
+              borderStyle
+              searchIcon
+            />
+          </InputSection>
+          <HomeContentSection>
+            <Timeline
+              sx={{
+                [`& .${timelineOppositeContentClasses.root}`]: {
+                  flex: 0.2,
+                },
+                ['.css-ha3bif-MuiTimelineItem-root:before']: {
+                  padding: '2px',
+                  content: 'none',
+                },
+              }}
+              style={{ height: '100%', paddingTop: '2rem' }}
+            >
+              <TimelineItem style={{ marginBottom: '0.5rem' }}>
+                <TimelineSeparator>
+                  <TimelineDot
+                  // style={{
+                  //   backgroundColor: `${
+                  //     v === 1
+                  //       ? theme.color.secondary500
+                  //       : theme.color.neutral300
+                  //   }`,
+                  // }}
+                  />
+                  <TimelineConnector
+                    style={{
+                      backgroundColor: theme.color.neutral300,
+                    }}
+                  />
+                </TimelineSeparator>
+                <TimelineContent style={{ padding: '6px 0 6px 13px' }}>
+                  <ScheduleCard cardTheme="active" />
+                </TimelineContent>
+              </TimelineItem>
+            </Timeline>
+          </HomeContentSection>
+        </div>
+      </SwipeableViews>
+
+      <PageIndicator>
+        <PageIndicatorDot active={index === 0} />
+        <PageIndicatorDot active={index === 1} />
+      </PageIndicator>
+
       <FloatingButton icon={'pencil'} onClick={() => console.log('click')} />
     </Layout>
   )
@@ -197,4 +217,25 @@ const Highlight = styled.span`
   font-size: 2.4rem;
   font-weight: 600;
   color: ${theme.color.primary500};
+`
+
+const RoadMapLayout = styled.div``
+
+const PageIndicator = styled.div`
+  position: fixed;
+  bottom: 7.4rem;
+  left: 50%;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  width: 100%;
+  transform: translate(-50%, -50%);
+`
+
+const PageIndicatorDot = styled.div<{ active?: boolean }>`
+  width: 0.8rem;
+  height: 0.8rem;
+  background-color: ${({ active }) =>
+    active ? theme.color.secondary500 : theme.color.neutral300};
+  border-radius: 50%;
 `
