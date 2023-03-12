@@ -74,7 +74,7 @@ const Budget = () => {
 
         <CardSection>
           <CardSectionEditButton onClick={() => null}>
-            <Text as="t4" color="neutral700">
+            <Text as="t4" color="neutral800">
               편집
             </Text>
           </CardSectionEditButton>
