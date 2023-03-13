@@ -68,7 +68,15 @@ const Home = () => {
 
       <SwipeableViews onChangeIndex={(index) => setIndex(index)}>
         <div>
-          <RoadMapLayout>dd</RoadMapLayout>
+          <RoadMapLayout>
+            <DescriptionBox>
+              <Text as="t4" color="secondary400">
+                일정을 등록하여 로드맵을 완성해보세요!
+              </Text>
+            </DescriptionBox>
+
+            <RoadMapDivider />
+          </RoadMapLayout>
         </div>
 
         <div>
@@ -238,4 +246,18 @@ const PageIndicatorDot = styled.div<{ active?: boolean }>`
   background-color: ${({ active }) =>
     active ? theme.color.secondary500 : theme.color.neutral300};
   border-radius: 50%;
+`
+
+const DescriptionBox = styled.div`
+  padding: 1rem 2rem;
+  margin: 0 calc(5.4rem - 2rem);
+  text-align: center;
+  background-color: ${theme.color.secondary100};
+  border-radius: 0.8rem;
+`
+
+const RoadMapDivider = styled.div`
+  height: 0.1rem;
+  margin: 2.4rem calc(12.5rem - 2rem) 5rem;
+  background-color: ${theme.color.secondary100};
 `
