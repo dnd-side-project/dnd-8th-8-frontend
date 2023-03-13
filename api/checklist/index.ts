@@ -1,4 +1,5 @@
 import axios, { isAxiosError } from 'axios'
+import axiosInstance from '../config/axiosInstance'
 
 const API_URL = `${
   process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080'
@@ -20,17 +21,13 @@ interface ChecklistSubItem {
   isChecked: boolean
 }
 
-interface ChecklistResponse {
+export interface ChecklistResponse {
   checklistItem: ChecklistItem
   checklistSubItems: ChecklistSubItem[]
 }
 
-export const getChecklist = async (accessToken: string) => {
-  const config = {
-    headers: { Authorization: `Bearer ${accessToken}` },
-  }
-  const response = await axios.get<ChecklistResponse[]>(`${API_URL}`, config)
-  return response.data
+export const getChecklist = () => {
+  return axiosInstance.get<ChecklistResponse>('/api/v1/checklist')
 }
 
 interface PreChecklistRequest {

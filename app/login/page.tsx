@@ -14,6 +14,7 @@ const Login = () => {
           src="/images/logo.login.svg"
           width={85}
           height={117}
+          priority
         />
       </LogoWrapper>
       <ButtonsWrapper>

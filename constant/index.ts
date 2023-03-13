@@ -1,6 +1,6 @@
 export const QUERY_KEYS = {
-  LOGIN: {
-    KAKAO_LOGIN: 'kakao_login',
+  CHECKLIST: {
+    GET_CHECKLIST: 'get-checklist',
   },
 }
 
