@@ -1,6 +1,7 @@
 'use client'
 
 import { FloatingButton, Input, Tab } from '@/components'
+import { useRouter } from 'next/navigation'
 import styled from 'styled-components'
 import ContractCard from './components/contractCard'
 
@@ -9,6 +10,7 @@ const Contract = () => {
     { label: '예산표', path: '/collection/budget' },
     { label: '계약서', path: '/collection/contract' },
   ]
+  const router = useRouter()
 
   return (
     <>
@@ -22,9 +24,12 @@ const Contract = () => {
           borderStyle
         />
         <CardSection>
-          <ContractCard cardTheme="normal" />
+          <ContractCard cardTheme="skeleton" />
         </CardSection>
-        <FloatingButton icon={'plus'} onClick={() => console.log('click')} />
+        <FloatingButton
+          icon={'plus'}
+          onClick={() => router.push('/collection/contract/create')}
+        />
       </Layout>
     </>
   )
