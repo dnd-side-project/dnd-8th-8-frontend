@@ -4,19 +4,14 @@ import styled from 'styled-components'
 
 import { Badge, FloatingButton, Icon, Text } from '@/components'
 import { Input } from '@/components/Input'
+import { useGetChecklist } from '@/queries/useGetChecklist'
 import { theme } from '@/styles'
-import {
-  Timeline,
-  TimelineConnector,
-  TimelineContent,
-  TimelineDot,
-  TimelineItem,
-  timelineOppositeContentClasses,
-  TimelineSeparator,
-} from '@mui/lab'
 import Image from 'next/image'
 import ScheduleCard from './components/ScheduleCard'
+
 const Home = () => {
+  const { data } = useGetChecklist()
+  console.log(data)
   return (
     <Layout>
       <HomeHeader>
@@ -71,40 +66,11 @@ const Home = () => {
         />
       </InputSection>
       <HomeContentSection>
-        <Timeline
-          sx={{
-            [`& .${timelineOppositeContentClasses.root}`]: {
-              flex: 0.2,
-            },
-            ['.css-ha3bif-MuiTimelineItem-root:before']: {
-              padding: '2px',
-              content: 'none',
-            },
-          }}
-          style={{ height: '100%', paddingTop: '2rem' }}
-        >
-          <TimelineItem style={{ marginBottom: '0.5rem' }}>
-            <TimelineSeparator>
-              <TimelineDot
-              // style={{
-              //   backgroundColor: `${
-              //     v === 1
-              //       ? theme.color.secondary500
-              //       : theme.color.neutral300
-              //   }`,
-              // }}
-              />
-              <TimelineConnector
-                style={{
-                  backgroundColor: theme.color.neutral300,
-                }}
-              />
-            </TimelineSeparator>
-            <TimelineContent style={{ padding: '6px 0 6px 13px' }}>
-              <ScheduleCard cardTheme="active" />
-            </TimelineContent>
-          </TimelineItem>
-        </Timeline>
+        <TimelineSection>
+          <ScheduleCard cardTheme={'normal'} />
+          <ScheduleCard cardTheme={'active'} />
+          <ScheduleCard cardTheme={'active'} />
+        </TimelineSection>
       </HomeContentSection>
       <FloatingButton icon={'pencil'} onClick={() => console.log('click')} />
     </Layout>
@@ -116,7 +82,6 @@ export default Home
 const Layout = styled.div`
   width: 100%;
   height: 100%;
-  padding: 0 2rem;
 `
 
 const HomeHeader = styled.div`
@@ -125,7 +90,7 @@ const HomeHeader = styled.div`
   row-gap: 3rem;
   width: 100%;
   height: 22rem;
-  padding: 2.5rem 0;
+  padding: 2.5rem 2rem;
 `
 
 const ConnectSpouseSection = styled.div`
@@ -183,6 +148,7 @@ const MarriageInfoSection = styled.div``
 const InputSection = styled.div`
   width: 100%;
   height: 4rem;
+  padding: 0 2rem;
 `
 
 const HomeContentSection = styled.div`
@@ -191,7 +157,17 @@ const HomeContentSection = styled.div`
   justify-content: center;
   width: 100%;
   height: calc(100vh - 6rem - 22rem - 4rem);
-  overflow-x: hidden;
+  margin-top: 2rem;
+  overflow-y: scroll;
+`
+
+const TimelineSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  width: 85%;
+  height: 100%;
+  border-left: 1px solid ${theme.color.neutral300};
 `
 const Highlight = styled.span`
   font-size: 2.4rem;
