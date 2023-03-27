@@ -1,6 +1,7 @@
 'use client'
 
 import { FloatingButton, Input, Tab } from '@/components'
+import { useGetContractList } from '@/queries/contract/useGetContract'
 import { useRouter } from 'next/navigation'
 import styled from 'styled-components'
 import ContractCard from './components/contractCard'
@@ -11,11 +12,11 @@ const Contract = () => {
     { label: '계약서', path: '/collection/contract' },
   ]
   const router = useRouter()
+  const { data } = useGetContractList()
 
   return (
     <>
       <Tab tabs={tabs} />
-
       <Layout>
         <Input
           placeholder="검색어를 입력해주세요."
@@ -24,7 +25,17 @@ const Contract = () => {
           borderStyle
         />
         <CardSection>
-          <ContractCard cardTheme="skeleton" />
+          {data?.data.length ? (
+            data.data.map((item) => (
+              <ContractCard
+                cardTheme="normal"
+                contractInfo={item}
+                key={item.id}
+              />
+            ))
+          ) : (
+            <ContractCard cardTheme="skeleton" />
+          )}
         </CardSection>
         <FloatingButton
           icon={'plus'}

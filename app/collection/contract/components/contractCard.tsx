@@ -1,10 +1,20 @@
 import { Icon, Text } from '@/components'
+import { useDeleteContract } from '@/queries/contract/useDeleteContract'
 import { theme } from '@/styles'
+import { ContractItemType, ContractStatusType } from '@/types/api/contract'
 import { useEffect, useRef, useState } from 'react'
 import styled, { Color } from 'styled-components'
 
+const CONTRACT_STATUS: { [key in ContractStatusType]: string } = {
+  COMPLETE: '계약완료',
+  IN_PROGRESS: '계약중',
+  PROVISIONAL: '가계약',
+  VERBAL: '구두계약',
+}
+
 export interface ContractCardProps {
   cardTheme: 'active' | 'skeleton' | 'normal'
+  contractInfo?: Omit<ContractItemType, 'contents' | 'file' | 'memo'>
 }
 
 const COLOR_PALETTE: {
@@ -46,9 +56,13 @@ const COLOR_PALETTE: {
     smallTextColor: `neutral500`,
   },
 }
-const ContractCard = ({ cardTheme }: ContractCardProps) => {
+const ContractCard = ({
+  cardTheme,
+  contractInfo = { title: '', contractDate: '', contractStatus: '', id: 0 },
+}: ContractCardProps) => {
   const menuRef = useRef<HTMLDivElement>(null)
   const [openMenu, setOpenMenu] = useState(false)
+  const { mutate: deleteContract } = useDeleteContract()
   const handleCardClick = () => {
     console.log('click')
   }
@@ -82,18 +96,22 @@ const ContractCard = ({ cardTheme }: ContractCardProps) => {
         </IconSection>
         <ContentSection>
           <Text as="t3" color={COLOR_PALETTE[cardTheme].colorName}>
-            계약서를 등록해주세요
+            {contractInfo.title ? contractInfo.title : '계약서를 등록해주세요'}
           </Text>
           <ContentRow>
             <LocationSection>
               <Text as="h5" color={COLOR_PALETTE[cardTheme].smallTextColor}>
-                날짜 입력
+                {contractInfo.contractDate
+                  ? contractInfo.contractDate
+                  : '날짜 입력'}
               </Text>
             </LocationSection>
             <Divider color={COLOR_PALETTE[cardTheme].smallTextColor} />
             <div>
               <Text as="h5" color={COLOR_PALETTE[cardTheme].smallTextColor}>
-                계약 현황
+                {contractInfo.contractStatus
+                  ? CONTRACT_STATUS[contractInfo.contractStatus]
+                  : '계약 현황'}
               </Text>
             </div>
           </ContentRow>
@@ -102,6 +120,10 @@ const ContractCard = ({ cardTheme }: ContractCardProps) => {
       <Menu ref={menuRef} openMenu={openMenu}>
         <MenuItem
           style={{ borderBottom: `1px solid ${theme.color.secondary100}` }}
+          onClick={() => {
+            deleteContract(contractInfo.id)
+            setOpenMenu(false)
+          }}
         >
           <Text as="t3" color="secondary900">
             수정
