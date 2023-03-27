@@ -2,6 +2,9 @@ export const QUERY_KEYS = {
   CHECKLIST: {
     GET_CHECKLIST: 'get-checklist',
   },
+  CONTRACT: {
+    GET_CONTRACTLIST: 'get-contractList',
+  },
 }
 
 export const PAGE_URL = {

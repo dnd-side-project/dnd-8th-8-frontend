@@ -4,16 +4,18 @@ import { Button, Header, Icon, Input, Text } from '@/components'
 import { Select } from '@/components/Select'
 import { optionType } from '@/components/Select/Select.type'
 import { Textarea } from '@/components/Textarea'
+import { useCreateContract } from '@/queries/contract/useCreateContract'
+import { ContractItemType, ContractStatusType } from '@/types/api/contract'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
 import styled from 'styled-components'
 
 const CONTRACT_STATUS: optionType[] = [
-  { value: 1, label: '계약완료' },
-  { value: 2, label: '계약중' },
-  { value: 3, label: '가계약' },
-  { value: 4, label: '구두계약' },
+  { value: 'COMPLETE', label: '계약완료' },
+  { value: 'IN_PROGRESS', label: '계약중' },
+  { value: 'PROVISIONAL', label: '가계약' },
+  { value: 'VERBAL', label: '구두계약' },
 ]
 
 interface imageInfoType {
@@ -23,30 +25,51 @@ interface imageInfoType {
 
 const CreateContract = () => {
   const fileRef = useRef<HTMLInputElement>(null)
-  const [value, selectedValue] = useState<string | number>('')
   const [imgInfo, setImgInfo] = useState<imageInfoType>({ name: '', url: '' })
+  const [file, setFile] = useState<Blob | string>('')
+  const [contractInfo, setContractInfo] = useState<
+    Omit<ContractItemType, 'file' | 'id'>
+  >({
+    title: '',
+    contractDate: '2023-03-26',
+    contractStatus: '',
+    contents: '',
+    memo: '',
+  })
   const router = useRouter()
-  const handleChange = () => {
-    console.log('typing...')
-  }
-
+  const formData = new FormData()
+  const { mutate: create } = useCreateContract()
   const handleInputFileBtnClick = () => {
     fileRef.current?.click()
   }
 
   const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.currentTarget.files && e.currentTarget.files.length) {
-      const file = e.currentTarget.files[0]
+      const selectedFile = e.currentTarget.files[0]
+      if (selectedFile) {
+        setFile(selectedFile)
+      }
       const reader = new FileReader()
-      reader.readAsDataURL(file)
+      reader.readAsDataURL(selectedFile)
       reader.onloadend = () => {
-        setImgInfo({ url: reader.result, name: file.name })
+        setImgInfo({ url: reader.result, name: selectedFile.name })
       }
     }
   }
 
   const handleDeleteImgBtnClick = () => {
     setImgInfo({ name: '', url: '' })
+  }
+
+  const handleCreateContractBtnClick = () => {
+    formData.append('file', file)
+    formData.append(
+      'data',
+      new Blob([JSON.stringify(contractInfo)], {
+        type: 'application/json',
+      }),
+    )
+    create(formData)
   }
 
   return (
@@ -61,7 +84,12 @@ const CreateContract = () => {
             제목
           </Text>
           <Input
-            handleChange={(e) => console.log(e.currentTarget.value)}
+            handleChange={(evt) =>
+              setContractInfo({
+                ...contractInfo,
+                title: evt.currentTarget.value,
+              })
+            }
             placeholder="제목을 입력해주세요."
           />
         </SingleRow>
@@ -70,7 +98,12 @@ const CreateContract = () => {
             내용
           </Text>
           <Input
-            handleChange={(e) => console.log(e.currentTarget.value)}
+            handleChange={(evt) =>
+              setContractInfo({
+                ...contractInfo,
+                contents: evt.currentTarget.value,
+              })
+            }
             placeholder="내용을 입력해주세요."
           />
         </SingleRow>
@@ -81,8 +114,13 @@ const CreateContract = () => {
           <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
             <Select
               options={CONTRACT_STATUS}
-              handleChange={(value) => selectedValue(value)}
-              selectedValue={value}
+              handleChange={(value) =>
+                setContractInfo({
+                  ...contractInfo,
+                  contractStatus: value as ContractStatusType,
+                })
+              }
+              selectedValue={contractInfo.contractStatus}
             />
           </div>
         </SingleRow>
@@ -128,18 +166,19 @@ const CreateContract = () => {
         </AttachedFileSection>
         <Textarea
           placeholder="메모 추가 (100자 이하 작성 가능)"
-          handleChange={handleChange}
+          handleChange={(evt) =>
+            setContractInfo({ ...contractInfo, memo: evt.currentTarget.value })
+          }
           style={{ height: '15rem' }}
         />
         <ButtonSection>
-          <Button height="5rem" backgroundColor="secondary100">
-            <Text as="h5" color="secondary900">
-              삭제
-            </Text>
-          </Button>
-          <Button height="5rem">
+          <Button
+            height="5rem"
+            fullWidth
+            onClick={handleCreateContractBtnClick}
+          >
             <Text as="h5" color="neutral0">
-              확인
+              생성
             </Text>
           </Button>
         </ButtonSection>
@@ -192,8 +231,6 @@ const ImageSection = styled.div`
 const ButtonSection = styled.div`
   position: absolute;
   bottom: 4rem;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
   column-gap: 2rem;
   width: 100%;
   padding: 2rem 0;
