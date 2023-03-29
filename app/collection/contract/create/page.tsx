@@ -31,7 +31,7 @@ const CreateContract = () => {
     Omit<ContractItemType, 'file' | 'id'>
   >({
     title: '',
-    contractDate: '2023-03-26',
+    contractDate: '',
     contractStatus: '',
     contents: '',
     memo: '',
@@ -79,109 +79,137 @@ const CreateContract = () => {
         handleBackBtnClick={() => router.push('/collection/contract')}
       />
       <InfoSection>
-        <SingleRow>
-          <Text as="t3" color="secondary400">
-            제목
-          </Text>
-          <Input
-            handleChange={(evt) =>
-              setContractInfo({
-                ...contractInfo,
-                title: evt.currentTarget.value,
-              })
-            }
-            placeholder="제목을 입력해주세요."
-          />
-        </SingleRow>
-        <SingleRow>
-          <Text as="t3" color="secondary400">
-            내용
-          </Text>
-          <Input
-            handleChange={(evt) =>
-              setContractInfo({
-                ...contractInfo,
-                contents: evt.currentTarget.value,
-              })
-            }
-            placeholder="내용을 입력해주세요."
-          />
-        </SingleRow>
-        <SingleRow>
-          <Text as="t3" color="secondary400">
-            계약상태
-          </Text>
-          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <Select
-              options={CONTRACT_STATUS}
-              handleChange={(value) =>
+        <FormSection>
+          <div
+            style={{ display: 'flex', flexDirection: 'column', rowGap: '2rem' }}
+          >
+            <SingleRow>
+              <Text as="t3" color="secondary400">
+                제목
+              </Text>
+              <Input
+                handleChange={(evt) =>
+                  setContractInfo({
+                    ...contractInfo,
+                    title: evt.currentTarget.value,
+                  })
+                }
+                placeholder="제목을 입력해주세요."
+              />
+            </SingleRow>
+            <SingleRow>
+              <Text as="t3" color="secondary400">
+                내용
+              </Text>
+              <Input
+                handleChange={(evt) =>
+                  setContractInfo({
+                    ...contractInfo,
+                    contents: evt.currentTarget.value,
+                  })
+                }
+                placeholder="내용을 입력해주세요."
+              />
+            </SingleRow>
+            <SingleRow>
+              <Text as="t3" color="secondary400">
+                계약날짜
+              </Text>
+              <DateWrapper>
+                <Text as="t3" color="secondary900">
+                  {contractInfo.contractDate ? contractInfo.contractDate : ''}
+                </Text>
+                <Icon name="calendar" color="neutral800" />
+              </DateWrapper>
+            </SingleRow>
+            <SingleRow>
+              <Text as="t3" color="secondary400">
+                계약상태
+              </Text>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'flex-end',
+                  paddingRight: '0.5rem',
+                }}
+              >
+                <Select
+                  options={CONTRACT_STATUS}
+                  handleChange={(value) =>
+                    setContractInfo({
+                      ...contractInfo,
+                      contractStatus: value as ContractStatusType,
+                    })
+                  }
+                  selectedValue={contractInfo.contractStatus}
+                />
+              </div>
+            </SingleRow>
+            <AttachedFileSection>
+              <div>
+                <Text as="t3" color="secondary400">
+                  첨부 파일
+                </Text>
+                <Text as="t5" color="neutral500">
+                  500MB이하의 jpg, pdf 파일만 업로드 가능해요.
+                </Text>
+                {imgInfo.url && (
+                  <ImageSection>
+                    <Image
+                      alt="image preview"
+                      src={imgInfo.url as string}
+                      width={90}
+                      height={90}
+                    />
+
+                    <Text as="t5" color="neutral800">
+                      {imgInfo.name}
+                    </Text>
+                    <div onClick={handleDeleteImgBtnClick}>
+                      <Icon name="delete" />
+                    </div>
+                  </ImageSection>
+                )}
+              </div>
+              <Button
+                height="1.5rem"
+                backgroundColor="neutral0"
+                onClick={handleInputFileBtnClick}
+              >
+                <Icon name="file" />
+              </Button>
+              <input
+                type="file"
+                style={{ display: 'none' }}
+                ref={fileRef}
+                onChange={handleFileInputChange}
+              />
+            </AttachedFileSection>
+          </div>
+          <div>
+            <Textarea
+              placeholder="메모 추가 (100자 이하 작성 가능)"
+              handleChange={(evt) =>
                 setContractInfo({
                   ...contractInfo,
-                  contractStatus: value as ContractStatusType,
+                  memo: evt.currentTarget.value,
                 })
               }
-              selectedValue={contractInfo.contractStatus}
+              style={{ height: '15rem' }}
             />
-          </div>
-        </SingleRow>
-        <AttachedFileSection>
-          <div>
-            <Text as="t3" color="secondary400">
-              첨부 파일
-            </Text>
-            <Text as="t5" color="neutral500">
-              500MB이하의 jpg, pdf 파일만 업로드 가능해요.
-            </Text>
-            {imgInfo.url && (
-              <ImageSection>
-                <Image
-                  alt="image preview"
-                  src={imgInfo.url as string}
-                  width={90}
-                  height={90}
-                />
-
-                <Text as="t5" color="neutral800">
-                  {imgInfo.name}
+            <ButtonSection>
+              <Button
+                height="5rem"
+                fullWidth
+                onClick={handleCreateContractBtnClick}
+              >
+                <Text as="h5" color="neutral0">
+                  생성
                 </Text>
-                <div onClick={handleDeleteImgBtnClick}>
-                  <Icon name="delete" />
-                </div>
-              </ImageSection>
-            )}
+              </Button>
+            </ButtonSection>
           </div>
-          <Button
-            height="1.5rem"
-            backgroundColor="neutral0"
-            onClick={handleInputFileBtnClick}
-          >
-            <Icon name="file" />
-          </Button>
-          <input
-            type="file"
-            style={{ display: 'none' }}
-            ref={fileRef}
-            onChange={handleFileInputChange}
-          />
-        </AttachedFileSection>
-        <Textarea
-          placeholder="메모 추가 (100자 이하 작성 가능)"
-          handleChange={(evt) =>
-            setContractInfo({ ...contractInfo, memo: evt.currentTarget.value })
-          }
-          style={{ height: '15rem' }}
-        />
-        <ButtonSection>
-          <Button
-            height="5rem"
-            fullWidth
-            onClick={handleCreateContractBtnClick}
-          >
-            <Text as="h5" color="neutral0">
-              생성
-            </Text>
-          </Button>
-        </ButtonSection>
+        </FormSection>
       </InfoSection>
     </Layout>
   )
@@ -199,9 +227,8 @@ const InfoSection = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  row-gap: 2rem;
   height: 100%;
-  margin-top: 2rem;
+  padding-bottom: 4rem;
 `
 
 const AttachedFileSection = styled.div`
@@ -229,11 +256,15 @@ const ImageSection = styled.div`
 `
 
 const ButtonSection = styled.div`
-  position: absolute;
-  bottom: 4rem;
-  column-gap: 2rem;
   width: 100%;
   padding: 2rem 0;
+`
+
+const FormSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 `
 
 const SingleRow = styled.div`
@@ -242,4 +273,12 @@ const SingleRow = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
+`
+
+const DateWrapper = styled.div`
+  display: flex;
+  column-gap: 1rem;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 1.5rem;
 `
