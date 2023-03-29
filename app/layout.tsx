@@ -21,9 +21,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
 
   const isMainMenu = (url: string | null) => {
     for (const menu of MAIN_MENUS) {
-      if (url?.includes(menu)) {
-        return true
-      }
+      if (url === menu) return true
     }
 
     return false
@@ -58,6 +56,7 @@ export default RootLayout
 const MobileLayout = styled.div<{ isMainMenu: boolean }>`
   min-width: 36rem;
   max-width: 48rem;
+  height: 100vh;
   min-height: 100vh;
   margin-bottom: ${({ isMainMenu }) => (isMainMenu ? FOOTER_HEIGHT : 0)};
   border: 1px solid red;
