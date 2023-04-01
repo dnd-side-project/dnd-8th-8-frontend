@@ -10,8 +10,8 @@ import Image from 'next/image'
 import ScheduleCard from './components/ScheduleCard'
 
 const Home = () => {
-  const { data } = useGetChecklist(false)
-  console.log(data)
+  const { data } = useGetChecklist(true)
+
   return (
     <Layout>
       <HomeHeader>
@@ -67,9 +67,13 @@ const Home = () => {
       </InputSection>
       <HomeContentSection>
         <TimelineSection>
-          <ScheduleCard cardTheme={'normal'} />
-          <ScheduleCard cardTheme={'active'} />
-          <ScheduleCard cardTheme={'active'} />
+          {data?.data.map((checklist) => (
+            <ScheduleCard
+              cardTheme="normal"
+              cardInfo={checklist}
+              key={checklist.checklistItem.id}
+            />
+          ))}
         </TimelineSection>
       </HomeContentSection>
       <FloatingButton icon={'pencil'} onClick={() => console.log('click')} />
