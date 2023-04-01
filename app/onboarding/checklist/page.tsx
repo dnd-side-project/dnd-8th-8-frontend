@@ -1,31 +1,29 @@
 'use client'
 
-import userState from '@/atoms/userAtom'
 import { Icon, Text } from '@/components'
 import { OnBoardingLayout } from '@/layouts/onboarding'
+import { useCreatePreChecklist } from '@/queries/user/useCreatePreChecklist'
+import { PrecheklistType } from '@/types/checklist'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-
-import { useSetRecoilState } from 'recoil'
 import styled from 'styled-components'
 
-const CATEGORY_ARR: { [key: string]: any } = [
-  { name: '상견례', id: '0' },
-  { name: '예식장', id: '1' },
-  { name: '신혼여행', id: '2' },
-  { name: '스튜디오', id: '3' },
-  { name: '드레스', id: '4' },
-  { name: '메이크업', id: '5' },
-  { name: '예단', id: '6' },
+const CATEGORY_ARR: { name: string; id: PrecheklistType }[] = [
+  { name: '상견례', id: 'MEETING' },
+  { name: '예식장', id: 'WEDDING_HALL' },
+  { name: '신혼여행', id: 'HONEYMOON' },
+  { name: '스튜디오', id: 'STUDIO' },
+  { name: '드레스', id: 'DRESS' },
+  { name: '메이크업', id: 'MAKEUP' },
+  { name: '예단', id: 'WEDDING_GIFT' },
 ]
 
 const Checklist = () => {
   const router = useRouter()
-  const setUserInfo = useSetRecoilState(userState)
   const [checkedCategory, setCheckedCategory] = useState<string[]>([])
+  const { mutate: createList } = useCreatePreChecklist()
   const handleCategoryClick = (e: React.MouseEvent<HTMLElement>) => {
     const id = e.currentTarget.id
-    console.log(id)
     if (checkedCategory.includes(id)) {
       setCheckedCategory(
         checkedCategory.filter((categoryId) => categoryId !== id),
@@ -43,8 +41,7 @@ const Checklist = () => {
       handleSkipBtnClick={() => router.push('/home')}
       handleBackBtnClick={() => router.push('/onboarding/budget')}
       handleNextBtnClick={() => {
-        setUserInfo((prev) => ({ ...prev, checklist: ['예식장', '상견례'] }))
-        router.push('/home')
+        createList({ preChecklistItems: checkedCategory })
       }}
     >
       <CategorySection>
