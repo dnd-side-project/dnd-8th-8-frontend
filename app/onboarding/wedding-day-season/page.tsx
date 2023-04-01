@@ -3,17 +3,26 @@
 import userState from '@/atoms/userAtom'
 import { Icon, Text } from '@/components'
 import { OnBoardingLayout, SquareButton } from '@/layouts/onboarding'
+import { useCreateMarriageStatus } from '@/queries/user/useCreateMarriageStatus'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
+
+const DATE: { [key: string]: string } = {
+  spring: '03-01',
+  summer: '06-01',
+  fall: '09-01',
+  winter: '12-01',
+}
 
 const WeddingDaySeason = () => {
   const router = useRouter()
-  const setUserInfo = useSetRecoilState(userState)
+  const [userInfo, setUserInfo] = useRecoilState(userState)
   const [year, setYear] = useState<string>(dayjs().format('YYYY'))
   const [season, setSeason] = useState<string>('')
+  const { mutate: create } = useCreateMarriageStatus()
 
   const handleYearControlBtnClick = (type: 'prev' | 'next') => {
     switch (type) {
@@ -33,8 +42,15 @@ const WeddingDaySeason = () => {
       hideSkipBtn={true}
       handleBackBtnClick={() => router.push('/onboarding/wedding-status')}
       handleNextBtnClick={() => {
-        setUserInfo((prev) => ({ ...prev, weddingSeason: '2023-02-18' }))
-        router.push('/onboarding/gender')
+        const date = `${year}-${DATE[season]}`
+        setUserInfo((prev) => ({
+          ...prev,
+          weddingDay: date,
+        }))
+        create({
+          weddingDay: date,
+          preparing: userInfo.preparing,
+        })
       }}
     >
       <Layout>

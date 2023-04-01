@@ -1,13 +1,18 @@
 'use client'
 
+import { ChecklistType } from '@/api/checklist'
 import { Icon, Text } from '@/components'
 
 import { theme } from '@/styles'
 import { useEffect, useRef, useState } from 'react'
 import styled, { Color, css } from 'styled-components'
 
-type cardThemeType = { cardTheme: 'active' | 'skeleton' | 'normal' }
-type collapseType = 'open' | 'close'
+type CardThemeType = 'active' | 'skeleton' | 'normal'
+type CollapseType = 'open' | 'close'
+interface CardPropsType {
+  cardTheme: CardThemeType
+  cardInfo: ChecklistType
+}
 
 const COLOR_PALETTE: {
   [key: string]: {
@@ -49,8 +54,8 @@ const COLOR_PALETTE: {
   },
 }
 
-const ScheduleCard = ({ cardTheme }: cardThemeType) => {
-  const [collapse, setCollapse] = useState<collapseType>('close')
+const ScheduleCard = ({ cardTheme, cardInfo }: CardPropsType) => {
+  const [collapse, setCollapse] = useState<CollapseType>('close')
   const menuRef = useRef<HTMLDivElement>(null)
   const [openMenu, setOpenMenu] = useState(false)
 
@@ -95,7 +100,9 @@ const ScheduleCard = ({ cardTheme }: cardThemeType) => {
           </DateSection>
           <ContentSection cardTheme={cardTheme}>
             <Text as="h4" color={COLOR_PALETTE[cardTheme].colorName}>
-              제목을 입력해주세요
+              {cardInfo.checklistItem.title
+                ? cardInfo.checklistItem.title
+                : '제목을 입력해주세요'}
             </Text>
             <ContentRow>
               <LocationSection>
@@ -232,7 +239,7 @@ const MenuItem = styled.div`
   align-items: center;
   justify-content: center;
 `
-const DetailSection = styled.div<{ collapse: collapseType }>`
+const DetailSection = styled.div<{ collapse: CollapseType }>`
   display: ${(props) => (props.collapse === 'open' ? 'block' : 'none')};
   width: 100%;
   height: 10rem;
@@ -247,7 +254,10 @@ const TimeElement = styled.div`
   padding-left: 1.5rem;
 `
 
-const TimelineDot = styled.div<cardThemeType & { collapse: collapseType }>`
+const TimelineDot = styled.div<{
+  collapse: CollapseType
+  cardTheme: CardThemeType
+}>`
   position: absolute;
   top: 3.5rem;
   left: ${(props) => (props.cardTheme === 'active' ? '-0.75rem' : '-0.5rem')};
