@@ -26,8 +26,10 @@ export interface ChecklistResponse {
   checklistSubItems: ChecklistSubItem[]
 }
 
-export const getChecklist = () => {
-  return axiosInstance.get<ChecklistResponse>('/api/v1/checklist')
+export const getChecklist = (subItem: boolean) => {
+  return axiosInstance.get<ChecklistResponse>(
+    `/api/v1/checklist?subitem=${subItem}`,
+  )
 }
 
 interface PreChecklistRequest {

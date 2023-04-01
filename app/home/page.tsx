@@ -10,7 +10,7 @@ import Image from 'next/image'
 import ScheduleCard from './components/ScheduleCard'
 
 const Home = () => {
-  const { data } = useGetChecklist()
+  const { data } = useGetChecklist(false)
   console.log(data)
   return (
     <Layout>
