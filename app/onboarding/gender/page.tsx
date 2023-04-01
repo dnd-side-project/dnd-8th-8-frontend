@@ -2,6 +2,8 @@
 
 import userState from '@/atoms/userAtom'
 import { OnBoardingLayout, SquareButton } from '@/layouts/onboarding'
+import { useUpdateGender } from '@/queries/user/useUpdateGender'
+import { genderType } from '@/types/user'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useSetRecoilState } from 'recoil'
@@ -11,6 +13,7 @@ const Gender = () => {
   const router = useRouter()
   const setUserInfo = useSetRecoilState(userState)
   const [gender, setGender] = useState<string>('')
+  const { mutate: update } = useUpdateGender()
 
   return (
     <OnBoardingLayout
@@ -18,21 +21,22 @@ const Gender = () => {
       subTitle={`현재 본인이 어디에 속해있는지\n알려주세요`}
       hideSkipBtn={true}
       handleNextBtnClick={() => {
-        setUserInfo((prev) => ({ ...prev, gender: 'man' }))
+        setUserInfo((prev) => ({ ...prev, gender: gender as genderType }))
+        update(gender as genderType)
         router.push('/onboarding/budget')
       }}
     >
       <Layout>
         <SquareButton
-          onClick={() => setGender('female')}
-          active={gender === 'female'}
+          onClick={() => setGender('FEMALE')}
+          active={gender === 'FEMALE'}
           icon="bride"
           label="예비신부"
         />
 
         <SquareButton
-          onClick={() => setGender('male')}
-          active={gender === 'male'}
+          onClick={() => setGender('MALE')}
+          active={gender === 'MALE'}
           icon="groom"
           label="예비신랑"
         />

@@ -5,6 +5,9 @@ export const QUERY_KEYS = {
   CONTRACT: {
     GET_CONTRACTLIST: 'get-contractList',
   },
+  USER: {
+    GET_MARRIAGE_STATUS: 'get-marriage-status',
+  },
 }
 
 export const PAGE_URL = {

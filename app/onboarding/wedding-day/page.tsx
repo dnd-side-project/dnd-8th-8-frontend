@@ -1,17 +1,19 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
 
 import userState from '@/atoms/userAtom'
 import { Calendar } from '@/components'
 import { useCalendar } from '@/hooks'
 import { OnBoardingLayout } from '@/layouts/onboarding'
+import { useCreateMarriageStatus } from '@/queries/user/useCreateMarriageStatus'
 
 const WeddingDay = () => {
   const router = useRouter()
-  const setUserInfo = useSetRecoilState(userState)
+  const [userInfo, setUserInfo] = useRecoilState(userState)
+  const { mutate: create } = useCreateMarriageStatus()
   const { month, year, calendar, nextMonth, prevMonth, handleSelected } =
     useCalendar(new Date())
 
@@ -24,7 +26,7 @@ const WeddingDay = () => {
       handleBackBtnClick={() => router.push('/onboarding/wedding-status')}
       handleNextBtnClick={() => {
         setUserInfo((prev) => ({ ...prev, weddingDay: '2023-02-18' }))
-        router.push('/onboarding/gender')
+        create({ preparing: userInfo.preparing, weddingDay: '2023-02-18' })
       }}
     >
       <ContentSection>

@@ -19,7 +19,10 @@ const WeddingStatus = () => {
       hideSkipBtn={true}
       hideBackBtn={true}
       handleNextBtnClick={() => {
-        setUserInfo((prev) => ({ ...prev, weddingStatus: confirmedWedding }))
+        setUserInfo((prev) => ({
+          ...prev,
+          preparing: confirmedWedding === 'Y',
+        }))
         router.push(
           confirmedWedding === 'Y'
             ? '/onboarding/wedding-day'
