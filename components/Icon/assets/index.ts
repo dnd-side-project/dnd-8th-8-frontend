@@ -32,6 +32,12 @@ import Picture from './Picture'
 import Pin from './Pin'
 import Play from './Play'
 import Plus from './Plus'
+import Roadmap1 from './Roadmap1'
+import Roadmap2 from './Roadmap2'
+import Roadmap3 from './Roadmap3'
+import Roadmap4 from './Roadmap4'
+import Roadmap5 from './Roadmap5'
+import Roadmap6 from './Roadmap6'
 import Search from './Search'
 import Slash from './Slash'
 import Snowman from './Snowman'
@@ -93,6 +99,12 @@ const icons = {
   "pin": Pin,
   "snowman": Snowman,
   "trash": Trash,
+  "roadmap-1": Roadmap1,
+  "roadmap-2": Roadmap2,
+  "roadmap-3": Roadmap3,
+  "roadmap-4": Roadmap4,
+  "roadmap-5": Roadmap5,
+  "roadmap-6": Roadmap6,
   "w-checklist": WChecklist,
   "w-checklist-disable": WChecklistDisable,
   "w-collection": WCollection,
