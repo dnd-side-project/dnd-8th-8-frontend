@@ -17,10 +17,41 @@ import {
 import Image from 'next/image'
 import { useState } from 'react'
 import SwipeableViews from 'react-swipeable-views'
+import Roadmap from './components/Roadmap'
 import ScheduleCard from './components/ScheduleCard'
 
 const Home = () => {
   const [index, setIndex] = useState(0)
+
+  const data = [
+    {
+      id: 1,
+      title: 'title1',
+      checkDate: '2023-03-01',
+      startTime: '01:01:01',
+      endTime: '12:11:14',
+      place: 'place',
+      memo: 'memo',
+    },
+    {
+      id: 2,
+      title: 'title2',
+      checkDate: '2023-04-15',
+      startTime: '01:01:01',
+      endTime: '12:11:14',
+      place: 'place',
+      memo: 'memo',
+    },
+    {
+      id: 3,
+      title: 'title3',
+      checkDate: '2023-06-30',
+      startTime: '01:01:01',
+      endTime: '12:11:14',
+      place: 'place',
+      memo: 'memo',
+    },
+  ]
 
   return (
     <Layout>
@@ -68,18 +99,6 @@ const Home = () => {
 
       <SwipeableViews onChangeIndex={(index) => setIndex(index)}>
         <div>
-          <RoadMapLayout>
-            <DescriptionBox>
-              <Text as="t4" color="secondary400">
-                일정을 등록하여 로드맵을 완성해보세요!
-              </Text>
-            </DescriptionBox>
-
-            <RoadMapDivider />
-          </RoadMapLayout>
-        </div>
-
-        <div>
           <InputSection>
             <Input
               placeholder="일정을 검색해보세요."
@@ -126,6 +145,20 @@ const Home = () => {
               </TimelineItem>
             </Timeline>
           </HomeContentSection>
+        </div>
+
+        <div>
+          <RoadMapLayout>
+            <DescriptionBox>
+              <Text as="t4" color="secondary400">
+                일정을 등록하여 로드맵을 완성해보세요!
+              </Text>
+            </DescriptionBox>
+
+            <RoadMapDivider />
+
+            <Roadmap data={data} />
+          </RoadMapLayout>
         </div>
       </SwipeableViews>
 
