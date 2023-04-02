@@ -1,4 +1,5 @@
 import { Icon, IconName, Text } from '@/components'
+import { range } from '@/utils'
 import styled from 'styled-components'
 
 interface RoadmapData {
@@ -103,77 +104,21 @@ const Roadmap = ({ data }: RoadmapProps) => {
           </StartPinDate>
         </div>
 
-        <MonthPin index={0} {...pinPosition[0]}>
-          <Text as="t2" color="neutral0">
-            0
-          </Text>
-        </MonthPin>
+        {range(getLength() - 1).map((index: number) => {
+          return (
+            <MonthPin key={index} index={index} {...pinPosition[index]}>
+              <MonthBadge>
+                <Text as="h5" color="neutral0">
+                  {index}+
+                </Text>
+              </MonthBadge>
 
-        <MonthPin index={1} {...pinPosition[1]}>
-          <Text as="t2" color="neutral0">
-            1
-          </Text>
-        </MonthPin>
-
-        <MonthPin index={2} {...pinPosition[2]}>
-          <Text as="t2" color="neutral0">
-            2
-          </Text>
-        </MonthPin>
-
-        <MonthPin index={3} {...pinPosition[3]}>
-          <Text as="t2" color="neutral0">
-            3
-          </Text>
-        </MonthPin>
-
-        <MonthPin index={4} {...pinPosition[4]}>
-          <Text as="t2" color="neutral0">
-            4
-          </Text>
-        </MonthPin>
-
-        <MonthPin index={5} {...pinPosition[5]}>
-          <Text as="t2" color="neutral0">
-            5
-          </Text>
-        </MonthPin>
-
-        <MonthPin index={6} {...pinPosition[6]}>
-          <Text as="t2" color="neutral0">
-            6
-          </Text>
-        </MonthPin>
-
-        <MonthPin index={7} {...pinPosition[7]}>
-          <Text as="t2" color="neutral0">
-            7
-          </Text>
-        </MonthPin>
-
-        <MonthPin index={8} {...pinPosition[8]}>
-          <Text as="t2" color="neutral0">
-            8
-          </Text>
-        </MonthPin>
-
-        <MonthPin index={9} {...pinPosition[9]}>
-          <Text as="t2" color="neutral0">
-            9
-          </Text>
-        </MonthPin>
-
-        <MonthPin index={10} {...pinPosition[10]}>
-          <Text as="t2" color="neutral0">
-            10
-          </Text>
-        </MonthPin>
-
-        <MonthPin index={11} {...pinPosition[11]}>
-          <Text as="t2" color="neutral0">
-            11
-          </Text>
-        </MonthPin>
+              <Text as="t2" color="neutral0">
+                {index}
+              </Text>
+            </MonthPin>
+          )
+        })}
 
         <EndPin
           position={
@@ -257,6 +202,19 @@ const MonthPin = styled.div<{
   width: 6.5rem;
   height: 6.5rem;
   background-color: ${({ theme }) => theme.color.secondary400};
+  border-radius: 50%;
+`
+
+const MonthBadge = styled.div`
+  position: absolute;
+  top: -0.6rem;
+  right: -0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  background-color: ${({ theme }) => theme.color.primary600};
   border-radius: 50%;
 `
 
