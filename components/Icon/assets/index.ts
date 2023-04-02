@@ -12,6 +12,7 @@ import ChevronUp from './ChevronUp'
 import Close from './Close'
 import Contract from './Contract'
 import ContractCheck from './ContractCheck'
+import EndPoint from './EndPoint'
 import Expand from './Expand'
 import Flower from './Flower'
 import Google from './Google'
@@ -105,6 +106,7 @@ const icons = {
   "roadmap-4": Roadmap4,
   "roadmap-5": Roadmap5,
   "roadmap-6": Roadmap6,
+  "end-point": EndPoint,
   "w-checklist": WChecklist,
   "w-checklist-disable": WChecklistDisable,
   "w-collection": WCollection,
