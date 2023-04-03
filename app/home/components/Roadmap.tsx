@@ -1,8 +1,10 @@
 import { Icon, IconName, Text } from '@/components'
 import { range } from '@/utils'
+import { useState } from 'react'
 import styled from 'styled-components'
+import PinMenu from './PinMenu'
 
-interface RoadmapData {
+export interface RoadmapData {
   id: number
   title: string
   checkDate: string
@@ -17,6 +19,8 @@ interface RoadmapProps {
 }
 
 const Roadmap = ({ data }: RoadmapProps) => {
+  const [pinMenu, setPinMenu] = useState(false)
+
   const startDate = data[0].checkDate
   const endDate = data[data.length - 1].checkDate
 
@@ -71,6 +75,10 @@ const Roadmap = ({ data }: RoadmapProps) => {
     return <Icon name={iconName} />
   }
 
+  const onClickPin = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    setPinMenu(!pinMenu)
+  }
+
   const pinPosition = [
     { top: '-0.4rem', right: '4.8rem' },
     { top: '11.6rem', left: '4.8rem' },
@@ -106,7 +114,19 @@ const Roadmap = ({ data }: RoadmapProps) => {
 
         {range(getLength() - 1).map((index: number) => {
           return (
-            <MonthPin key={index} index={index} {...pinPosition[index]}>
+            <MonthPin
+              onClick={(e) => onClickPin(e)}
+              key={index}
+              index={index}
+              {...pinPosition[index]}
+            >
+              {pinMenu && (
+                <PinMenu
+                  data={dataObject['2023-03']}
+                  position={index % 2 === 0 ? 'right' : 'left'}
+                />
+              )}
+
               <MonthBadge>
                 <Text as="h5" color="neutral0">
                   {index}+

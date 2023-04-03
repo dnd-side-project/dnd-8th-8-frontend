@@ -26,8 +26,17 @@ const Home = () => {
   const data = [
     {
       id: 1,
-      title: 'title1',
+      title: '상견례 모임',
       checkDate: '2023-03-01',
+      startTime: '01:01:01',
+      endTime: '12:11:14',
+      place: 'place',
+      memo: 'memo',
+    },
+    {
+      id: 1,
+      title: '메이크업샵 컨택',
+      checkDate: '2023-03-02',
       startTime: '01:01:01',
       endTime: '12:11:14',
       place: 'place',
