@@ -2,6 +2,7 @@ import ArrowLeft from './ArrowLeft'
 import ArrowRight from './ArrowRight'
 import Bride from './Bride'
 import Calendar from './Calendar'
+import Camera from './Camera'
 import Card from './Card'
 import Check from './Check'
 import Checkbox from './Checkbox'
@@ -12,8 +13,8 @@ import ChevronUp from './ChevronUp'
 import Close from './Close'
 import Contract from './Contract'
 import ContractCheck from './ContractCheck'
-import EndPoint from './EndPoint'
 import Delete from './Delete'
+import EndPoint from './EndPoint'
 import Expand from './Expand'
 import File from './File'
 import Flower from './Flower'
@@ -63,6 +64,7 @@ import X from './X'
 const icons = {
   "arrow-left": ArrowLeft,
   "arrow-right": ArrowRight,
+  "camera": Camera,
   "calendar": Calendar,
   "check": Check,
   "checkbox": Checkbox,
