@@ -19,7 +19,7 @@ interface RoadmapProps {
 }
 
 const Roadmap = ({ data }: RoadmapProps) => {
-  const [pinMenu, setPinMenu] = useState(false)
+  const [pinMenuId, setPinMenuId] = useState<number | null>(null)
 
   const startDate = data[0].checkDate
   const endDate = data[data.length - 1].checkDate
@@ -75,8 +75,8 @@ const Roadmap = ({ data }: RoadmapProps) => {
     return <Icon name={iconName} />
   }
 
-  const onClickPin = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    setPinMenu(!pinMenu)
+  const onClickPin = (id: number) => {
+    setPinMenuId((prevId) => (prevId === id ? null : id))
   }
 
   const pinPosition = [
@@ -115,12 +115,13 @@ const Roadmap = ({ data }: RoadmapProps) => {
         {range(getLength() - 1).map((index: number) => {
           return (
             <MonthPin
-              onClick={(e) => onClickPin(e)}
+              onClick={() => onClickPin(index)}
               key={index}
+              id={String(index)}
               index={index}
               {...pinPosition[index]}
             >
-              {pinMenu && (
+              {pinMenuId === index && (
                 <PinMenu
                   data={dataObject['2023-03']}
                   position={index % 2 === 0 ? 'right' : 'left'}
