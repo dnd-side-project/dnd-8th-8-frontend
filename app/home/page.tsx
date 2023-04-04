@@ -7,9 +7,13 @@ import { Input } from '@/components/Input'
 import { useGetChecklist } from '@/queries/useGetChecklist'
 import { theme } from '@/styles'
 import Image from 'next/image'
+import { useState } from 'react'
+import SwipeableViews from 'react-swipeable-views'
+import Roadmap from './components/Roadmap'
 import ScheduleCard from './components/ScheduleCard'
 
 const Home = () => {
+  const [index, setIndex] = useState(0)
   const { data } = useGetChecklist(true)
 
   return (
@@ -55,27 +59,77 @@ const Home = () => {
           </MarriageInfoSection>
         </UserInfoSection>
       </HomeHeader>
-      <InputSection>
-        <Input
-          placeholder="일정을 검색해보세요."
-          handleChange={(e: React.FormEvent<HTMLInputElement>) =>
-            console.log(e.currentTarget.value)
-          }
-          borderStyle
-          searchIcon
-        />
-      </InputSection>
-      <HomeContentSection>
-        <TimelineSection>
-          {data?.data.map((checklist) => (
-            <ScheduleCard
-              cardTheme="normal"
-              cardInfo={checklist}
-              key={checklist.checklistItem.id}
+
+      <SwipeableViews onChangeIndex={(index) => setIndex(index)}>
+        <div>
+          <InputSection>
+            <Input
+              placeholder="일정을 검색해보세요."
+              handleChange={(e: React.FormEvent<HTMLInputElement>) =>
+                console.log(e.currentTarget.value)
+              }
+              borderStyle
+              searchIcon
             />
-          ))}
-        </TimelineSection>
-      </HomeContentSection>
+          </InputSection>
+          <HomeContentSection>
+            <Timeline
+              sx={{
+                [`& .${timelineOppositeContentClasses.root}`]: {
+                  flex: 0.2,
+                },
+                ['.css-ha3bif-MuiTimelineItem-root:before']: {
+                  padding: '2px',
+                  content: 'none',
+                },
+              }}
+              style={{ height: '100%', paddingTop: '2rem' }}
+            >
+              <TimelineItem style={{ marginBottom: '0.5rem' }}>
+                <TimelineSeparator>
+                  <TimelineDot
+                  // style={{
+                  //   backgroundColor: `${
+                  //     v === 1
+                  //       ? theme.color.secondary500
+                  //       : theme.color.neutral300
+                  //   }`,
+                  // }}
+                  />
+                  <TimelineConnector
+                    style={{
+                      backgroundColor: theme.color.neutral300,
+                    }}
+                  />
+                </TimelineSeparator>
+                <TimelineContent style={{ padding: '6px 0 6px 13px' }}>
+                  <ScheduleCard cardTheme="active" />
+                </TimelineContent>
+              </TimelineItem>
+            </Timeline>
+          </HomeContentSection>
+        </div>
+
+        <div>
+          <RoadMapLayout>
+            <DescriptionBox>
+              <Text as="t4" color="secondary400">
+                일정을 등록하여 로드맵을 완성해보세요!
+              </Text>
+            </DescriptionBox>
+
+            <RoadMapDivider />
+
+            <Roadmap data={data} />
+          </RoadMapLayout>
+        </div>
+      </SwipeableViews>
+
+      <PageIndicator>
+        <PageIndicatorDot active={index === 0} />
+        <PageIndicatorDot active={index === 1} />
+      </PageIndicator>
+
       <FloatingButton icon={'pencil'} onClick={() => console.log('click')} />
     </Layout>
   )
@@ -177,4 +231,39 @@ const Highlight = styled.span`
   font-size: 2.4rem;
   font-weight: 600;
   color: ${theme.color.primary500};
+`
+
+const RoadMapLayout = styled.div``
+
+const PageIndicator = styled.div`
+  position: fixed;
+  bottom: 7.4rem;
+  left: 50%;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  width: 100%;
+  transform: translate(-50%, -50%);
+`
+
+const PageIndicatorDot = styled.div<{ active?: boolean }>`
+  width: 0.8rem;
+  height: 0.8rem;
+  background-color: ${({ active }) =>
+    active ? theme.color.secondary500 : theme.color.neutral300};
+  border-radius: 50%;
+`
+
+const DescriptionBox = styled.div`
+  padding: 1rem 2rem;
+  margin: 0 calc(5.4rem - 2rem);
+  text-align: center;
+  background-color: ${theme.color.secondary100};
+  border-radius: 0.8rem;
+`
+
+const RoadMapDivider = styled.div`
+  height: 0.1rem;
+  margin: 2.4rem calc(12.5rem - 2rem) 5rem;
+  background-color: ${theme.color.secondary100};
 `

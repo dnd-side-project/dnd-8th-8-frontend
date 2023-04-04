@@ -71,7 +71,7 @@ const Budget = () => {
             </Text>
           </NumberSectionButton>
 
-          <NumberSectionButton onClick={(e) => handleNumberClick(e)}>
+          <NumberSectionButton onClick={(e) => handleNumberClick(e)} id="0">
             <Text as="t1">0</Text>
           </NumberSectionButton>
 

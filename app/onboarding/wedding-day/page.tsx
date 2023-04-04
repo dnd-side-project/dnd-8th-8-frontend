@@ -14,9 +14,19 @@ const WeddingDay = () => {
   const router = useRouter()
   const [userInfo, setUserInfo] = useRecoilState(userState)
   const { mutate: create } = useCreateMarriageStatus()
-  const { month, year, calendar, nextMonth, prevMonth, handleSelected } =
-    useCalendar(new Date())
-
+  const {
+    month,
+    year,
+    calendar,
+    nextMonth,
+    prevMonth,
+    handleSelected,
+    selected,
+  } = useCalendar(new Date())
+  
+  const selectedDate = selected.length > 0 ? selected[0].id : null
+  console.log(selectedDate)
+  
   return (
     <OnBoardingLayout
       title={`결혼 예정일이\n언제인가요?`}

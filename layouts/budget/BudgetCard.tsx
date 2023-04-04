@@ -1,8 +1,13 @@
-import { Badge, Text } from '@/components'
+import { Badge, Icon, Text } from '@/components'
 import { getCurrencyFormat } from '@/utils'
 import styled from 'styled-components'
 
-const BudgetCard = () => {
+interface BudgetCardProps {
+  isEdit: boolean
+  onClickClose?: () => void
+}
+
+const BudgetCard = ({ isEdit, onClickClose }: BudgetCardProps) => {
   return (
     <Layout>
       <LeftSection>
@@ -16,10 +21,18 @@ const BudgetCard = () => {
         <Text as="t3">스튜디오 촬영 예약</Text>
       </CenterSection>
       <RightSection>
-        <Text as="t5" color="secondary400">
-          청담동 아끌레어
-        </Text>
-        <Text as="h5">{`${getCurrencyFormat(-200000)}원`}</Text>
+        <RightSectionText>
+          <Text as="t5" color="secondary400">
+            청담동 아끌레어
+          </Text>
+          <Text as="h5">{`${getCurrencyFormat(-200000)}원`}</Text>
+        </RightSectionText>
+
+        {isEdit && (
+          <TrashButton onClick={onClickClose}>
+            <Icon name="trash" />
+          </TrashButton>
+        )}
       </RightSection>
     </Layout>
   )
@@ -49,6 +62,18 @@ const CenterSection = styled.div`
 
 const RightSection = styled.div`
   display: flex;
+  align-items: center;
+`
+
+const RightSectionText = styled.div`
+  display: flex;
   flex-direction: column;
   gap: 1rem;
+`
+
+const TrashButton = styled.button`
+  padding-left: 1.2rem;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
 `
