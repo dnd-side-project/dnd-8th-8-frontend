@@ -34,11 +34,7 @@ const useCalendar = (date: Date) => {
     if (day.prev) prevMonth()
     if (day.next) nextMonth()
 
-    setSelected((prev) =>
-      selected.find((item) => item.id === day.id)
-        ? prev.filter((d) => d.id !== day.id)
-        : [...prev, day],
-    )
+    setSelected([day])
   }
 
   return {

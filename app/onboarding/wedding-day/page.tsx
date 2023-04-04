@@ -12,8 +12,18 @@ import { OnBoardingLayout } from '@/layouts/onboarding'
 const WeddingDay = () => {
   const router = useRouter()
   const setUserInfo = useSetRecoilState(userState)
-  const { month, year, calendar, nextMonth, prevMonth, handleSelected } =
-    useCalendar(new Date())
+  const {
+    month,
+    year,
+    calendar,
+    nextMonth,
+    prevMonth,
+    handleSelected,
+    selected,
+  } = useCalendar(new Date())
+
+  const selectedDate = selected.length > 0 ? selected[0].id : null
+  console.log(selectedDate)
 
   return (
     <OnBoardingLayout
