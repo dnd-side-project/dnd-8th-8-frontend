@@ -4,16 +4,8 @@ import styled from 'styled-components'
 
 import { Badge, FloatingButton, Icon, Text } from '@/components'
 import { Input } from '@/components/Input'
+import { useGetChecklist } from '@/queries/useGetChecklist'
 import { theme } from '@/styles'
-import {
-  Timeline,
-  TimelineConnector,
-  TimelineContent,
-  TimelineDot,
-  TimelineItem,
-  timelineOppositeContentClasses,
-  TimelineSeparator,
-} from '@mui/lab'
 import Image from 'next/image'
 import { useState } from 'react'
 import SwipeableViews from 'react-swipeable-views'
@@ -22,45 +14,7 @@ import ScheduleCard from './components/ScheduleCard'
 
 const Home = () => {
   const [index, setIndex] = useState(0)
-
-  const data = [
-    {
-      id: 1,
-      title: '상견례 모임',
-      checkDate: '2023-03-01',
-      startTime: '01:01:01',
-      endTime: '12:11:14',
-      place: 'place',
-      memo: 'memo',
-    },
-    {
-      id: 1,
-      title: '메이크업샵 컨택',
-      checkDate: '2023-03-02',
-      startTime: '01:01:01',
-      endTime: '12:11:14',
-      place: 'place',
-      memo: 'memo',
-    },
-    {
-      id: 2,
-      title: 'title2',
-      checkDate: '2023-04-15',
-      startTime: '01:01:01',
-      endTime: '12:11:14',
-      place: 'place',
-      memo: 'memo',
-    },
-    {
-      id: 3,
-      title: 'title3',
-      checkDate: '2023-06-30',
-      startTime: '01:01:01',
-      endTime: '12:11:14',
-      place: 'place',
-      memo: 'memo',
-    },
-  ]
+  const { data } = useGetChecklist(true)
 
   return (
     <Layout>
@@ -186,7 +140,6 @@ export default Home
 const Layout = styled.div`
   width: 100%;
   height: 100%;
-  padding: 0 2rem;
 `
 
 const HomeHeader = styled.div`
@@ -195,7 +148,7 @@ const HomeHeader = styled.div`
   row-gap: 3rem;
   width: 100%;
   height: 22rem;
-  padding: 2.5rem 0;
+  padding: 2.5rem 2rem;
 `
 
 const ConnectSpouseSection = styled.div`
@@ -253,6 +206,7 @@ const MarriageInfoSection = styled.div``
 const InputSection = styled.div`
   width: 100%;
   height: 4rem;
+  padding: 0 2rem;
 `
 
 const HomeContentSection = styled.div`
@@ -261,7 +215,17 @@ const HomeContentSection = styled.div`
   justify-content: center;
   width: 100%;
   height: calc(100vh - 6rem - 22rem - 4rem);
-  overflow-x: hidden;
+  margin-top: 2rem;
+  overflow-y: scroll;
+`
+
+const TimelineSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  width: 85%;
+  height: 100%;
+  border-left: 1px solid ${theme.color.neutral300};
 `
 const Highlight = styled.span`
   font-size: 2.4rem;

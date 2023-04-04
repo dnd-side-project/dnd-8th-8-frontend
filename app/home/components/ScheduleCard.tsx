@@ -1,13 +1,17 @@
 'use client'
 
+import { ChecklistType } from '@/api/checklist'
 import { Icon, Text } from '@/components'
 
 import { theme } from '@/styles'
 import { useEffect, useRef, useState } from 'react'
-import styled, { Color } from 'styled-components'
+import styled, { Color, css } from 'styled-components'
 
-interface ScheduleCardProps {
-  cardTheme: 'active' | 'skeleton' | 'normal'
+type CardThemeType = 'active' | 'skeleton' | 'normal'
+type CollapseType = 'open' | 'close'
+interface CardPropsType {
+  cardTheme: CardThemeType
+  cardInfo: ChecklistType
 }
 
 const COLOR_PALETTE: {
@@ -50,8 +54,8 @@ const COLOR_PALETTE: {
   },
 }
 
-const ScheduleCard = ({ cardTheme }: ScheduleCardProps) => {
-  const [collapse, setCollapse] = useState<string>('close')
+const ScheduleCard = ({ cardTheme, cardInfo }: CardPropsType) => {
+  const [collapse, setCollapse] = useState<CollapseType>('close')
   const menuRef = useRef<HTMLDivElement>(null)
   const [openMenu, setOpenMenu] = useState(false)
 
@@ -76,68 +80,71 @@ const ScheduleCard = ({ cardTheme }: ScheduleCardProps) => {
   }
 
   return (
-    <Layout onClick={handleCardClick}>
-      <CardSection cardTheme={cardTheme}>
-        <MoreBtnWrapper onClick={() => setOpenMenu(true)}>
-          <Icon
-            name="more-vertical"
-            color={COLOR_PALETTE[cardTheme].smallTextColor}
-          />
-        </MoreBtnWrapper>
-        <DateSection cardTheme={cardTheme}>
-          <Text as="h3" color={COLOR_PALETTE[cardTheme].colorName}>
-            02
-          </Text>
-          <Text as="t4" color={COLOR_PALETTE[cardTheme].colorName}>
-            3월
-          </Text>
-        </DateSection>
-        <ContentSection cardTheme={cardTheme}>
-          <Text as="h4" color={COLOR_PALETTE[cardTheme].colorName}>
-            제목을 입력해주세요
-          </Text>
-          <ContentRow>
-            <LocationSection>
-              <Text as="t5" color={COLOR_PALETTE[cardTheme].smallTextColor}>
-                <Icon
-                  name="pin"
-                  size={6}
-                  color={COLOR_PALETTE[cardTheme].iconColor}
-                />
-                장소 입력
-              </Text>
-            </LocationSection>
-            <Divider color={COLOR_PALETTE[cardTheme].smallTextColor} />
-            <div>
-              <Text as="t5" color={COLOR_PALETTE[cardTheme].smallTextColor}>
-                시간 입력
-              </Text>
-            </div>
-          </ContentRow>
-        </ContentSection>
-      </CardSection>
-      {/* <DetailSection collapse={collapse}>
-        <div>
+    <TimeElement>
+      <TimelineDot cardTheme={cardTheme} collapse={collapse} />
+      <Layout onClick={handleCardClick}>
+        <CardSection cardTheme={cardTheme}>
+          <MoreBtnWrapper onClick={() => setOpenMenu(true)}>
+            <Icon
+              name="more-vertical"
+              color={COLOR_PALETTE[cardTheme].smallTextColor}
+            />
+          </MoreBtnWrapper>
+          <DateSection cardTheme={cardTheme}>
+            <Text as="h3" color={COLOR_PALETTE[cardTheme].colorName}>
+              02
+            </Text>
+            <Text as="t4" color={COLOR_PALETTE[cardTheme].colorName}>
+              3월
+            </Text>
+          </DateSection>
+          <ContentSection cardTheme={cardTheme}>
+            <Text as="h4" color={COLOR_PALETTE[cardTheme].colorName}>
+              {cardInfo.checklistItem.title
+                ? cardInfo.checklistItem.title
+                : '제목을 입력해주세요'}
+            </Text>
+            <ContentRow>
+              <LocationSection>
+                <Text as="t5" color={COLOR_PALETTE[cardTheme].smallTextColor}>
+                  <Icon
+                    name="pin"
+                    size={6}
+                    color={COLOR_PALETTE[cardTheme].iconColor}
+                  />
+                  장소 입력
+                </Text>
+              </LocationSection>
+              <Divider color={COLOR_PALETTE[cardTheme].smallTextColor} />
+              <div>
+                <Text as="t5" color={COLOR_PALETTE[cardTheme].smallTextColor}>
+                  시간 입력
+                </Text>
+              </div>
+            </ContentRow>
+          </ContentSection>
+        </CardSection>
+        <DetailSection collapse={collapse}>
           <Text as="t3" color="neutral800">
             - 날짜 확인
           </Text>
-        </div>
-      </DetailSection> */}
-      <Menu ref={menuRef} openMenu={openMenu}>
-        <MenuItem
-          style={{ borderBottom: `1px solid ${theme.color.secondary100}` }}
-        >
-          <Text as="t3" color="secondary900">
-            수정
-          </Text>
-        </MenuItem>
-        <MenuItem>
-          <Text as="t3" color="secondary900">
-            삭제
-          </Text>
-        </MenuItem>
-      </Menu>
-    </Layout>
+        </DetailSection>
+        <Menu ref={menuRef} openMenu={openMenu}>
+          <MenuItem
+            style={{ borderBottom: `1px solid ${theme.color.secondary100}` }}
+          >
+            <Text as="t3" color="secondary900">
+              수정
+            </Text>
+          </MenuItem>
+          <MenuItem>
+            <Text as="t3" color="secondary900">
+              삭제
+            </Text>
+          </MenuItem>
+        </Menu>
+      </Layout>
+    </TimeElement>
   )
 }
 
@@ -148,14 +155,14 @@ const Layout = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 7rem;
+  height: 100%;
 `
 
 const CardSection = styled.div`
   position: relative;
   display: flex;
   width: 100%;
-  height: 100%;
+  height: 7rem;
   padding: 1rem 1rem 1rem 2rem;
   background-color: ${(props: { cardTheme: string }) =>
     COLOR_PALETTE[props.cardTheme].backgroundColor};
@@ -232,39 +239,40 @@ const MenuItem = styled.div`
   align-items: center;
   justify-content: center;
 `
-// const DetailSection = styled.div`
-//   width: 100%;
-//   height: ${(props: { collapse: string }) => {
-//     if (props.collapse === 'open') {
-//       return '10rem'
-//     } else if (props.collapse === 'close') {
-//       return '0rem'
-//     }
-//   }};
-//   padding: 1rem 2.5rem;
-//   border-radius: 1rem;
-//   box-shadow: 0 1px 7px rgb(0 0 0 / 15%);
-//   animation: ${(props: { collapse: string }) => {
-//     if (props.collapse === 'open') {
-//       return css`
-//         ${openDetailSectionAnimation} 0.5s
-//       `
-//     } else if (props.collapse === 'close') {
-//       return css`
-//         ${closeDetailSectionAnimation} 0.5s
-//       `
-//     }
-//   }};
+const DetailSection = styled.div<{ collapse: CollapseType }>`
+  display: ${(props) => (props.collapse === 'open' ? 'block' : 'none')};
+  width: 100%;
+  height: 10rem;
+  padding: 1rem 2.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 1px 7px rgb(0 0 0 / 15%);
+`
 
-/* stylelint-disable-next-line selector-type-no-unknown */
+const TimeElement = styled.div`
+  position: relative;
+  display: flex;
+  padding-left: 1.5rem;
+`
 
-/* div {
-    display: ${(props: { collapse: string }) => {
-    if (props.collapse === 'open') {
-      return 'block'
-    } else if (props.collapse === 'close') {
-      return 'none'
-    }
-  }};
-  } */
-//`
+const TimelineDot = styled.div<{
+  collapse: CollapseType
+  cardTheme: CardThemeType
+}>`
+  position: absolute;
+  top: 3.5rem;
+  left: ${(props) => (props.cardTheme === 'active' ? '-0.75rem' : '-0.5rem')};
+  border-radius: 5rem;
+  ${(props) => (props.cardTheme === 'active' ? activeDotCss : normalDotCss)};
+`
+const activeDotCss = css`
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: #1f38bc;
+  box-shadow: 0 0.4rem 0.4rem #c5cdf5;
+`
+
+const normalDotCss = css`
+  width: 1rem;
+  height: 1rem;
+  background-color: ${theme.color.neutral300};
+`

@@ -11,12 +11,28 @@ const axiosInstance = axios.create({
 })
 
 axiosInstance.interceptors.request.use(
-  function (config) {
-    // 요청이 전달되기 전에 작업 수행
+  (config) => {
+    if (!config.headers.Authorization) {
+      //axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+    }
+
     return config
   },
-  function (error) {
-    // 요청 오류가 있는 작업 수행
+  (error) => Promise.reject(error),
+)
+
+axiosInstance.interceptors.response.use(
+  (response) => {
+    return response
+  },
+  (error) => {
+    const {
+      response: { status },
+    } = error
+    if (status === 401) {
+      //토큰 재발급
+    }
+
     return Promise.reject(error)
   },
 )

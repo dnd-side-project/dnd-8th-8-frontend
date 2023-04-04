@@ -1,17 +1,19 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
 
 import userState from '@/atoms/userAtom'
 import { Calendar } from '@/components'
 import { useCalendar } from '@/hooks'
 import { OnBoardingLayout } from '@/layouts/onboarding'
+import { useCreateMarriageStatus } from '@/queries/user/useCreateMarriageStatus'
 
 const WeddingDay = () => {
   const router = useRouter()
-  const setUserInfo = useSetRecoilState(userState)
+  const [userInfo, setUserInfo] = useRecoilState(userState)
+  const { mutate: create } = useCreateMarriageStatus()
   const {
     month,
     year,
@@ -21,10 +23,10 @@ const WeddingDay = () => {
     handleSelected,
     selected,
   } = useCalendar(new Date())
-
+  
   const selectedDate = selected.length > 0 ? selected[0].id : null
   console.log(selectedDate)
-
+  
   return (
     <OnBoardingLayout
       title={`결혼 예정일이\n언제인가요?`}
@@ -34,7 +36,7 @@ const WeddingDay = () => {
       handleBackBtnClick={() => router.push('/onboarding/wedding-status')}
       handleNextBtnClick={() => {
         setUserInfo((prev) => ({ ...prev, weddingDay: '2023-02-18' }))
-        router.push('/onboarding/gender')
+        create({ preparing: userInfo.preparing, weddingDay: '2023-02-18' })
       }}
     >
       <ContentSection>

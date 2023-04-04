@@ -1,9 +1,10 @@
 'use client'
 
-import axios from 'axios'
 import Image from 'next/image'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
+
+import axios from 'axios'
 import styled from 'styled-components'
 
 const AuthCallback = () => {

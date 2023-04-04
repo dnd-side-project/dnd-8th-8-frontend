@@ -8,12 +8,14 @@ import styled from 'styled-components'
 import userState from '@/atoms/userAtom'
 import { Icon, Text } from '@/components'
 import { OnBoardingLayout } from '@/layouts/onboarding'
+import { useUpdateBudget } from '@/queries/user/useUpdateBudget'
 import { getCurrencyStrFormat } from '@/utils'
 
 const Budget = () => {
   const router = useRouter()
   const setUserInfo = useSetRecoilState(userState)
   const [budget, setBudget] = useState<number>(0)
+  const { mutate: updateBudget } = useUpdateBudget()
 
   const handleNumberClick = (e: React.MouseEvent<HTMLElement>) => {
     const number = parseInt(e.currentTarget.id) * 10000
@@ -31,8 +33,8 @@ const Budget = () => {
       handleSkipBtnClick={() => router.push('/onboarding/checklist')}
       handleBackBtnClick={() => router.push('/onboarding/gender')}
       handleNextBtnClick={() => {
-        setUserInfo((prev) => ({ ...prev, budget }))
-        router.push('/onboarding/checklist')
+        setUserInfo((prev) => ({ ...prev, budget: budget }))
+        updateBudget(budget)
       }}
     >
       <Layout>
