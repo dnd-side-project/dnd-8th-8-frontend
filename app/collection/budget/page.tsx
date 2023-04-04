@@ -19,6 +19,7 @@ import { useState } from 'react'
 const Budget = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [editModalOpen, setEditModalOpen] = useState(false)
+  const [isEdit, setIsEdit] = useState(false)
   const [budget, setBudget] = useState('3500000')
   const handleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -126,24 +127,24 @@ const Budget = () => {
         </ContentSection>
 
         <CardSection>
-          <CardSectionEditButton onClick={() => null}>
-            <Text as="t4" color="neutral800">
+          <CardSectionEditButton onClick={() => setIsEdit((prev) => !prev)}>
+            <Text as="t4" color={isEdit ? 'secondary500' : 'neutral800'}>
               편집
             </Text>
           </CardSectionEditButton>
 
           <MonthSection>
             <Text as="t3">3월</Text>
-            <BudgetCard />
-            <BudgetCard />
-            <BudgetCard />
+            <BudgetCard isEdit={isEdit} onClickDelete={() => null} />
+            <BudgetCard isEdit={isEdit} onClickDelete={() => null} />
+            <BudgetCard isEdit={isEdit} onClickDelete={() => null} />
           </MonthSection>
 
           <MonthSection>
             <Text as="t3">4월</Text>
-            <BudgetCard />
-            <BudgetCard />
-            <BudgetCard />
+            <BudgetCard isEdit={isEdit} onClickDelete={() => null} />
+            <BudgetCard isEdit={isEdit} onClickDelete={() => null} />
+            <BudgetCard isEdit={isEdit} onClickDelete={() => null} />
           </MonthSection>
         </CardSection>
 
