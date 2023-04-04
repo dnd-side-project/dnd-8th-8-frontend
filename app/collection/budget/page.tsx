@@ -2,14 +2,24 @@
 
 import styled from 'styled-components'
 
-import { DDayBadge, FloatingButton, Icon, Menu, Tab, Text } from '@/components'
+import {
+  Button,
+  DDayBadge,
+  FloatingButton,
+  Icon,
+  Menu,
+  Modal,
+  Tab,
+  Text,
+} from '@/components'
 import { BudgetCard } from '@/layouts/budget'
 import { getCurrencyFormat, getTimeFormat, yyyymmdd } from '@/utils'
 import { useState } from 'react'
 
 const Budget = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-
+  const [editModalOpen, setEditModalOpen] = useState(false)
+  const [budget, setBudget] = useState('3500000')
   const handleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
   }
@@ -43,7 +53,50 @@ const Budget = () => {
             <BudgetBoardMenuButton onClick={handleMenu}>
               <Icon name="more-horizontal" color="neutral300" />
               {isMenuOpen && (
-                <Menu items={[{ label: '수정', onClick: () => null }]} />
+                <Menu
+                  items={[
+                    { label: '수정', onClick: () => setEditModalOpen(true) },
+                  ]}
+                />
+              )}
+
+              {editModalOpen && (
+                <Modal
+                  isOpen={editModalOpen}
+                  onClose={() => setEditModalOpen(false)}
+                >
+                  <EditModalContainer>
+                    <Text as="t3" color="neutral600">
+                      예산 금액 수정
+                    </Text>
+
+                    <BudgetInput
+                      value={budget}
+                      onChange={(e) => setBudget(e.target.value)}
+                    />
+
+                    <ButtonWrapper>
+                      <Button
+                        backgroundColor="secondary100"
+                        fullWidth
+                        onClick={() => setEditModalOpen(false)}
+                      >
+                        <Text as="t4" color="neutral800">
+                          취소
+                        </Text>
+                      </Button>
+                      <Button
+                        backgroundColor="secondary500"
+                        fullWidth
+                        onClick={() => setEditModalOpen(false)}
+                      >
+                        <Text as="t4" color="neutral0">
+                          확인
+                        </Text>
+                      </Button>
+                    </ButtonWrapper>
+                  </EditModalContainer>
+                </Modal>
               )}
             </BudgetBoardMenuButton>
 
@@ -60,7 +113,7 @@ const Budget = () => {
 
             <BudgetMoney>
               <Text as="h2" color="neutral0">
-                {getCurrencyFormat(1000000)}
+                {getCurrencyFormat(Number(budget))}
               </Text>
 
               <BudgetMoneyUnit>
@@ -94,7 +147,7 @@ const Budget = () => {
           </MonthSection>
         </CardSection>
 
-        <FloatingButton icon="pencil" onClick={() => null} />
+        <FloatingButton icon="plus" onClick={() => null} />
       </Layout>
     </>
   )
@@ -182,4 +235,28 @@ const MonthSection = styled.div`
   flex-direction: column;
   gap: 1rem;
   margin-bottom: 3rem;
+`
+
+const EditModalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  margin-top: 2rem;
+  background-color: ${({ theme }) => theme.color.neutral0};
+`
+
+const BudgetInput = styled.input`
+  padding: 1rem;
+  margin-top: 1rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-align: center;
+  border: none;
+`
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.6rem;
 `
