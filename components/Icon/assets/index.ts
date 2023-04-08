@@ -14,6 +14,7 @@ import Close from './Close'
 import Contract from './Contract'
 import ContractCheck from './ContractCheck'
 import Delete from './Delete'
+import Edit from './Edit'
 import EndPoint from './EndPoint'
 import Expand from './Expand'
 import File from './File'
@@ -76,6 +77,7 @@ const icons = {
   "contract":Contract,
   "contract-check":ContractCheck,
   "delete":Delete,
+  "edit": Edit,
   "expand": Expand,
   "google": Google,
   "hide": Hide,
