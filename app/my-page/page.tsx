@@ -21,7 +21,24 @@ const MyPage = () => {
         </Badge>
       </HeaderSection>
 
-      <MenuSection>dd</MenuSection>
+      <div
+        onClick={() => {
+          window.location.href = '/my-page/user-setting'
+        }}
+      >
+        <MenuItem>
+          <Text as="t4">회원정보 수정</Text>
+          <Icon name="chevron-right" color="neutral800" />
+        </MenuItem>
+        <Divider />
+      </div>
+      <div>
+        <MenuItem>
+          <Text as="t4">1:1 문의</Text>
+          <Icon name="chevron-right" color="neutral800" />
+        </MenuItem>
+        <Divider />
+      </div>
     </Layout>
   )
 }
@@ -71,6 +88,16 @@ const AvatarAddButton = styled.button`
   transform: translate(50%, -50%);
 `
 
-const MenuSection = styled.div`
-  height: 20rem;
+const MenuItem = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 5.6rem;
+`
+
+const Divider = styled.div`
+  width: calc(100% + 4rem);
+  height: 1px;
+  margin-left: -2rem;
+  background-color: ${({ theme }) => theme.color.neutral100};
 `
