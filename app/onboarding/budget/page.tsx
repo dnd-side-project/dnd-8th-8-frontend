@@ -44,8 +44,8 @@ const Budget = () => {
         <BudgetSection>
           {budget > 0 ? (
             <BudgetNumber>
-              <Text as="h1">{getCurrencyStrFormat(budget).slice(0, -1)}</Text>
-              <Text as="t1">{getCurrencyStrFormat(budget).at(-1)}원</Text>
+              <Text as="h1">{getCurrencyStrFormat(budget)}</Text>
+              <Text as="t1">원</Text>
             </BudgetNumber>
           ) : (
             <Text as="t1" color="neutral500">
