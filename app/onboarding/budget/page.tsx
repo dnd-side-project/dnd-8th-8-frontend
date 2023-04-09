@@ -23,7 +23,9 @@ const Budget = () => {
   }
 
   const handleDeleteNumber = () => {
-    setBudget(parseInt(budget.toString().slice(0, -1)))
+    setBudget(
+      parseInt(budget.toString().slice(0, -5) + budget.toString().slice(-4)),
+    )
   }
 
   return (
@@ -32,6 +34,7 @@ const Budget = () => {
       subTitle={`입력하신 결혼 자금은\n지출 내역과 연동되어 자동으로 계산돼요.`}
       handleSkipBtnClick={() => router.push('/onboarding/checklist')}
       handleBackBtnClick={() => router.push('/onboarding/gender')}
+      buttonActive={budget > 0}
       handleNextBtnClick={() => {
         setUserInfo((prev) => ({ ...prev, budget: budget }))
         updateBudget(budget)
@@ -109,6 +112,7 @@ const NumberSection = styled.div`
 
 const NumberSectionButton = styled.button`
   height: 6.8rem;
+  cursor: pointer;
   background-color: transparent;
   border: none;
 `
