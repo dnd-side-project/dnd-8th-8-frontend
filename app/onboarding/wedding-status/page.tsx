@@ -18,6 +18,7 @@ const WeddingStatus = () => {
       subTitle={`자신의 상태를 알려주세요.`}
       hideSkipBtn={true}
       hideBackBtn={true}
+      buttonActive={confirmedWedding !== ''}
       handleNextBtnClick={() => {
         setUserInfo((prev) => ({
           ...prev,
