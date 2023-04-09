@@ -12,6 +12,7 @@ interface onboardingLayoutPropsType {
   bottomText?: string
   hideBackBtn?: boolean
   hideSkipBtn?: boolean
+  buttonActive?: boolean
   handleSkipBtnClick?: () => void
   handleNextBtnClick: () => void
   handleBackBtnClick?: () => void
@@ -23,6 +24,7 @@ const OnBoardingLayout = (props: onboardingLayoutPropsType) => {
     title,
     subTitle,
     bottomText,
+    buttonActive = true,
     hideBackBtn = false,
     hideSkipBtn = false,
     handleSkipBtnClick,
@@ -62,11 +64,19 @@ const OnBoardingLayout = (props: onboardingLayoutPropsType) => {
       )}
 
       <OnBoardingButtonSection>
-        <Button fullWidth onClick={handleNextBtnClick}>
-          <Text as="h5" color="neutral0">
-            다음
-          </Text>
-        </Button>
+        {buttonActive ? (
+          <Button fullWidth onClick={handleNextBtnClick}>
+            <Text as="h5" color="neutral0">
+              다음
+            </Text>
+          </Button>
+        ) : (
+          <Button fullWidth backgroundColor="secondary100">
+            <Text as="h5" color="neutral500">
+              다음
+            </Text>
+          </Button>
+        )}
       </OnBoardingButtonSection>
     </OnBoardingLayoutStyle>
   )
@@ -89,18 +99,23 @@ const OnBoardingQuestionSection = styled.div`
 
 const OnBoardingContentSection = styled.div`
   width: 100%;
-  height: calc(100vh - 5rem - 14rem - 8rem - 4rem);
-  overflow-y: scroll;
 `
 
 const OnBoardingBottomTextSection = styled.div`
+  position: fixed;
+  bottom: 10rem;
+  left: 0;
+  width: 100%;
   text-align: center;
 `
 
 const OnBoardingButtonSection = styled.div`
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: calc(100% - 4rem);
   height: 7rem;
 `
