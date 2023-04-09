@@ -94,6 +94,7 @@ const SingleCategory = styled.div<{ isChecked: boolean }>`
   justify-content: center;
   height: 5rem;
   padding: 0 2.2rem 0 3rem;
+  cursor: pointer;
   background-color: ${({ isChecked, theme }) =>
     isChecked ? theme.color.secondary500 : theme.color.neutral0};
   border: ${({ isChecked, theme }) =>

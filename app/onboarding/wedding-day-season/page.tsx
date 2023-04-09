@@ -40,6 +40,7 @@ const WeddingDaySeason = () => {
       title={`어떤 계절에\n결혼하고 싶나요?`}
       subTitle={`아직 구체적인 계획이 없으시다면\n결혼하고 싶은 연도와 계절을 알려주세요.`}
       hideSkipBtn={true}
+      buttonActive={season !== ''}
       handleBackBtnClick={() => router.push('/onboarding/wedding-status')}
       handleNextBtnClick={() => {
         const date = `${year}-${DATE[season]}`

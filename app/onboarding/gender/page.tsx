@@ -20,6 +20,7 @@ const Gender = () => {
       title={`성별이\n어떻게 되시나요?`}
       subTitle={`현재 본인이 어디에 속해있는지\n알려주세요`}
       hideSkipBtn={true}
+      buttonActive={gender !== ''}
       handleNextBtnClick={() => {
         setUserInfo((prev) => ({ ...prev, gender: gender as genderType }))
         update(gender as genderType)
