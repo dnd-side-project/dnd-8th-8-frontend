@@ -2,9 +2,43 @@
 
 import { DDayBadge, FloatingButton, Text } from '@/components'
 import { ChecklistCard } from '@/layouts/checklist'
+import { useGetChecklist } from '@/queries/useGetChecklist'
+import { Checklist } from '@/types/api/checklist'
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 const Checklist = () => {
+  const router = useRouter()
+  const [checklist, setChecklist] = useState<Checklist[]>([])
+  const { data: checklistData } = useGetChecklist(true)
+
+  useEffect(() => {
+    if (checklistData) {
+      setChecklist(checklistData.data)
+    }
+  }, [checklistData])
+
+  const checklistDataSortByDate = () => {
+    interface SortedData {
+      [key: string]: Checklist[]
+    }
+    const sortedData: SortedData = {}
+
+    checklist.forEach((item) => {
+      const yyyymm = item.checkDate ? item.checkDate.slice(0, 7) : 'empty'
+      sortedData[yyyymm]
+        ? sortedData[yyyymm].push(item)
+        : (sortedData[yyyymm] = [item])
+    })
+
+    return sortedData
+  }
+
+  const sortedData = checklistDataSortByDate()
+
+  console.log(sortedData)
+
   return (
     <Layout>
       <HeaderSection>
@@ -36,7 +70,10 @@ const Checklist = () => {
         <ChecklistCard />
       </ContentSection>
 
-      <FloatingButton icon="pencil" onClick={() => null} />
+      <FloatingButton
+        icon="plus"
+        onClick={() => router.push('/checklist/create')}
+      />
     </Layout>
   )
 }
@@ -44,7 +81,7 @@ const Checklist = () => {
 export default Checklist
 
 const Layout = styled.div`
-  margin: 2rem;
+  padding: 2rem;
 `
 
 const HeaderSection = styled.div``
