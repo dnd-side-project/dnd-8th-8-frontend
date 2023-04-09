@@ -56,6 +56,7 @@ const Layout = styled.div`
   height: 8rem;
   padding: 1.2rem;
   background-color: ${({ theme }) => theme.color.secondary0};
+  border-radius: 1rem;
 `
 
 const LeftSection = styled.div`

@@ -2,25 +2,38 @@
 
 import { Button, Calendar, Header, Icon, Modal, Text } from '@/components'
 import { useCalendar } from '@/hooks'
+import { useGetTransaction } from '@/queries/transaction/useGetTransaction'
+import { Transaction } from '@/types/api/transaction'
 import { ParamsProps } from '@/types/param'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 const DetailBudget = ({ params: { id } }: ParamsProps) => {
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
   const [dateModal, setDateModal] = useState(false)
   const [typeModal, setTypeModal] = useState(false)
-  const [list, setList] = useState({
-    company: '',
-    date: '',
+  const [formData, setFormData] = useState<Transaction>({
+    title: '',
+    agency: '',
+    transactionDate: '',
     payment: '',
-    rest: '',
-    type: '현금',
+    balance: '',
+    paymentType: 'CASH',
+    memo: '',
   })
 
   const router = useRouter()
+  const { data: transactionData } = useGetTransaction(Number(id))
+  useEffect(() => {
+    if (transactionData) {
+      setFormData(transactionData.data)
+    }
+  }, [transactionData])
+
+  const handleSubmit = () => {
+    // mutate(formData)
+    router.push('/collection/budget')
+  }
 
   const {
     month,
@@ -37,9 +50,9 @@ const DetailBudget = ({ params: { id } }: ParamsProps) => {
   const handleDate = () => {
     if (!selectedDate) return
 
-    setList({
-      ...list,
-      date: selectedDate,
+    setFormData({
+      ...formData,
+      transactionDate: selectedDate,
     })
     setDateModal(false)
   }
@@ -54,11 +67,12 @@ const DetailBudget = ({ params: { id } }: ParamsProps) => {
 
   const handleType = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation()
-    const type = e.currentTarget.textContent as string
+    const type = e.currentTarget.textContent as '현금' | '카드'
+    const paymentType = type === '현금' ? 'CASH' : 'CARD'
 
-    setList({
-      ...list,
-      type,
+    setFormData({
+      ...formData,
+      paymentType,
     })
     setTypeModal(false)
   }
@@ -69,14 +83,14 @@ const DetailBudget = ({ params: { id } }: ParamsProps) => {
 
       <TitleInput
         placeholder="제목을 입력해주세요"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        value={formData.title}
+        onChange={(e) => setFormData({ ...formData, title: e.target.value })}
       />
 
       <DescriptionInput
         placeholder="메모할 수 있어요 (최대 20자)"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
+        value={formData.memo}
+        onChange={(e) => setFormData({ ...formData, memo: e.target.value })}
       />
 
       <Divider />
@@ -91,11 +105,11 @@ const DetailBudget = ({ params: { id } }: ParamsProps) => {
           <ListDescription>
             <ListDescriptionInput
               placeholder="업체를 입력해주세요"
-              value={list.company}
+              value={formData.agency}
               onChange={(e) =>
-                setList({
-                  ...list,
-                  company: e.target.value,
+                setFormData({
+                  ...formData,
+                  agency: e.target.value,
                 })
               }
             />
@@ -110,8 +124,8 @@ const DetailBudget = ({ params: { id } }: ParamsProps) => {
           </ListTitle>
 
           <ListDateButton onClick={() => setDateModal(true)}>
-            {list.date ? (
-              <Text as="t3">{list.date}</Text>
+            {formData.transactionDate ? (
+              <Text as="t3">{formData.transactionDate}</Text>
             ) : (
               <Text as="t3" color="neutral500">
                 날짜를 선택해주세요
@@ -150,10 +164,10 @@ const DetailBudget = ({ params: { id } }: ParamsProps) => {
           <ListDescription>
             <ListDescriptionInput
               placeholder="0원"
-              value={list.payment}
+              value={formData.payment}
               onChange={(e) =>
-                setList({
-                  ...list,
+                setFormData({
+                  ...formData,
                   payment: e.target.value,
                 })
               }
@@ -170,11 +184,11 @@ const DetailBudget = ({ params: { id } }: ParamsProps) => {
           <ListDescription>
             <ListDescriptionInput
               placeholder="원"
-              value={list.rest}
+              value={formData.balance}
               onChange={(e) =>
-                setList({
-                  ...list,
-                  company: e.target.value,
+                setFormData({
+                  ...formData,
+                  balance: e.target.value,
                 })
               }
             />
@@ -188,7 +202,9 @@ const DetailBudget = ({ params: { id } }: ParamsProps) => {
             </Text>
           </ListTitle>
           <ListTypeButton onClick={handleTypeModalOpen}>
-            <Text as="t3">{list.type}</Text>
+            <Text as="t3">
+              {formData.paymentType === 'CARD' ? '카드' : '현금'}
+            </Text>
             <Icon name="chevron-down" />
 
             {typeModal && (
@@ -209,11 +225,15 @@ const DetailBudget = ({ params: { id } }: ParamsProps) => {
       </ListBox>
 
       <BottomButtonBox>
-        <Button fullWidth onClick={() => null} backgroundColor="secondary100">
+        <Button
+          fullWidth
+          onClick={() => router.push(`/collection/budget`)}
+          backgroundColor="secondary100"
+        >
           <Text as="t3">삭제</Text>
         </Button>
 
-        <Button fullWidth onClick={() => null}>
+        <Button fullWidth onClick={handleSubmit}>
           <Text as="t3" color="neutral0">
             저장
           </Text>
