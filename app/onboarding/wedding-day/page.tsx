@@ -23,20 +23,26 @@ const WeddingDay = () => {
     handleSelected,
     selected,
   } = useCalendar(new Date())
-  
+
   const selectedDate = selected.length > 0 ? selected[0].id : null
-  console.log(selectedDate)
-  
+
   return (
     <OnBoardingLayout
       title={`결혼 예정일이\n언제인가요?`}
       subTitle={`결혼 예정일을 기준으로\nD-DAY를 알려드려요.`}
       hideSkipBtn
+      buttonActive={selectedDate !== null}
       bottomText="결혼식 예정일은 마이페이지에서 수정 가능합니다"
       handleBackBtnClick={() => router.push('/onboarding/wedding-status')}
       handleNextBtnClick={() => {
-        setUserInfo((prev) => ({ ...prev, weddingDay: '2023-02-18' }))
-        create({ preparing: userInfo.preparing, weddingDay: '2023-02-18' })
+        setUserInfo((prev) => ({
+          ...prev,
+          weddingDay: selectedDate ? selectedDate : '',
+        }))
+        create({
+          preparing: userInfo.preparing,
+          weddingDay: selectedDate ? selectedDate : '',
+        })
       }}
     >
       <ContentSection>
