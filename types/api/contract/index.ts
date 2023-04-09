@@ -17,7 +17,7 @@ export interface ContractItemType {
 }
 
 export interface ContractListResponse extends BaseResponse {
-  data: Omit<ContractItemType, 'contents' | 'file' | 'demo'>[]
+  data: Omit<ContractItemType, 'contents' | 'file' | 'memo'>[]
 }
 
 export interface CreateContractResponse extends BaseResponse {
