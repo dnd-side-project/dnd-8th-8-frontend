@@ -2,6 +2,12 @@ export const QUERY_KEYS = {
   CHECKLIST: {
     GET_CHECKLIST: 'get-checklist',
   },
+  BUDGET: {
+    GET_BUDGET: 'get-budget',
+  },
+  TRANSACTION: {
+    GET_TRANSACTION: 'get-transaction',
+  },
   CONTRACT: {
     GET_CONTRACTLIST: 'get-contractList',
   },
