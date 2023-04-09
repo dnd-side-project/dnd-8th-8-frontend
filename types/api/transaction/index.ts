@@ -13,12 +13,14 @@ export interface Transaction {
   memo?: string
 }
 
+export type TransactionResp = Omit<
+  Transaction,
+  'balance' | 'accountHolder' | 'accountNumber' | 'memo'
+>
+
 export interface TransactionListResponse {
   status: number
-  data: Omit<
-    Transaction,
-    'balance' | 'accountHolder' | 'accountNumber' | 'memo'
-  >[]
+  data: TransactionResp[]
 }
 
 export interface TransactionResponse {

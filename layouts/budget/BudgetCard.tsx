@@ -1,31 +1,41 @@
 import { Badge, Icon, Text } from '@/components'
+import { TransactionResp } from '@/types/api/transaction'
 import { getCurrencyFormat } from '@/utils'
 import styled from 'styled-components'
 
 interface BudgetCardProps {
+  data: TransactionResp
   isEdit: boolean
-  onClickClose?: () => void
+  onClick: () => void
+  onClickClose: (e: MouseEvent, id: number) => void
 }
 
-const BudgetCard = ({ isEdit, onClickClose }: BudgetCardProps) => {
+const BudgetCard = ({
+  isEdit,
+  onClick,
+  onClickClose,
+  data,
+}: BudgetCardProps) => {
   return (
-    <Layout>
+    <Layout onClick={onClick}>
       <LeftSection>
-        <Text as="h3">7일</Text>
+        <Text as="h3">
+          {data.transactionDate.substring(8, 10).replace(/^0+/, '')}일
+        </Text>
       </LeftSection>
       <CenterSection>
-        <Badge backgroundColor="secondary300" color="secondary500">
-          카드 결제
+        <Badge backgroundColor="secondary100" color="secondary400">
+          {data.paymentType === 'CARD' ? '카드 결제' : '현금 결제'}
         </Badge>
 
-        <Text as="t3">스튜디오 촬영 예약</Text>
+        <Text as="t3">{data.title}</Text>
       </CenterSection>
       <RightSection>
         <RightSectionText>
           <Text as="t5" color="secondary400">
-            청담동 아끌레어
+            {data.agency}
           </Text>
-          <Text as="h5">{`${getCurrencyFormat(-200000)}원`}</Text>
+          <Text as="h5">{`${getCurrencyFormat(Number(data.payment))}원`}</Text>
         </RightSectionText>
 
         {isEdit && (
@@ -49,6 +59,7 @@ const Layout = styled.div`
 `
 
 const LeftSection = styled.div`
+  width: 5rem;
   margin-right: 1.2rem;
 `
 
@@ -69,6 +80,7 @@ const RightSectionText = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  text-align: right;
 `
 
 const TrashButton = styled.button`

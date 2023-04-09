@@ -13,8 +13,12 @@ import {
   Text,
 } from '@/components'
 import { BudgetCard } from '@/layouts/budget'
+import { useDeletesTransaction } from '@/queries/transaction/useDeleteTransaction'
 import { useGetBudget } from '@/queries/transaction/useGetBudget'
+import { useGetTransactionList } from '@/queries/transaction/useGetTransactionList'
+import { TransactionResp } from '@/types/api/transaction'
 import { getCurrencyFormat, getTimeFormat, yyyymmdd } from '@/utils'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 const Budget = () => {
@@ -22,17 +26,52 @@ const Budget = () => {
   const [editModalOpen, setEditModalOpen] = useState(false)
   const [isEdit, setIsEdit] = useState(false)
   const [budget, setBudget] = useState(0)
+  const [transactionList, setTransactionList] = useState<TransactionResp[]>([])
+  const router = useRouter()
+
   const handleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
   }
 
   const { data: budgetData } = useGetBudget()
+  const { data: transactionData } = useGetTransactionList()
+  const { mutate } = useDeletesTransaction()
 
   useEffect(() => {
     if (budgetData) {
       setBudget(budgetData.data.budget)
     }
   }, [budgetData])
+
+  useEffect(() => {
+    if (transactionData) {
+      setTransactionList(transactionData.data)
+    }
+  }, [transactionData])
+
+  const transactionDataSortByDate = () => {
+    interface SortedData {
+      [key: string]: TransactionResp[]
+    }
+    const sortedData: SortedData = {}
+
+    transactionList.forEach((item) => {
+      const yyyymm = item.transactionDate.substring(0, 7)
+
+      sortedData[yyyymm]
+        ? sortedData[yyyymm].push(item)
+        : (sortedData[yyyymm] = [item])
+    })
+
+    return sortedData
+  }
+
+  const onClickDelete = (e: MouseEvent, id: number) => {
+    e.stopPropagation()
+    mutate(id)
+  }
+
+  const sortedTransactionData = transactionDataSortByDate()
 
   const tabs = [
     { label: '예산표', path: '/collection/budget' },
@@ -142,22 +181,39 @@ const Budget = () => {
             </Text>
           </CardSectionEditButton>
 
-          <MonthSection>
-            <Text as="t3">3월</Text>
-            <BudgetCard isEdit={isEdit} onClickDelete={() => null} />
-            <BudgetCard isEdit={isEdit} onClickDelete={() => null} />
-            <BudgetCard isEdit={isEdit} onClickDelete={() => null} />
-          </MonthSection>
-
-          <MonthSection>
-            <Text as="t3">4월</Text>
-            <BudgetCard isEdit={isEdit} onClickDelete={() => null} />
-            <BudgetCard isEdit={isEdit} onClickDelete={() => null} />
-            <BudgetCard isEdit={isEdit} onClickDelete={() => null} />
-          </MonthSection>
+          {Object.keys(sortedTransactionData).length !== 0 ? (
+            Object.keys(sortedTransactionData).map((key) => (
+              <MonthSection key={key}>
+                <Text as="t3">{key.replace(/-/g, '년 ')}월</Text>
+                {sortedTransactionData[key].map((item) => (
+                  <BudgetCard
+                    key={item.id}
+                    isEdit={isEdit}
+                    onClick={() => router.push(`/collection/budget/${item.id}`)}
+                    onClickClose={(e) => onClickDelete(e, item.id!)}
+                    data={item}
+                  />
+                ))}
+              </MonthSection>
+            ))
+          ) : (
+            <EmptyCardSection
+              onClick={() => router.push('/collection/budget/create')}
+            >
+              <EmptyCardTitle>
+                <Text as="t2" color="neutral500">
+                  예산을 추가해보세요
+                </Text>
+                <Icon name="plus" color="neutral500" />
+              </EmptyCardTitle>
+            </EmptyCardSection>
+          )}
         </CardSection>
 
-        <FloatingButton icon="plus" onClick={() => null} />
+        <FloatingButton
+          icon="plus"
+          onClick={() => router.push('/collection/budget/create')}
+        />
       </Layout>
     </>
   )
@@ -198,7 +254,7 @@ const BudgetBoard = styled.div`
   height: 17rem;
   margin-bottom: 4rem;
   background: linear-gradient(194.48deg, #1f38bc -9.76%, #415ae2 88.62%);
-  border-radius: 22px;
+  border-radius: 2.2rem;
   box-shadow: 6px 4px 18px 3px rgb(0 0 0 / 11%);
 `
 
@@ -269,4 +325,21 @@ const ButtonWrapper = styled.div`
   display: flex;
   gap: 1rem;
   margin-top: 1.6rem;
+`
+
+const EmptyCardSection = styled.div`
+  position: absolute;
+  top: 3rem;
+  width: 100%;
+  height: 8rem;
+  border: 1px solid ${({ theme }) => theme.color.neutral300};
+  border-radius: 1rem;
+`
+
+const EmptyCardTitle = styled.div`
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 `
