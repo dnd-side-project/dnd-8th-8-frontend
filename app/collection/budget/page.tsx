@@ -13,17 +13,26 @@ import {
   Text,
 } from '@/components'
 import { BudgetCard } from '@/layouts/budget'
+import { useGetBudget } from '@/queries/transaction/useGetBudget'
 import { getCurrencyFormat, getTimeFormat, yyyymmdd } from '@/utils'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const Budget = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [editModalOpen, setEditModalOpen] = useState(false)
   const [isEdit, setIsEdit] = useState(false)
-  const [budget, setBudget] = useState('3500000')
+  const [budget, setBudget] = useState(0)
   const handleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
   }
+
+  const { data: budgetData } = useGetBudget()
+
+  useEffect(() => {
+    if (budgetData) {
+      setBudget(budgetData.data.budget)
+    }
+  }, [budgetData])
 
   const tabs = [
     { label: '예산표', path: '/collection/budget' },
@@ -72,8 +81,8 @@ const Budget = () => {
                     </Text>
 
                     <BudgetInput
-                      value={budget}
-                      onChange={(e) => setBudget(e.target.value)}
+                      value={budgetData ? budgetData.data.budget : 0}
+                      onChange={(e) => setBudget(Number(e.target.value))}
                     />
 
                     <ButtonWrapper>
@@ -114,7 +123,7 @@ const Budget = () => {
 
             <BudgetMoney>
               <Text as="h2" color="neutral0">
-                {getCurrencyFormat(Number(budget))}
+                {getCurrencyFormat(budget)}
               </Text>
 
               <BudgetMoneyUnit>
