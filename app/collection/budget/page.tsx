@@ -184,7 +184,7 @@ const Budget = () => {
           {Object.keys(sortedTransactionData).length !== 0 ? (
             Object.keys(sortedTransactionData).map((key) => (
               <MonthSection key={key}>
-                <Text as="t3">{key.replace(/-/g, '년 ')}월</Text>
+                <Text as="t3">{key.replace(/-/g, '. ')}</Text>
                 {sortedTransactionData[key].map((item) => (
                   <BudgetCard
                     key={item.id}
