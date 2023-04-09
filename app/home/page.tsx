@@ -6,6 +6,15 @@ import { Badge, FloatingButton, Icon, Text } from '@/components'
 import { Input } from '@/components/Input'
 import { useGetChecklist } from '@/queries/useGetChecklist'
 import { theme } from '@/styles'
+import {
+  Timeline,
+  TimelineConnector,
+  TimelineContent,
+  TimelineDot,
+  TimelineItem,
+  timelineOppositeContentClasses,
+  TimelineSeparator,
+} from '@mui/lab'
 import Image from 'next/image'
 import { useState } from 'react'
 import SwipeableViews from 'react-swipeable-views'
