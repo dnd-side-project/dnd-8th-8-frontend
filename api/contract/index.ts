@@ -26,7 +26,7 @@ export const createContract = async (payload: FormData) => {
 }
 
 // 선택된 계약서 정보 가져오기
-export const getSelectedContractInfo = async (id: number) => {
+export const getSelectedContractInfo = async (id: string) => {
   const { data }: AxiosResponse<ContractResponse> = await axiosInstance.get(
     `/api/v1/contract/${id}`,
   )
