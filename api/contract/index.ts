@@ -34,7 +34,7 @@ export const getSelectedContractInfo = async (id: string) => {
 }
 
 // 계약서 삭제
-export const deleteContract = async (id: number) => {
+export const deleteContractApi = async (id: number) => {
   const { data }: AxiosResponse<BaseResponse> = await axiosInstance.delete(
     `/api/v1/contract/${id}`,
   )

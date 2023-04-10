@@ -1,14 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
 
+import { deleteContractApi } from '@/api/contract'
 import { Button, Header, Icon, Input, Text } from '@/components'
 import { Select } from '@/components/Select'
 import { optionType } from '@/components/Select/Select.type'
 import { Textarea } from '@/components/Textarea'
+import { QUERY_KEYS } from '@/constant'
 import { useGetSelectedContractInfo } from '@/queries/contract/useGetSelectedContract'
 import { ContractItemType, ContractStatusType } from '@/types/api/contract'
 import { imageInfoType } from '@/types/contract'
 import { ParamsProps } from '@/types/param'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
@@ -33,6 +36,7 @@ export const CONTRACT_STATUS: optionType[] = [
 const DetailContract = ({ params: { id } }: ParamsProps) => {
   const { data } = useGetSelectedContractInfo(id)
   const router = useRouter()
+  const queryClient = useQueryClient()
   const fileRef = useRef<HTMLInputElement>(null)
   const [imgInfo, setImgInfo] = useState<imageInfoType>({ name: '', url: '' })
   const [file, setFile] = useState<Blob | string>('')
@@ -46,6 +50,15 @@ const DetailContract = ({ params: { id } }: ParamsProps) => {
     memo: '',
   })
   const formData = new FormData()
+  const { mutate: deleteContract } = useMutation(
+    (id: number) => deleteContractApi(id),
+    {
+      onSuccess: () => {
+        router.push('/collection/contract')
+        queryClient.invalidateQueries([QUERY_KEYS.CONTRACT.GET_CONTRACTLIST])
+      },
+    },
+  )
   const handleInputFileBtnClick = () => {
     fileRef.current?.click()
   }
@@ -206,7 +219,11 @@ const DetailContract = ({ params: { id } }: ParamsProps) => {
                 height="5rem"
                 fullWidth
                 backgroundColor="secondary100"
-                onClick={() => console.log('삭제')}
+                onClick={() => {
+                  if (data?.data) {
+                    deleteContract(data?.data.id)
+                  }
+                }}
               >
                 <Text as="h5" color="secondary900">
                   삭제
