@@ -1,14 +1,12 @@
 import axios from 'axios'
 
-const token = ''
-
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   headers: {
     'Content-Type': `application/json;charset=UTF-8`,
     Accept: 'application/json',
     'Access-Control-Allow-Origin': 'http://localhost:3000',
-    Authorization: `Bearer ${token}`,
+    Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI0Iiwicm9sZSI6IlJPTEVfVVNFUiIsImlzcyI6ImRuZCIsImlhdCI6MTY4MTEzNTQ2MCwiZXhwIjoxNjgxMTM5MDYwfQ.d0WHFmoNcLoA42EN1TfrSwpGCG7tv4_lz0fCoEgwkFi0r73y2G05JmIee06qqdetlM3Ypy-RJkxAXC1AVthDyw`,
     withCredentials: true,
   },
 })

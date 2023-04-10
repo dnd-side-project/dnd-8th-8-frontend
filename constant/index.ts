@@ -10,6 +10,7 @@ export const QUERY_KEYS = {
   },
   CONTRACT: {
     GET_CONTRACTLIST: 'get-contractList',
+    GET_SELECTED_CONTRACT: 'get-selected-contract',
   },
   USER: {
     GET_MARRIAGE_STATUS: 'get-marriage-status',

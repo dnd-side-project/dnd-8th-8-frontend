@@ -1,8 +1,5 @@
 import { BaseResponse } from '@/types/api/base'
-import {
-  ContractListResponse,
-  CreateContractResponse,
-} from '@/types/api/contract'
+import { ContractListResponse, ContractResponse } from '@/types/api/contract'
 import { AxiosResponse } from 'axios'
 import axiosInstance from '../config/axiosInstance'
 
@@ -16,12 +13,23 @@ export const getContractList = async () => {
 
 // 계약서 생성
 export const createContract = async (payload: FormData) => {
-  const { data }: AxiosResponse<CreateContractResponse> =
-    await axiosInstance.post('/api/v1/contract', payload, {
+  const { data }: AxiosResponse<ContractResponse> = await axiosInstance.post(
+    '/api/v1/contract',
+    payload,
+    {
       headers: {
         'Content-Type': `multipart/form-data`,
       },
-    })
+    },
+  )
+  return data
+}
+
+// 선택된 계약서 정보 가져오기
+export const getSelectedContractInfo = async (id: number) => {
+  const { data }: AxiosResponse<ContractResponse> = await axiosInstance.get(
+    `/api/v1/contract/${id}`,
+  )
   return data
 }
 
