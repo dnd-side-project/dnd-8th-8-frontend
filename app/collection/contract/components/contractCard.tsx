@@ -1,7 +1,10 @@
+'use client'
+
 import { Icon, Text } from '@/components'
 import { useDeleteContract } from '@/queries/contract/useDeleteContract'
 import { theme } from '@/styles'
 import { ContractItemType, ContractStatusType } from '@/types/api/contract'
+import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import styled, { Color } from 'styled-components'
 
@@ -63,8 +66,9 @@ const ContractCard = ({
   const menuRef = useRef<HTMLDivElement>(null)
   const [openMenu, setOpenMenu] = useState(false)
   const { mutate: deleteContract } = useDeleteContract()
+  const router = useRouter()
   const handleCardClick = () => {
-    console.log('click')
+    router.push(`/collection/contract/${contractInfo.id}`)
   }
 
   useEffect(() => {

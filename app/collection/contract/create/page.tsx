@@ -6,22 +6,27 @@ import { optionType } from '@/components/Select/Select.type'
 import { Textarea } from '@/components/Textarea'
 import { useCreateContract } from '@/queries/contract/useCreateContract'
 import { ContractItemType, ContractStatusType } from '@/types/api/contract'
+import { imageInfoType } from '@/types/contract'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
-import styled from 'styled-components'
+import {
+  AttachedFileSection,
+  ButtonSection,
+  DateWrapper,
+  FormSection,
+  ImageSection,
+  InfoSection,
+  Layout,
+  SingleRow,
+} from '../contract.styled'
 
-const CONTRACT_STATUS: optionType[] = [
+export const CONTRACT_STATUS: optionType[] = [
   { value: 'COMPLETE', label: '계약완료' },
   { value: 'IN_PROGRESS', label: '계약중' },
   { value: 'PROVISIONAL', label: '가계약' },
   { value: 'VERBAL', label: '구두계약' },
 ]
-
-interface imageInfoType {
-  name: string
-  url: string | ArrayBuffer | null
-}
 
 const CreateContract = () => {
   const fileRef = useRef<HTMLInputElement>(null)
@@ -216,69 +221,3 @@ const CreateContract = () => {
 }
 
 export default CreateContract
-
-const Layout = styled.div`
-  width: 100%;
-  height: 100%;
-  padding: 3rem 2rem;
-`
-
-const InfoSection = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding-bottom: 4rem;
-`
-
-const AttachedFileSection = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: 15rem;
-
-  div:nth-child(1) {
-    display: flex;
-    flex-direction: column;
-    row-gap: 5px;
-  }
-`
-
-const ImageSection = styled.div`
-  display: flex;
-  column-gap: 0.5rem;
-  align-items: flex-end;
-
-  div {
-    width: 1.6rem;
-    height: 1.6rem;
-  }
-`
-
-const ButtonSection = styled.div`
-  width: 100%;
-  padding: 2rem 0;
-`
-
-const FormSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-`
-
-const SingleRow = styled.div`
-  display: grid;
-  grid-template-columns: 10rem 14rem;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-`
-
-const DateWrapper = styled.div`
-  display: flex;
-  column-gap: 1rem;
-  align-items: center;
-  justify-content: flex-end;
-  padding-right: 1.5rem;
-`
