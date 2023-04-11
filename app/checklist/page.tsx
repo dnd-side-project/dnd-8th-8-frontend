@@ -2,7 +2,7 @@
 
 import { DDayBadge, FloatingButton, Text } from '@/components'
 import { ChecklistCard } from '@/layouts/checklist'
-import { useGetChecklist } from '@/queries/useGetChecklist'
+import { useGetChecklist } from '@/queries/checklist/useGetChecklist'
 import { Checklist } from '@/types/api/checklist'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -26,7 +26,9 @@ const Checklist = () => {
     const sortedData: SortedData = {}
 
     checklist.forEach((item) => {
-      const yyyymm = item.checkDate ? item.checkDate.slice(0, 7) : 'empty'
+      const yyyymm = item.checklistItem.checkDate
+        ? item.checklistItem.checkDate.slice(0, 7)
+        : 'empty'
       sortedData[yyyymm]
         ? sortedData[yyyymm].push(item)
         : (sortedData[yyyymm] = [item])
@@ -36,8 +38,6 @@ const Checklist = () => {
   }
 
   const sortedData = checklistDataSortByDate()
-
-  console.log(sortedData)
 
   return (
     <Layout>
@@ -64,10 +64,14 @@ const Checklist = () => {
       </HeaderSection>
 
       <ContentSection>
-        <Text as="t3">2023. 03</Text>
-        <ChecklistCard />
-        <ChecklistCard />
-        <ChecklistCard />
+        {Object.keys(sortedData).map((key) => (
+          <div key={key}>
+            <Text as="t3">{key}</Text>
+            {sortedData[key].map((item) => (
+              <ChecklistCard key={item.checklistItem.id} checklist={item} />
+            ))}
+          </div>
+        ))}
       </ContentSection>
 
       <FloatingButton
