@@ -1,8 +1,14 @@
 import { Icon, Menu, Text } from '@/components'
+import { Checklist } from '@/types/api/checklist'
 import { useState } from 'react'
 import styled, { Color } from 'styled-components'
 
-const ChecklistCard = () => {
+interface ChecklistCardProps {
+  checklist: Checklist
+}
+
+const ChecklistCard = ({ checklist }: ChecklistCardProps) => {
+  console.log('sk', checklist)
   const [isOpen, setIsOpen] = useState(false)
   const [isChecked, setIsChecked] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -33,19 +39,21 @@ const ChecklistCard = () => {
         <CenterSection>
           <CenterSectionDate>
             <Text as="h4" color={isChecked ? 'neutral100' : 'neutral800'}>
-              7일
+              {checklist.checklistItem.checkDate
+                ? checklist.checklistItem.checkDate.slice(0, 7)
+                : '⚙️'}
             </Text>
           </CenterSectionDate>
 
           <CenterSectionTitle>
             <Text as="h4" color={isChecked ? 'neutral100' : 'neutral800'}>
-              결혼 반지 맞추기
+              {checklist.checklistItem.title}
             </Text>
           </CenterSectionTitle>
 
           <CenterSectionCount>
             <Text as="t3" color={isChecked ? 'neutral100' : 'neutral800'}>
-              2개
+              {checklist.checklistSubItems.length}개
             </Text>
           </CenterSectionCount>
         </CenterSection>
