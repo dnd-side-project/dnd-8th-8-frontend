@@ -4,15 +4,19 @@ interface ChecklistSubItem {
   isChecked: string
 }
 
-export interface Checklist {
-  id: number
+export interface ChecklistItem {
+  id?: number
   title: string
-  checkDate?: string
-  startTime?: string
-  endTime?: string
-  place?: string
-  memo?: string
-  checklistSubItems?: ChecklistSubItem[]
+  checkDate: string
+  startTime: string
+  endTime: string
+  place: string
+  memo: string
+}
+
+export interface Checklist {
+  checklistItem: ChecklistItem
+  checklistSubItems: ChecklistSubItem[]
 }
 
 export interface ChecklistResponse {
