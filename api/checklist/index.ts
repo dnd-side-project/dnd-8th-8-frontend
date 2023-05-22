@@ -11,7 +11,7 @@ export const getChecklist = async (subItem: boolean) => {
 
 export const createChecklist = async (payload: Checklist) => {
   const { data }: AxiosResponse<ChecklistResponse> = await axiosInstance.post(
-    `/api/v1/checklist`,
+    `/api/v1/checklist/item`,
     payload,
   )
   return data

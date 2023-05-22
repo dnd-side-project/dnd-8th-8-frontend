@@ -1,7 +1,7 @@
 interface ChecklistSubItem {
-  id: number
+  id?: number
   contents: string
-  isChecked: string
+  isChecked?: string
 }
 
 export interface ChecklistItem {

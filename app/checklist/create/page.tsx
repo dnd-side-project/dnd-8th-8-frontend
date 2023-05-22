@@ -24,7 +24,11 @@ const CreateChecklist = ({ params: { id } }: ParamsProps) => {
       place: '',
       memo: '',
     },
-    checklistSubItems: [],
+    checklistSubItems: [
+      {
+        contents: 'ㅁㄴㅇㄹ',
+      },
+    ],
   })
 
   const {
@@ -95,26 +99,28 @@ const CreateChecklist = ({ params: { id } }: ParamsProps) => {
           title="세부일정명"
           content={
             <DetailTodoBox>
-              {formData.checklistSubItems.length === 0 && (
+              {
                 <div>
                   <ItemInput
                     placeholder="세부일정을 작성해주세요"
-                    onChange={(e) => {}}
-                  ></ItemInput>
+                    value={formData.checklistSubItems[0].contents}
+                    onChange={(e) => {
+                      setFormData({
+                        ...formData,
+                        checklistSubItems: [
+                          {
+                            ...formData.checklistSubItems[0],
+
+                            contents: e.target.value,
+                          },
+                        ],
+                      })
+                    }}
+                  />
 
                   <Divider />
                 </div>
-              )}
-
-              {formData.checklistSubItems.map((item, index) => (
-                <div key={index}>
-                  <Text as="t3" color="neutral800">
-                    {item.contents}
-                  </Text>
-
-                  <Divider />
-                </div>
-              ))}
+              }
 
               <AddItemSection onClick={onAddItem}>
                 <Icon name="plus" color="neutral500" />
@@ -239,19 +245,43 @@ const CreateChecklist = ({ params: { id } }: ParamsProps) => {
 
         <ContentBox
           title="일정장소"
-          input=""
+          input={formData.checklistItem.place}
           placeholder="장소명을 작성해주세요."
+          onChange={(e) =>
+            setFormData({
+              ...formData,
+              checklistItem: {
+                ...formData.checklistItem,
+                place: e.target.value,
+              },
+            })
+          }
         />
       </ContentLayout>
 
       <TextAreaSection
         placeholder="메모 추가 (100자 이하 작성 가능)"
+        value={formData.checklistItem.memo}
+        onChange={(e) =>
+          setFormData({
+            ...formData,
+            checklistItem: {
+              ...formData.checklistItem,
+              memo: e.target.value,
+            },
+          })
+        }
         maxLength={100}
       />
 
       <ButtonSection>
-        <Button fullWidth backgroundColor="secondary0">
-          <Text as="h5" color="neutral500">
+        <Button
+          fullWidth
+          onClick={() => {
+            mutate(formData)
+          }}
+        >
+          <Text as="h5" color="neutral0">
             완료
           </Text>
         </Button>
@@ -342,4 +372,20 @@ const ButtonBox = styled.div`
   margin-top: 1rem;
 `
 
-const ItemInput = styled.input``
+const ItemInput = styled.input`
+  padding: 0.5rem 0 0.2rem;
+  margin-top: -0.25rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  border: none;
+  border-radius: 0.4rem;
+
+  ::placeholder {
+    color: ${({ theme }) => theme.color.neutral500};
+  }
+
+  :focus {
+    outline: none;
+  }
+`
