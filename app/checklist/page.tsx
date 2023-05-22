@@ -28,7 +28,7 @@ const Checklist = () => {
     checklist.forEach((item) => {
       const yyyymm = item.checklistItem.checkDate
         ? item.checklistItem.checkDate.slice(0, 7)
-        : 'empty'
+        : '날짜 미정'
       sortedData[yyyymm]
         ? sortedData[yyyymm].push(item)
         : (sortedData[yyyymm] = [item])

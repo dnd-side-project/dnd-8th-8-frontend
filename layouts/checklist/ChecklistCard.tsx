@@ -8,7 +8,6 @@ interface ChecklistCardProps {
 }
 
 const ChecklistCard = ({ checklist }: ChecklistCardProps) => {
-  console.log('sk', checklist)
   const [isOpen, setIsOpen] = useState(false)
   const [isChecked, setIsChecked] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -141,6 +140,7 @@ const CardHeader = styled.div<{
   justify-content: space-between;
   width: 100%;
   height: 6.5rem;
+  margin-bottom: 1rem;
   cursor: pointer;
   background-color: ${({ theme, isChecked }) =>
     isChecked ? theme.color.secondary500 : theme.color.secondary0};
@@ -189,6 +189,7 @@ const CardBody = styled.div`
   gap: 1.6rem;
   padding: calc(6.5rem + 1.6rem) 2rem 1.6rem 2rem;
   margin-top: calc(-6.5rem - 1rem);
+  margin-bottom: 1rem;
   border-radius: 10px;
   box-shadow: 0 1px 7px rgb(0 0 0 / 15%);
 `
