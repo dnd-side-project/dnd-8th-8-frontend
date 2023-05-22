@@ -1,5 +1,6 @@
 import { Icon, Menu, Text } from '@/components'
 import { Checklist } from '@/types/api/checklist'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import styled, { Color } from 'styled-components'
 
@@ -7,10 +8,17 @@ interface ChecklistCardProps {
   checklist: Checklist
 }
 
+interface ChecklistSubItem {
+  id: number
+  contents: string
+  isChecked: string
+}
+
 const ChecklistCard = ({ checklist }: ChecklistCardProps) => {
   const [isOpen, setIsOpen] = useState(false)
   const [isChecked, setIsChecked] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const router = useRouter()
 
   const handleCheck = () => {
     setIsChecked(!isChecked)
@@ -35,7 +43,12 @@ const ChecklistCard = ({ checklist }: ChecklistCardProps) => {
           )}
         </LeftSection>
 
-        <CenterSection>
+        <CenterSection
+          onClick={(e) => {
+            e.stopPropagation()
+            router.push(`/checklist/${checklist.checklistItem.id}`)
+          }}
+        >
           <CenterSectionDate>
             <Text as="h4" color={isChecked ? 'neutral100' : 'neutral800'}>
               {checklist.checklistItem.checkDate
@@ -67,56 +80,31 @@ const ChecklistCard = ({ checklist }: ChecklistCardProps) => {
 
       {isOpen && (
         <CardBody>
-          <CardItem>
-            <CardItemLeftSection onClick={handleCheck}>
-              {isChecked ? (
-                <Icon name="checkbox" size={20} color="secondary500" />
-              ) : (
-                <Circle color="secondary400" />
-              )}
-            </CardItemLeftSection>
-            <CardItemCenterSection onClick={handleCheck}>
-              <Text as="t3">장수 확인</Text>
-            </CardItemCenterSection>
-            <CardItemRightSection onClick={handleMenu}>
-              <Icon name="more-horizontal" color="neutral300" />
-              {isMenuOpen && (
-                <Menu
-                  items={[
-                    { label: '수정', onClick: () => null },
-                    { label: '삭제', onClick: () => null },
-                  ]}
-                />
-              )}
-            </CardItemRightSection>
-          </CardItem>
-
-          <CardItem>
-            <CardItemLeftSection>
-              {isChecked ? (
-                <Icon name="checkbox" size={20} color="secondary500" />
-              ) : (
-                <Circle color="secondary400" />
-              )}
-            </CardItemLeftSection>
-            <CardItemCenterSection>
-              <Text as="t3">견적 확인</Text>
-            </CardItemCenterSection>
-            <CardItemRightSection>
-              <Icon name="more-horizontal" color="neutral300" />
-            </CardItemRightSection>
-          </CardItem>
-
-          <CardItem>
-            <CardItemLeftSection>
-              <Circle color="neutral500" />
-            </CardItemLeftSection>
-            <CardItemCenterSection>
-              <Text as="t3" color="neutral400">
-                입력
-              </Text>
-            </CardItemCenterSection>
-          </CardItem>
+          {checklist.checklistSubItems.map((item) => (
+            <CardItem key={item.id}>
+              <CardItemLeftSection onClick={handleCheck}>
+                {item.isChecked ? (
+                  <Icon name="checkbox" size={20} color="secondary500" />
+                ) : (
+                  <Circle color="secondary400" />
+                )}
+              </CardItemLeftSection>
+              <CardItemCenterSection onClick={handleCheck}>
+                <Text as="t3">{item.contents}</Text>
+              </CardItemCenterSection>
+              <CardItemRightSection onClick={handleMenu}>
+                <Icon name="more-horizontal" color="neutral300" />
+                {isMenuOpen && (
+                  <Menu
+                    items={[
+                      { label: '수정', onClick: () => null },
+                      { label: '삭제', onClick: () => null },
+                    ]}
+                  />
+                )}
+              </CardItemRightSection>
+            </CardItem>
+          ))}
 
           <CardAddButton>
             <Icon name="plus" color="neutral500" size={12} />
