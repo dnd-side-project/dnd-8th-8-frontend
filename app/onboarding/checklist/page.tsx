@@ -3,12 +3,12 @@
 import { Icon, Text } from '@/components'
 import { OnBoardingLayout } from '@/layouts/onboarding'
 import { useCreatePreChecklist } from '@/queries/user/useCreatePreChecklist'
-import { PrecheklistType } from '@/types/checklist'
+import { PreChecklistType } from '@/types/checklist'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import styled from 'styled-components'
 
-const CATEGORY_ARR: { name: string; id: PrecheklistType }[] = [
+const CATEGORY_ARR: { name: string; id: PreChecklistType }[] = [
   { name: '상견례', id: 'MEETING' },
   { name: '예식장', id: 'WEDDING_HALL' },
   { name: '신혼여행', id: 'HONEYMOON' },

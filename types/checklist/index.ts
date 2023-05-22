@@ -1,4 +1,4 @@
-export type PrecheklistType =
+export type PreChecklistType =
   | 'MEETING'
   | 'WEDDING_HALL'
   | 'HONEYMOON'
