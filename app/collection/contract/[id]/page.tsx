@@ -2,11 +2,20 @@
 'use client'
 
 import { deleteContractApi } from '@/api/contract'
-import { Button, Header, Icon, Input, Text } from '@/components'
+import {
+  Button,
+  Calendar,
+  Header,
+  Icon,
+  Input,
+  Modal,
+  Text,
+} from '@/components'
 import { Select } from '@/components/Select'
 import { optionType } from '@/components/Select/Select.type'
 import { Textarea } from '@/components/Textarea'
 import { QUERY_KEYS } from '@/constant'
+import { useCalendar } from '@/hooks'
 import { useGetSelectedContractInfo } from '@/queries/contract/useGetSelectedContract'
 import { ContractItemType, ContractStatusType } from '@/types/api/contract'
 import { imageInfoType } from '@/types/contract'
@@ -15,6 +24,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
+import styled from 'styled-components'
 import {
   AttachedFileSection,
   ButtonSection,
@@ -39,6 +49,7 @@ const DetailContract = ({ params: { id } }: ParamsProps) => {
   const queryClient = useQueryClient()
   const fileRef = useRef<HTMLInputElement>(null)
   const [imgInfo, setImgInfo] = useState<imageInfoType>({ name: '', url: '' })
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false)
   const [file, setFile] = useState<Blob | string>('')
   const [contractInfo, setContractInfo] = useState<
     Omit<ContractItemType, 'file' | 'id'>
@@ -50,6 +61,24 @@ const DetailContract = ({ params: { id } }: ParamsProps) => {
     memo: '',
   })
   const formData = new FormData()
+
+  const {
+    month,
+    year,
+    calendar,
+    selected,
+    nextMonth,
+    prevMonth,
+    handleSelected,
+  } = useCalendar(new Date())
+
+  const selectedDate = selected.length > 0 ? selected[0].id : null
+
+  const handleDate = () => {
+    setContractInfo({ ...contractInfo, contractDate: selectedDate || '' })
+    setIsCalendarOpen(false)
+  }
+
   const { mutate: deleteContract } = useMutation(
     (id: number) => deleteContractApi(id),
     {
@@ -136,7 +165,36 @@ const DetailContract = ({ params: { id } }: ParamsProps) => {
                 <Text as="t3" color="secondary900">
                   {contractInfo.contractDate ? contractInfo.contractDate : ''}
                 </Text>
-                <Icon name="calendar" color="neutral800" />
+                <>
+                  <CalendarButtonSection
+                    onClick={() => setIsCalendarOpen(!isCalendarOpen)}
+                  >
+                    <Icon name="calendar" color="neutral800" />
+                  </CalendarButtonSection>
+                  {isCalendarOpen && (
+                    <Modal
+                      isOpen={isCalendarOpen}
+                      onClose={() => setIsCalendarOpen(false)}
+                    >
+                      <Calendar
+                        month={month}
+                        year={year}
+                        calendar={calendar}
+                        nextMonth={nextMonth}
+                        prevMonth={prevMonth}
+                        handleSelected={handleSelected}
+                      />
+
+                      <ButtonBox>
+                        <Button fullWidth onClick={handleDate}>
+                          <Text as="t3" color="neutral0">
+                            확인
+                          </Text>
+                        </Button>
+                      </ButtonBox>
+                    </Modal>
+                  )}
+                </>
               </DateWrapper>
             </SingleRow>
             <SingleRow>
@@ -247,3 +305,13 @@ const DetailContract = ({ params: { id } }: ParamsProps) => {
 }
 
 export default DetailContract
+
+const CalendarButtonSection = styled.button`
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+`
+
+const ButtonBox = styled.div`
+  margin-top: 1rem;
+`
